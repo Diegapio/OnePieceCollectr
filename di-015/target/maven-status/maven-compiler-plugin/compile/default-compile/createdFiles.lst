@@ -1,0 +1,7 @@
+com\example\controllers\MainController.class
+com\example\models\User.class
+com\example\controllers\LoginController.class
+com\example\models\Card.class
+com\example\App.class
+com\example\controllers\ColeccionController.class
+com\example\controllers\DashboardController.class
