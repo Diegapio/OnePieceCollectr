@@ -1,4 +1,4 @@
-package com.example;
+package com.onepiececollectr;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

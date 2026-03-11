@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox alignment="CENTER"
+      spacing="15"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.onepiececollectr.Login">
+
+    <Label text="One Piece Collectr"
+           style="-fx-font-size: 28;" />
+
+    <TextField fx:id="usernameField"
+               promptText="Usuario"
+               prefWidth="200"/>
+
+    <PasswordField fx:id="passwordField"
+                   promptText="Contraseña"
+                   prefWidth="200"/>
+
+    <Button text="Login"
+            onAction="#IniciarSesion"/>
+
+    <Button text="Registrarse" onAction="#registrarNuevoUsuario" />
+
+</VBox>

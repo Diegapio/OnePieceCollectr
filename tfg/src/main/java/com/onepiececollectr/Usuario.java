@@ -1,8 +1,8 @@
 package com.onepiececollectr;
 
 public class Usuario {
-    private int id;
-    private String nombre;
+    public int id;
+    public String nombre;
 
     // Este es el constructor que usa el Login para "crear" al usuario tras buscarlo en BD
     public Usuario(int id, String nombre) {

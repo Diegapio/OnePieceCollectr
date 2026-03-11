@@ -22,8 +22,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class Login {
-    @FXML private TextField NombreUSuario;
-    @FXML private PasswordField ContraseñaUsuario;
+    @FXML private TextField usernameField; 
+    @FXML private PasswordField passwordField;
     
     // ATRIBUTOS QUE FALTABAN
     private static Connection conexion;
@@ -49,10 +49,10 @@ public class Login {
     }
 
     //Conexión con el FXML para iniciar sesión
-    @FXML
+  @FXML
     public void IniciarSesion(ActionEvent event) {
-        String nombre = NombreUSuario.getText();
-        String contraseña = ContraseñaUsuario.getText();
+        String nombre = usernameField.getText();
+        String contraseña = passwordField.getText();
         
         if (nombre.isEmpty() || contraseña.isEmpty()) {
             mostrarAlerta("Error", "Por favor, rellena todos los campos.");
@@ -66,8 +66,41 @@ public class Login {
             sesionUsuario = usuarioEncontrado;
             registrarEnLog("LOGIN: Usuario " + nombre + " ha entrado.");
             //Hay que pasar a la siguiente pestaña una vez registrado pa que vea todo el usuario
+            //irAPantallaPrincipal();
         } else {
-            registrarNuevoUsuario(nombre, contraseña);
+            // Si no se encuentra, mostramos el error de datos incorrectos
+            mostrarAlerta("Error", "Datos del usuario incorrectos.");
+            registrarEnLog("LOGIN FALLIDO: Datos incorrectos para el usuario: " + nombre);
+        }
+    }
+    //En caso de que no exista el usuario, este método lo añade, lo carga y lo guarda en el log
+    @FXML
+    public void registrarNuevoUsuario(ActionEvent event) {
+        String nom = usernameField.getText();
+        String psw = passwordField.getText();
+        int nuevoId = obtenerSiguienteIdDeBaseDeDatos();
+        
+        String sql = "INSERT INTO USER (id, username, password) VALUES (?, ?, ?)";
+        try (PreparedStatement pstmt = getConexion().prepareStatement(sql)) {
+            pstmt.setInt(1, nuevoId);
+            pstmt.setString(2, nom);
+            pstmt.setString(3, psw);
+            pstmt.executeUpdate();
+            
+            sesionUsuario = new Usuario(nuevoId, nom);
+            registrarEnLog("REGISTRO: Nuevo usuario creado: " + nom + " con ID: " + nuevoId);
+            mostrarAlerta("Bienvenido", "Cuenta creada con éxito. ¡Hola, " + nom + "!");
+            
+            // Comentamos el avance de pantalla para verificar que se ha escrito todo bien
+            // irAPantallaPrincipal(); 
+            
+            // Limpiamos los campos para que el usuario pueda escribir de nuevo y probar el login
+            usernameField.clear();
+            passwordField.clear();
+            
+        } catch (SQLException e) {
+            registrarEnLog("ERROR REGISTRO: " + e.getMessage());
+            mostrarAlerta("Error", "No se pudo registrar al usuario.");
         }
     }
 
@@ -104,32 +137,7 @@ public class Login {
             registrarEnLog("LOG: No se pudo obtener MAX ID, se asignará ID 1.");
         }
         return siguienteId;
-    }
-
-    //En caso de que no exista el usuario, este método lo añade, lo carga y lo guarda en el log
-    private void registrarNuevoUsuario(String nom, String psw) {
-        int nuevoId = obtenerSiguienteIdDeBaseDeDatos();
-        
-        
-        String sql = "INSERT INTO USER (id, username, password) VALUES (?, ?, ?)";
-        try (PreparedStatement pstmt = getConexion().prepareStatement(sql)) {
-            pstmt.setInt(1, nuevoId);
-            pstmt.setString(2, nom);
-            pstmt.setString(3, psw);
-            pstmt.executeUpdate();
-            
-            sesionUsuario = new Usuario(nuevoId, nom);
-            registrarEnLog("REGISTRO: Nuevo usuario creado: " + nom + " con ID: " + nuevoId);
-            mostrarAlerta("Bienvenido", "Cuenta creada con éxito. ¡Hola, " + nom + "!");
-            //Hay que pasar a la siguiente pestaña una vez registrado pa que vea todo el usuario
-            
-        } catch (SQLException e) {
-            registrarEnLog("ERROR REGISTRO: " + e.getMessage());
-            mostrarAlerta("Error", "No se pudo registrar al usuario.");
-        }
-    }
-
-    
+    }    
 
     private void mostrarAlerta(String titulo, String msj) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
