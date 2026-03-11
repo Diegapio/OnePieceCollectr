@@ -13,12 +13,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.control.ButtonType;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -81,9 +84,8 @@ public class Login implements Initializable {
         if (usuarioEncontrado != null) {
             sesionUsuario = usuarioEncontrado;
             registrarEnLog("LOGIN: Usuario " + nombre + " ha entrado.");
-            // Hay que pasar a la siguiente pestaña una vez registrado pa que vea todo el
-            // usuario
-            // irAPantallaPrincipal();
+            // Hay que pasar a la siguiente pestaña una vez registrado pa que vea todo el usuario
+            iraPanrallaPrincipal();
         } else {
             // Si no se encuentra, mostramos el error de datos incorrectos
             mostrarAlerta("Error", "Datos del usuario incorrectos.");
@@ -111,7 +113,7 @@ public class Login implements Initializable {
             mostrarAlerta("Bienvenido", "Cuenta creada con éxito. ¡Hola, " + nom + "!");
 
             // Comentamos el avance de pantalla para verificar que se ha escrito todo bien
-            // irAPantallaPrincipal();
+            iraPanrallaPrincipal();
 
             // Limpiamos los campos para que el usuario pueda escribir de nuevo y probar el login
             usernameField.clear();
@@ -159,7 +161,7 @@ public class Login implements Initializable {
         return siguienteId;
     }
 
-    private void mostrarAlerta(String titulo, String msj) {
+    public void mostrarAlerta(String titulo, String msj) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
@@ -167,7 +169,7 @@ public class Login implements Initializable {
         alert.showAndWait();
     }
 
-    private static void registrarEnLog(String mensaje) {
+    public static void registrarEnLog(String mensaje) {
         try (FileWriter fw = new FileWriter(ARCHIVO_LOG, true);
                 PrintWriter pw = new PrintWriter(fw)) {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -176,5 +178,20 @@ public class Login implements Initializable {
             System.err.println("Error fatal escribiendo log: " + e.getMessage());
         }
     }
+
+        public void iraPanrallaPrincipal() {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/principal.fxml"));
+                System.out.println("Recurso FXML: " + getClass().getResource("/view/principal.fxml"));
+                Scene scene = new Scene(loader.load(), 900, 600);
+                Stage stage = (Stage) usernameField.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                registrarEnLog("ERROR CARGANDO PANTALLA PRINCIPAL: " + e.getMessage());
+                mostrarAlerta("Error", "No se pudo cargar la pantalla principal.");
+            }
+        }
+    
 
 }
