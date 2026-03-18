@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -33,13 +34,14 @@ public class Login implements Initializable {
     @FXML
     private PasswordField passwordField;
 
-    // ATRIBUTOS QUE FALTABAN
+
+    
     private static Connection conexion;
     private static final String URL_BASEDATOS = "jdbc:postgresql://aws-1-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
     private static final String USUARIO = "postgres.yllqjmkurbaatgagapzd";
     private static final String PASSWORD = "OnePiece123-$!"; 
    
-    private static final String ARCHIVO_LOG = "sistema_one_piece.log";
+    private static final String ARCHIVO_LOG = "One_piece.log";
     private static Usuario sesionUsuario;
 
     @Override
@@ -93,29 +95,27 @@ public class Login implements Initializable {
         }
     }
 
-    // En caso de que no exista el usuario, este método lo añade, lo carga y lo
-    // guarda en el log
+    // En caso de que no exista el usuario, este método lo añade, lo carga y lo guarda en la base de datos, escribiendolo en el log
     @FXML
     public void registrarNuevoUsuario(ActionEvent event) {
         String nom = usernameField.getText();
         String psw = passwordField.getText();
-        //int nuevoId = obtenerSiguienteIdDeBaseDeDatos();
 
+        // Generamos el hash antes de insertar
+        String hashedPassword = BCrypt.hashpw(psw, BCrypt.gensalt());
         String sql = "INSERT INTO usuario (nombre, contraseña) VALUES (?, ?)";
+        
         try (PreparedStatement pstmt = getConexion().prepareStatement(sql)) {
-            //pstmt.setInt(1, nuevoId);
             pstmt.setString(1, nom);
-            pstmt.setString(2, psw);
+            pstmt.setString(2, hashedPassword);
             pstmt.executeUpdate();
 
-            //sesionUsuario = new Usuario(nuevoId, nom);
-            registrarEnLog("REGISTRO: Nuevo usuario creado: " + nom + " con ID: " + obtenerSiguienteIdDeBaseDeDatos());
+            // Usamos el método para el log
+            registrarEnLog("REGISTRO: Nuevo usuario creado: " + nom);
             mostrarAlerta("Bienvenido", "Cuenta creada con éxito. ¡Hola, " + nom + "!");
 
-            // Comentamos el avance de pantalla para verificar que se ha escrito todo bien
             iraPanrallaPrincipal();
 
-            // Limpiamos los campos para que el usuario pueda escribir de nuevo y probar el login
             usernameField.clear();
             passwordField.clear();
 
@@ -126,15 +126,21 @@ public class Login implements Initializable {
     }
 
     private Usuario buscarUsuarioEnBD(String nom, String psw) {
-        String query = "SELECT id, nombre FROM usuario WHERE nombre = ? AND contraseña = ?";
+       
+        String query = "SELECT id, nombre, contraseña FROM usuario WHERE nombre = ?";
         try (PreparedStatement pstmt = getConexion().prepareStatement(query)) {
             pstmt.setString(1, nom);
-            pstmt.setString(2, psw);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                // Si existe se crea el objeto Usuario con los datos de la base
-                return new Usuario(rs.getInt("id"), rs.getString("nombre"));
+                String hashGuardado = rs.getString("contraseña");
+                
+                
+                if (BCrypt.checkpw(psw, hashGuardado)) {
+                    return new Usuario(rs.getInt("id"), rs.getString("nombre"));
+                } else {
+                    registrarEnLog("LOGIN FALLIDO: Contraseña incorrecta para " + nom);
+                }
             }
         } catch (SQLException e) {
             registrarEnLog("ERROR BUSQUEDA: " + e.getMessage());

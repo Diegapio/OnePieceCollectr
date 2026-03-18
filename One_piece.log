@@ -1,0 +1,15 @@
+[2026-03-12 11:19:03] Conexión con One Piece DB establecida.
+[2026-03-12 11:19:10] LOGIN: Usuario Prueba ha entrado.
+[2026-03-12 11:19:30] Conexión con One Piece DB establecida.
+[2026-03-12 11:19:40] LOGIN: Usuario Prueba ha entrado.
+[2026-03-18 13:40:12] Conexión con One Piece DB establecida.
+[2026-03-18 13:40:37] ERROR REGISTRO: ERROR: duplicate key value violates unique constraint "Usuario_nombre_key"
+  Detail: Key (nombre)=(Prueba) already exists.
+[2026-03-18 13:42:09] Conexión con One Piece DB establecida.
+[2026-03-18 13:42:22] REGISTRO: Nuevo usuario creado: Pruebas
+[2026-03-18 13:42:56] Conexión con One Piece DB establecida.
+[2026-03-18 13:43:07] LOGIN FALLIDO: Contraseña incorrecta para Pruebas
+[2026-03-18 13:43:08] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
+[2026-03-18 13:43:21] LOGIN: Usuario Pruebas ha entrado.
+[2026-03-18 13:43:50] Conexión con One Piece DB establecida.
+[2026-03-18 13:44:04] LOGIN: Usuario Pruebas ha entrado.

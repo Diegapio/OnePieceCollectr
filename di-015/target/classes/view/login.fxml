@@ -20,9 +20,8 @@
                    prefWidth="200"/>
 
     <Button text="Login"
-            onAction="#login"/>
+            onAction="#IniciarSesion"/>
 
-    <Button text="Registrarse"
-            onAction="#register"/>
+    <Button text="Registrarse" onAction="#registrarNuevoUsuario" />
 
 </VBox>

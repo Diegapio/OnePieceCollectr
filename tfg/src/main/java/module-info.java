@@ -3,8 +3,7 @@ module com.onepiececollectr {
     requires javafx.fxml;
     requires java.sql;
     requires javafx.graphics;
-
-    // Esto permite que el cargador de FXML acceda a tus métodos IniciarSesion y registrarNuevoUsuario
+    requires jbcrypt;
     opens com.onepiececollectr to javafx.fxml;
     
     exports com.onepiececollectr;

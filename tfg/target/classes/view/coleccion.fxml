@@ -7,7 +7,7 @@
 <VBox spacing="20"
       alignment="TOP_CENTER"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.onepiececollectr.ColeccionController">
+      fx:controller="com.onepiececollectr.Coleccion">
 
     <Label text="Colección"
            style="-fx-font-size: 28;" />
