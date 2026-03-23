@@ -36,3 +36,58 @@
 [2026-03-23 09:34:44] ERROR CARGANDO A EVENTOS: 
 /C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/eventos.fxml
 
+[2026-03-23 09:36:35] Conexión con One Piece DB establecida.
+[2026-03-23 09:36:43] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:36:44] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
+[2026-03-23 09:36:51] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:36:52] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
+[2026-03-23 09:37:17] REGISTRO: Nuevo usuario creado: Prueba
+[2026-03-23 09:37:26] Conexión con One Piece DB establecida.
+[2026-03-23 09:37:32] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:37:34] LOGIN FALLIDO: Datos incorrectos para el usuario: Prueba
+[2026-03-23 09:39:45] Conexión con One Piece DB establecida.
+[2026-03-23 09:39:51] ERROR BUSQUEDA: The column name id was not found in this ResultSet.
+[2026-03-23 09:39:53] LOGIN FALLIDO: Datos incorrectos para el usuario: Prueba
+[2026-03-23 09:42:28] Conexión con One Piece DB establecida.
+[2026-03-23 09:42:35] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:42:37] LOGIN FALLIDO: Datos incorrectos para el usuario: Prueba
+[2026-03-23 09:42:49] REGISTRO: Nuevo usuario creado: 1
+[2026-03-23 09:42:57] Conexión con One Piece DB establecida.
+[2026-03-23 09:43:01] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:43:02] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:49:14] Conexión con One Piece DB establecida.
+[2026-03-23 09:49:19] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:49:21] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:49:22] REGISTRO: Nuevo usuario creado: 1
+[2026-03-23 09:49:31] Conexión con One Piece DB establecida.
+[2026-03-23 09:49:37] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:49:39] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:51:29] Conexión con One Piece DB establecida.
+[2026-03-23 09:51:32] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:51:33] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:53:54] Conexión con One Piece DB establecida.
+[2026-03-23 09:53:58] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:53:59] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:54:04] REGISTRO: Nuevo usuario creado: 2
+[2026-03-23 09:54:09] Conexión con One Piece DB establecida.
+[2026-03-23 09:54:12] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:54:13] LOGIN FALLIDO: Datos incorrectos para el usuario: 2
+[2026-03-23 09:55:22] Conexión con One Piece DB establecida.
+[2026-03-23 09:56:23] Conexión con One Piece DB establecida.
+[2026-03-23 09:56:26] REGISTRO: Nuevo usuario creado: 1
+[2026-03-23 09:56:32] Conexión con One Piece DB establecida.
+[2026-03-23 09:56:32] ERROR BUSQUEDA BD: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:56:33] LOGIN FALLIDO: Datos incorrectos para: 1
+[2026-03-23 10:00:28] Conexión con One Piece DB establecida.
+[2026-03-23 10:00:31] LOGIN EXITOSO: Usuario 1
