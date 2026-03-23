@@ -21,3 +21,18 @@
 [2026-03-23 09:18:04] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
 [2026-03-23 09:19:32] Conexión con One Piece DB establecida.
 [2026-03-23 09:19:45] REGISTRO: Nuevo usuario creado: Pruebas
+[2026-03-23 09:33:09] Conexión con One Piece DB establecida.
+[2026-03-23 09:33:24] ERROR REGISTRO: ERROR: duplicate key value violates unique constraint "usuario_nombre_key"
+  Detail: Key (nombre)=(Pruebas) already exists.
+[2026-03-23 09:33:45] Conexión con One Piece DB establecida.
+[2026-03-23 09:34:24] Conexión con One Piece DB establecida.
+[2026-03-23 09:34:35] REGISTRO: Nuevo usuario creado: Pruebas
+[2026-03-23 09:34:40] ERROR CARGANDO A MAZOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml
+
+[2026-03-23 09:34:42] ERROR CARGANDO AL MERCADO: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml
+
+[2026-03-23 09:34:44] ERROR CARGANDO A EVENTOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/eventos.fxml
+
