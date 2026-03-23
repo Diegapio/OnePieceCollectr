@@ -1,19 +1,57 @@
 package com.jp;
 
-import java.io.BufferedReader;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestAPI {
 
+    public static void main(String[] args) {
+        try {
+            // 1. Llamar a la API
+            URL url = URI.create("https://optcgapi.com/api/allSetCards/").toURL();
+
+            ObjectMapper mapper = new ObjectMapper();
+            Carta[] cartas = mapper.readValue(new InputStreamReader(url.openStream()), Carta[].class);
+
+            System.out.println("Total cartas: " + cartas.length);
+            System.out.println("Primera carta: " + cartas[0].name);
+
+            // 2. Probar conexión
+            Connection conn = Database.conectar();
+            System.out.println("Conexión a la base de datos exitosa: " + conn);
+            conn.close();
+
+            // 3. Insertar TODAS las cartas
+            int count = 0;
+
+            for (Carta c : cartas) {
+                insertarCarta(c);
+                count++;
+
+                if (count % 100 == 0) {
+                    System.out.println("Insertadas: " + count);
+                }
+            }
+
+            System.out.println("Importación completada 😏");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // =========================
+    // INSERTAR CARTA
+    // =========================
     public static void insertarCarta(Carta c) throws Exception {
 
-        String sql = "INSERT INTO carta (nombre, tipo, color, rareza, imagen_url) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO carta (nombre, tipo, color, rareza, imagen_url) " +
+                "VALUES (?, ?, ?, ?, ?) ON CONFLICT DO NOTHING";
 
         Connection conn = Database.conectar();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -30,6 +68,9 @@ public class TestAPI {
         conn.close();
     }
 
+    // =========================
+    // NORMALIZAR TIPO
+    // =========================
     public static String normalizarTipo(String tipo) {
         if (tipo == null)
             return "UNKNOWN";
@@ -43,6 +84,9 @@ public class TestAPI {
         };
     }
 
+    // =========================
+    // NORMALIZAR COLOR
+    // =========================
     public static String normalizarColor(String color) {
         if (color == null)
             return "UNKNOWN";
@@ -56,43 +100,5 @@ public class TestAPI {
             case "yellow" -> "AMARILLO";
             default -> color.toUpperCase();
         };
-    }
-
-    public static void main(String[] args) throws Exception {
-
-        URL url = URI.create("https://optcgapi.com/api/allSetCards/").toURL();
-
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-
-        in.close();
-
-        String jsonResponse = response.toString();
-
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        Carta[] cartas = objectMapper.readValue(jsonResponse, Carta[].class);
-
-        System.out.println("Total cartas: " + cartas.length);
-        System.out.println("Primera carta: " + cartas[0].name);
-
-        Connection conn = Database.conectar();
-        System.out.println("Conexión a la base de datos exitosa: " + conn);
-        conn.close();
-
-        insertarCarta(cartas[0]);
-        System.out.println("Carta insertada: " + cartas[0].name);
-
-        // System.out.println(jsonResponse.substring(0, 700));
     }
 }
