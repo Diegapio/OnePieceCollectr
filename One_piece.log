@@ -13,3 +13,11 @@
 [2026-03-18 13:43:21] LOGIN: Usuario Pruebas ha entrado.
 [2026-03-18 13:43:50] Conexión con One Piece DB establecida.
 [2026-03-18 13:44:04] LOGIN: Usuario Pruebas ha entrado.
+[2026-03-23 09:17:48] Conexión con One Piece DB establecida.
+[2026-03-23 09:17:59] ERROR REGISTRO: ERROR: column "contraseña" of relation "usuario" does not exist
+  Position: 30
+[2026-03-23 09:18:03] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:18:04] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
+[2026-03-23 09:19:32] Conexión con One Piece DB establecida.
+[2026-03-23 09:19:45] REGISTRO: Nuevo usuario creado: Pruebas

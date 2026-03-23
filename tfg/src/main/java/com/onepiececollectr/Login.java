@@ -39,7 +39,7 @@ public class Login implements Initializable {
     private static Connection conexion;
     private static final String URL_BASEDATOS = "jdbc:postgresql://aws-1-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
     private static final String USUARIO = "postgres.yllqjmkurbaatgagapzd";
-    private static final String PASSWORD = "OnePiece123-$!"; 
+    private static final String PASSWORD = "DiegoMeCagoEnTuVieja"; 
    
     private static final String ARCHIVO_LOG = "One_piece.log";
     private static Usuario sesionUsuario;
@@ -72,16 +72,16 @@ public class Login implements Initializable {
     @FXML
     public void IniciarSesion(ActionEvent event) {
         String nombre = usernameField.getText();
-        String contraseña = passwordField.getText();
+        String email = passwordField.getText();
 
-        if (nombre.isEmpty() || contraseña.isEmpty()) {
+        if (nombre.isEmpty() || email.isEmpty()) {
             mostrarAlerta("Error", "Por favor, rellena todos los campos.");
             return;
         }
 
         // llama a la función que busca el usuario en la BD, si lo encuentra lo carga,
         // si no, lo registra
-        Usuario usuarioEncontrado = buscarUsuarioEnBD(nombre, contraseña);
+        Usuario usuarioEncontrado = buscarUsuarioEnBD(nombre, email);
 
         if (usuarioEncontrado != null) {
             sesionUsuario = usuarioEncontrado;
@@ -103,7 +103,7 @@ public class Login implements Initializable {
 
         // Generamos el hash antes de insertar
         String hashedPassword = BCrypt.hashpw(psw, BCrypt.gensalt());
-        String sql = "INSERT INTO usuario (nombre, contraseña) VALUES (?, ?)";
+        String sql = "INSERT INTO usuario (nombre, email) VALUES (?, ?)";
         
         try (PreparedStatement pstmt = getConexion().prepareStatement(sql)) {
             pstmt.setString(1, nom);
@@ -127,19 +127,19 @@ public class Login implements Initializable {
 
     private Usuario buscarUsuarioEnBD(String nom, String psw) {
        
-        String query = "SELECT id, nombre, contraseña FROM usuario WHERE nombre = ?";
+        String query = "SELECT id, nombre, email FROM usuario WHERE nombre = ?";
         try (PreparedStatement pstmt = getConexion().prepareStatement(query)) {
             pstmt.setString(1, nom);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                String hashGuardado = rs.getString("contraseña");
+                String hashGuardado = rs.getString("email");
                 
                 
                 if (BCrypt.checkpw(psw, hashGuardado)) {
                     return new Usuario(rs.getInt("id"), rs.getString("nombre"));
                 } else {
-                    registrarEnLog("LOGIN FALLIDO: Contraseña incorrecta para " + nom);
+                    registrarEnLog("LOGIN FALLIDO: email incorrecta para " + nom);
                 }
             }
         } catch (SQLException e) {
