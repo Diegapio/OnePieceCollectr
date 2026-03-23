@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestAPI {
 
@@ -28,6 +29,14 @@ public class TestAPI {
 
         in.close();
 
-        System.out.println(response.toString());
+        String jsonResponse = response.toString();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Carta[] cartas = objectMapper.readValue(jsonResponse, Carta[].class);
+
+        System.out.println("Total cartas: " + cartas.length);
+        System.out.println("Primera carta: " + cartas[0].name);
+        
     }
 }
