@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.sql.Connection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestAPI {
@@ -37,6 +38,10 @@ public class TestAPI {
 
         System.out.println("Total cartas: " + cartas.length);
         System.out.println("Primera carta: " + cartas[0].name);
+
+        Connection conn = Database.conectar();
+        System.out.println("Conexión a la base de datos exitosa: " + conn);
+        conn.close();
         
     }
 }
