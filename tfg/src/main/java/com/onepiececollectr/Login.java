@@ -68,7 +68,7 @@ public class Login implements Initializable {
 
     @FXML
     public void IniciarSesion(ActionEvent event) {
-        // .trim() elimina espacios accidentales al principio o final
+        
         String nombre = usernameField.getText().trim();
         String password = passwordField.getText().trim();
 
