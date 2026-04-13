@@ -19,6 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         new Thread(() -> {
+            //Cargamos los datos desde un hilo separado para que no se quede congelado
         cargarDatosGlobales();
     }).start();
 
@@ -33,6 +34,7 @@ public class App extends Application {
         stage.show();
     }
 
+    //Cargamos todas las cartas y las ponemos en una lista para no volver a hacer consultas
     public static List<Carta> todasLasCartas = new ArrayList<>();
 
     public static void cargarDatosGlobales() {
@@ -52,6 +54,7 @@ public class App extends Application {
                     rs.getString("imagen_url")
                 ));
             }
+            //Debería de poner 3130 cartas o algo así, una burrada
             System.out.println("Cartas cargadas en memoria: " + todasLasCartas.size());
             Login.registrarEnLog("Cartas cargadas en memoria: " + todasLasCartas.size());   
         } catch (SQLException e) {

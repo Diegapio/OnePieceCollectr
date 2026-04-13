@@ -15,7 +15,7 @@ public class ColeccionController {
     @FXML
     private GridPane cardGrid;
 
-    // Usamos un Set para que la comprobación de "si la tengo" sea instantánea
+
     private Set<Integer> idsPoseidos = new HashSet<>();
 
    
@@ -23,10 +23,10 @@ public class ColeccionController {
 public void initialize() {
     new Thread(() -> {
         try {
-            // 1. Cargamos de la BD (Trabajo pesado de red)
+            
             cargarIdsPoseidos();
             
-            // 2. Llamamos al método que las pinta de forma progresiva
+           
             mostrarCartas();
             
         } catch (Exception e) {
@@ -37,13 +37,13 @@ public void initialize() {
 
     private void cargarIdsPoseidos() {
         idsPoseidos.clear();
-        // SQL para traer los IDs de la tabla de relación
+        // SQL para tener los id de las cartas del usuario
         String sql = "SELECT id_carta FROM coleccion WHERE id_usuario = ?";
         
         try (Connection conn = Login.getConexion();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             
-            // Usamos el ID del usuario que guardamos al hacer Login
+            //Se guardan bajo el id del usuario que ha iniciado sesión
             pstmt.setInt(1, Login.sesionUsuario.getId());
             ResultSet rs = pstmt.executeQuery();
             
@@ -57,12 +57,12 @@ public void initialize() {
     }
 
     private void mostrarCartas() {
-    // 1. PRIMERO: Limpiamos el grid en el hilo de la interfaz (FX Thread)
+    //Vaciamos el grid en caso de que haya algo para evitar errores
     javafx.application.Platform.runLater(() -> {
         cardGrid.getChildren().clear();
     });
 
-    // 2. DESPUÉS: Lanzamos el hilo para procesar las 3130 cartas sin prisa
+    // Lanzamos un hilo nuevo para procesar las cartas y hacerlas visibles sin ocupar todos los recursos de la app
     new Thread(() -> {
         int column = 0;
         int row = 0;
@@ -70,26 +70,25 @@ public void initialize() {
         for (Carta carta : App.todasLasCartas) {
             boolean laTiene = idsPoseidos.contains(carta.getId_carta());
             
-            // Creamos el objeto visual (esto se puede hacer en este hilo)
+            //Aprovechamos y creamos la interfaz de la carta
             VBox cardUI = createCard(carta, laTiene);
 
-            // Variables finales para el runLater
             final int c = column;
             final int r = row;
 
-            // 3. AÑADIR A LA PANTALLA: Esto DEBE ir en el hilo de FX
+            //Añadimos a la interfaz el hilo para ir llenando la pantalla
             javafx.application.Platform.runLater(() -> {
                 cardGrid.add(cardUI, c, r);
             });
 
-            // Incrementamos posición para la siguiente carta
+            //Vamos sumando las columnas y filas para que tomen un espacio nuevo
             column++;
             if (column == 4) {
                 column = 0;
                 row++;
             }
 
-            // Opcional: Pequeño respiro cada 50 cartas para que el PC no sufra
+            //Que cada 50 cartas se de un descanso para que no se congele
             if (column % 50 == 0) {
                 try { Thread.sleep(2); } catch (InterruptedException e) {}
             }
@@ -118,7 +117,7 @@ public void initialize() {
         VBox card = new VBox(8);
         card.getChildren().addAll(image, nameLabel, rarityLabel);
 
-        // APLICAMOS EL ESTILO SEGÚN SI LA TIENE O NO
+       //Si tenemos la carta, hacemos que cambie el tono y se vea más iluminada
         if (poseida) {
             card.setStyle("""
                 -fx-background-color: white;
@@ -130,7 +129,7 @@ public void initialize() {
                 -fx-alignment: center;
             """);
         } else {
-            // Efecto "Desactivado": Bajamos opacidad y ponemos fondo gris
+            //Si no la tenemos, se ve como desactivada
             card.setOpacity(0.35);
             card.setStyle("""
                 -fx-background-color: #ecf0f1;
@@ -144,17 +143,17 @@ public void initialize() {
 
         card.setPrefSize(140, 220);
 
-        // Hacemos que el cursor cambie a una mano al pasar por encima
+        //Siempre viene bien que el ratón cambie a la mano para ayudar
 card.setCursor(javafx.scene.Cursor.HAND);
 
 card.setOnMouseClicked(event -> {
-    // 1. Guardamos en Supabase de forma asíncrona para que no de un tirón la App
+    //Al hacer click en una carta, se añade a la base de datos, najo el id del usuario
     
         registrarCartaEnBD(cardData.getId_carta());
    
 
-    // 2. Feedback visual inmediato en el hilo de la interfaz
-    card.setOpacity(1.0); // La iluminamos
+    //Se ilumina nada más darle para que veamos que se ha hecho bien
+    card.setOpacity(1.0); 
     card.setStyle("""
         -fx-background-color: white;
         -fx-border-color: #f1c40f; 
@@ -171,7 +170,7 @@ card.setOnMouseClicked(event -> {
     }
 
     private void registrarCartaEnBD(int idCarta) {
-    // 1. Verificamos si hay sesión (Si esto falla, el problema es el Login)
+    //Vemos si se han guardado bien los datos del usuario, creo que es imposible pero hay que comprobar
     if (Login.sesionUsuario == null) {
         System.err.println("ERROR: No hay sesión de usuario activa. No se puede guardar.");
         return;
@@ -197,7 +196,7 @@ card.setOnMouseClicked(event -> {
             System.out.println("La carta ya existía en la colección (no se insertó nada nuevo).");
         }
         
-        // Es vital añadirla al Set local para que la UI sepa que ya la tienes
+        //Lo añadimos al hashset para que se vea en la interfaz
         idsPoseidos.add(idCarta);
 
     } catch (SQLException e) {

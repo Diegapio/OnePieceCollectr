@@ -7,8 +7,14 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.onepiececollectr.DashboardController">
 
+<HBox alignment="CENTER_LEFT" style="-fx-padding: 10;">
+    <Button text="← Volver" onAction="#volverAtras" 
+            style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-cursor: hand; -fx-font-weight: bold;" />
+</HBox>
+
     <Label text="Dashboard"
            style="-fx-font-size: 32;" />
+           
 
     <HBox spacing="40" alignment="CENTER">
 
@@ -37,5 +43,13 @@
         </VBox>
 
     </HBox>
+
+    <VBox spacing="10" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+        <Label text="Progreso de la Colección" style="-fx-font-size: 16;" />
+        <ProgressBar fx:id="progressBar" prefWidth="400.0" progress="0.0" 
+                     style="-fx-accent: #2ecc71;" />
+        <Label fx:id="progressPercent" text="0.00%" 
+               style="-fx-font-size: 18; -fx-font-weight: bold;" />
+    </VBox>
 
 </VBox>
