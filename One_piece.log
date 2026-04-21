@@ -9,7 +9,7 @@
 [2026-03-18 13:42:22] REGISTRO: Nuevo usuario creado: Pruebas
 [2026-03-18 13:42:56] Conexión con One Piece DB establecida.
 [2026-03-18 13:43:07] LOGIN FALLIDO: Contraseña incorrecta para Pruebas
-[2026-03-18 13:43:08] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
+[2026-03-18 13:43:08] LOGIN FALLIDO: Datos incorrectos para el usu  ario: Pruebas
 [2026-03-18 13:43:21] LOGIN: Usuario Pruebas ha entrado.
 [2026-03-18 13:43:50] Conexión con One Piece DB establecida.
 [2026-03-18 13:44:04] LOGIN: Usuario Pruebas ha entrado.
@@ -250,3 +250,187 @@
 [2026-04-13 07:58:56] Cartas cargadas en memoria: 3130
 [2026-04-13 07:58:59] LOGIN EXITOSO: Usuario 1
 [2026-04-13 07:59:01] Conexión con One Piece DB establecida.
+[2026-04-14 12:24:38] ERROR CONEXION: El intento de conexión falló.
+[2026-04-14 12:25:27] Conexión con One Piece DB establecida.
+[2026-04-14 12:25:29] Cartas cargadas en memoria: 3130
+[2026-04-14 12:25:30] Conexión con One Piece DB establecida.
+[2026-04-14 12:25:30] Conexión con One Piece DB establecida.
+[2026-04-14 12:25:30] Cartas cargadas en memoria: 3130
+[2026-04-14 12:26:25] LOGIN EXITOSO: Usuario 1
+[2026-04-14 12:26:28] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:36] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:46] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:47] Carta guardada en colección: Otama
+[2026-04-14 12:26:56] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:57] Cartas cargadas en memoria: 3130
+[2026-04-14 12:26:58] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:58] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:58] Cartas cargadas en memoria: 3130
+[2026-04-14 12:27:02] LOGIN EXITOSO: Usuario 1
+[2026-04-14 12:27:04] Conexión con One Piece DB establecida.
+[2026-04-14 12:28:20] ERROR CARGANDO A MAZOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml
+
+[2026-04-14 12:28:24] ERROR CARGANDO A EVENTOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/eventos.fxml
+
+[2026-04-14 13:06:27] Conexión con One Piece DB establecida.
+[2026-04-14 13:06:28] Cartas cargadas en memoria: 3130
+[2026-04-14 13:06:29] Conexión con One Piece DB establecida.
+[2026-04-14 13:06:29] Conexión con One Piece DB establecida.
+[2026-04-14 13:06:30] Cartas cargadas en memoria: 3130
+[2026-04-14 13:06:52] LOGIN EXITOSO: Usuario 1
+[2026-04-14 13:07:22] Conexión con One Piece DB establecida.
+[2026-04-14 13:07:38] Conexión con One Piece DB establecida.
+[2026-04-14 13:07:38] Carta guardada en colección: Radical Beam!!
+[2026-04-14 13:07:59] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:00] Cartas cargadas en memoria: 3130
+[2026-04-14 13:08:02] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:02] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:03] Cartas cargadas en memoria: 3130
+[2026-04-14 13:08:06] LOGIN EXITOSO: Usuario 1
+[2026-04-14 13:08:09] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:30] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:55] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:56] Cartas cargadas en memoria: 3130
+[2026-04-14 13:08:56] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:57] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:57] Cartas cargadas en memoria: 3130
+[2026-04-14 13:09:03] LOGIN EXITOSO: Usuario 1
+[2026-04-14 13:09:25] Conexión con One Piece DB establecida.
+[2026-04-14 13:09:44] Conexión con One Piece DB establecida.
+[2026-04-14 13:09:45] Carta guardada en colección: Trafalgar Law (047)
+[2026-04-14 13:09:46] Conexión con One Piece DB establecida.
+[2026-04-14 13:09:46] Carta guardada en colección: Eustass"Captain"Kid
+[2026-04-14 13:09:48] Conexión con One Piece DB establecida.
+[2026-04-14 13:09:48] Carta guardada en colección: Eustass"Captain"Kid
+[2026-04-14 13:14:39] Conexión con One Piece DB establecida.
+[2026-04-14 13:14:40] Cartas cargadas en memoria: 3130
+[2026-04-14 13:14:41] Conexión con One Piece DB establecida.
+[2026-04-14 13:14:41] Conexión con One Piece DB establecida.
+[2026-04-14 13:14:42] Cartas cargadas en memoria: 3130
+[2026-04-14 13:14:45] LOGIN EXITOSO: Usuario 1
+[2026-04-14 13:15:11] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:08] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:09] Cartas cargadas en memoria: 3130
+[2026-04-14 13:16:10] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:10] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:10] Cartas cargadas en memoria: 3130
+[2026-04-14 13:16:14] REGISTRO: Nuevo usuario creado: 2
+[2026-04-14 13:16:19] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:20] LOGIN EXITOSO: Usuario 2
+[2026-04-14 13:16:23] Conexión con One Piece DB establecida.
+[2026-04-14 13:18:51] Conexión con One Piece DB establecida.
+[2026-04-14 13:18:56] Conexión con One Piece DB establecida.
+[2026-04-14 13:18:57] Carta guardada en colección: Radical Beam!!
+[2026-04-20 14:23:02] Conexión con One Piece DB establecida.
+[2026-04-20 14:23:03] Cartas cargadas en memoria: 3130
+[2026-04-20 14:24:05] Conexión con One Piece DB establecida.
+[2026-04-20 14:24:05] Cartas cargadas en memoria: 3130
+[2026-04-20 14:27:31] Conexión con One Piece DB establecida.
+[2026-04-20 14:27:31] Cartas cargadas en memoria: 3130
+[2026-04-20 14:29:34] Conexión con One Piece DB establecida.
+[2026-04-20 14:29:35] Cartas cargadas en memoria: 3130
+[2026-04-20 14:32:56] Conexión con One Piece DB establecida.
+[2026-04-20 14:32:56] Cartas cargadas en memoria: 3130
+[2026-04-20 14:32:56] Conexión con One Piece DB establecida.
+[2026-04-20 14:32:57] Conexión con One Piece DB establecida.
+[2026-04-20 14:32:57] Cartas cargadas en memoria: 3130
+[2026-04-20 14:33:02] LOGIN EXITOSO: Usuario 1
+[2026-04-20 14:33:05] Conexión con One Piece DB establecida.
+[2026-04-21 10:29:15] Conexión con One Piece DB establecida.
+[2026-04-21 10:29:16] Cartas cargadas en memoria: 3130
+[2026-04-21 10:29:17] Conexión con One Piece DB establecida.
+[2026-04-21 10:29:17] Conexión con One Piece DB establecida.
+[2026-04-21 10:29:17] Cartas cargadas en memoria: 3130
+[2026-04-21 10:40:54] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:40:54] ERROR CARGANDO VISTA /view/Dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/Dashboard.fxml:33
+
+[2026-04-21 10:41:00] Conexión con One Piece DB establecida.
+[2026-04-21 10:41:09] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:41:12] ERROR CARGANDO VISTA /view/mercado.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml:11
+
+[2026-04-21 10:41:15] ERROR CARGANDO VISTA /view/Dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/Dashboard.fxml:33
+
+[2026-04-21 10:43:06] Conexión con One Piece DB establecida.
+[2026-04-21 10:43:06] Cartas cargadas en memoria: 3130
+[2026-04-21 10:43:06] Conexión con One Piece DB establecida.
+[2026-04-21 10:43:07] Conexión con One Piece DB establecida.
+[2026-04-21 10:43:07] Cartas cargadas en memoria: 3130
+[2026-04-21 10:43:11] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:43:11] ERROR CARGANDO VISTA /view/Dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/Dashboard.fxml:33
+
+[2026-04-21 10:43:14] ERROR CARGANDO VISTA /view/dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/dashboard.fxml:33
+
+[2026-04-21 10:43:18] Conexión con One Piece DB establecida.
+[2026-04-21 10:43:19] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:43:22] ERROR CARGANDO VISTA /view/mercado.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml:11
+
+[2026-04-21 10:49:29] Conexión con One Piece DB establecida.
+[2026-04-21 10:49:29] Cartas cargadas en memoria: 3130
+[2026-04-21 10:49:30] Conexión con One Piece DB establecida.
+[2026-04-21 10:49:30] Conexión con One Piece DB establecida.
+[2026-04-21 10:49:30] Cartas cargadas en memoria: 3130
+[2026-04-21 10:49:34] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:49:34] ERROR CARGANDO VISTA /view/dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/dashboard.fxml:29
+
+[2026-04-21 10:49:39] ERROR CARGANDO VISTA /view/dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/dashboard.fxml:29
+
+[2026-04-21 10:49:42] Conexión con One Piece DB establecida.
+[2026-04-21 10:49:43] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:49:46] ERROR CARGANDO VISTA /view/mercado.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml:11
+
+[2026-04-21 10:49:48] ERROR CARGANDO VISTA /view/eventos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/eventos.fxml:14
+
+[2026-04-21 10:54:42] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:43] Cartas cargadas en memoria: 3130
+[2026-04-21 10:54:43] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:43] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:43] Cartas cargadas en memoria: 3130
+[2026-04-21 10:54:47] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:54:48] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:55] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:57] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:56:27] Conexión con One Piece DB establecida.
+[2026-04-21 10:56:27] Cartas cargadas en memoria: 3130
+[2026-04-21 10:56:27] Conexión con One Piece DB establecida.
+[2026-04-21 10:56:28] Conexión con One Piece DB establecida.
+[2026-04-21 10:56:28] Cartas cargadas en memoria: 3130
+[2026-04-21 10:56:37] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:56:37] Conexión con One Piece DB establecida.
+[2026-04-21 10:56:39] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:57:11] Conexión con One Piece DB establecida.
+[2026-04-21 10:57:11] Cartas cargadas en memoria: 3130
+[2026-04-21 10:57:12] Conexión con One Piece DB establecida.
+[2026-04-21 10:57:12] Conexión con One Piece DB establecida.
+[2026-04-21 10:57:12] Cartas cargadas en memoria: 3130
+[2026-04-21 10:57:16] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:57:17] Conexión con One Piece DB establecida.
+[2026-04-21 10:57:20] Conexión con One Piece DB establecida.
+[2026-04-21 10:58:40] Conexión con One Piece DB establecida.
+[2026-04-21 10:58:41] Cartas cargadas en memoria: 3130
+[2026-04-21 10:58:41] Conexión con One Piece DB establecida.
+[2026-04-21 10:58:41] Conexión con One Piece DB establecida.
+[2026-04-21 10:58:42] Cartas cargadas en memoria: 3130
+[2026-04-21 10:58:45] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:58:45] Conexión con One Piece DB establecida.

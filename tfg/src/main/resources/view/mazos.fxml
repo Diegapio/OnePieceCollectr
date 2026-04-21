@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.*?>
+
+<VBox spacing="20"
+      alignment="TOP_CENTER"
+      style="-fx-padding: 20;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.onepiececollectr.MazosController">
+      
+
+    <Label text="Mazos"
+           style="-fx-font-size: 28; -fx-font-weight: bold;" />
+
+    <!--   nombre del mazo -->
+    <TextField fx:id="deckNameField"
+               promptText="Nombre del mazo"/>
+
+    <Button text="➕ Crear mazo"
+            onAction="#createDeck"
+            style="-fx-font-size: 14; -fx-background-color: #4CAF50; -fx-text-fill: white;" />
+
+    <HBox spacing="10" alignment="CENTER">
+
+      <CheckBox fx:id="redColor" text="Rojo"
+          style="-fx-text-fill: red;"/>
+
+<CheckBox fx:id="blueColor" text="Azul"
+          style="-fx-text-fill: blue;"/>
+
+<CheckBox fx:id="greenColor" text="Verde"
+          style="-fx-text-fill: green;"/>
+
+<CheckBox fx:id="yellowColor" text="Amarillo"
+          style="-fx-text-fill: goldenrod;"/>
+
+    </HBox>
+
+    <VBox fx:id="deckList"
+          spacing="10"
+          alignment="CENTER"/>
+
+</VBox>

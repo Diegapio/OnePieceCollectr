@@ -1,8 +1,11 @@
 package com.onepiececollectr;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,6 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ColeccionController {
+    Login login = new Login();
 
     @FXML
     private GridPane cardGrid;
@@ -172,7 +176,7 @@ card.setOnMouseClicked(event -> {
     private void registrarCartaEnBD(int idCarta) {
     //Vemos si se han guardado bien los datos del usuario, creo que es imposible pero hay que comprobar
     if (Login.sesionUsuario == null) {
-        System.err.println("ERROR: No hay sesión de usuario activa. No se puede guardar.");
+        login.mostrarAlerta("Error registrar carta", "ERROR: No hay sesión de usuario activa. No se puede guardar.");
         return;
     }
 
@@ -191,16 +195,31 @@ card.setOnMouseClicked(event -> {
         int filasAfectadas = pstmt.executeUpdate();
         
         if (filasAfectadas > 0) {
-            System.out.println("Guardado con éxito en la base de datos.");
+            login.registrarEnLog("Guardado con éxito en la base de datos.");
         } else {
-            System.out.println("La carta ya existía en la colección (no se insertó nada nuevo).");
+            login.registrarEnLog("La carta ya existía en la colección (no se insertó nada nuevo).");
         }
         
         //Lo añadimos al hashset para que se vea en la interfaz
         idsPoseidos.add(idCarta);
 
     } catch (SQLException e) {
-        System.err.println("ERROR SQL al guardar: " + e.getMessage());
+        login.registrarEnLog("ERROR SQL al guardar: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+  @FXML
+private void volverAlPrincipal(ActionEvent event) {
+    try {
+       //Botón para volver a atrás y estar en la vista principal para poder navegar guay guay
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+        Parent root = loader.load();
+        
+        
+        Principal.mostrarVista(root);
+        
+    } catch (Exception e) {
+        System.err.println("Error al volver al principal: " + e.getMessage());
         e.printStackTrace();
     }
 }

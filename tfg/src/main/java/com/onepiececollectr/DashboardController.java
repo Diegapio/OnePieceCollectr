@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -62,7 +63,7 @@ public class DashboardController {
                 }
             }
 
-            // Valores estáticos para rellenar la UI
+            // Valores de prueba hasta que metamos el resto
             decksCount.setText("3");
             eventsCount.setText("2");
 
@@ -71,20 +72,27 @@ public class DashboardController {
         }
     }
 
-    @FXML
-public void volverAtras(ActionEvent event) {
+  @FXML
+private void volverAlPrincipal(ActionEvent event) {
     try {
-        // Cargamos la vista principal (o la que quieras volver)
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/principal.fxml"));
-        Scene scene = new Scene(loader.load(), 900, 600);
+       //Botón para volver a atrás y estar en la vista principal para poder navegar guay guay
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+        Parent root = loader.load();
         
-        // Obtenemos el Stage actual a través de cualquier elemento (por ejemplo, cardsCount)
-        Stage stage = (Stage) cardsCount.getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        
+        Principal.mostrarVista(root);
+        
     } catch (Exception e) {
+        System.err.println("Error al volver al principal: " + e.getMessage());
         e.printStackTrace();
     }
-
- }
+}
+@FXML
+private void onCardHover() {
+    // Evita el error de "Method not found"
+}
+@FXML
+private void onCardExit() {
+    // Evita el error de "Method not found" si el FXML lo tiene
+}
 }

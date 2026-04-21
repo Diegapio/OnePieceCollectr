@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+
+<VBox spacing="20"
+      alignment="TOP_CENTER"
+      style="-fx-padding: 20;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.onepiececollectr.MarketController">
+      
+
+         <Label fx:id="moneyLabel"
+       text="Dinero: 50€"
+       style="-fx-font-size: 16; -fx-font-weight: bold;" />
+       
+<Label fx:id="statusLabel"
+       text=""
+       style="-fx-text-fill: green; -fx-font-size: 14;" />
+    <Label text="Mercado"
+           style="-fx-font-size: 28; -fx-font-weight: bold;" />
+
+        
+
+    <GridPane fx:id="marketGrid"
+              hgap="10"
+              vgap="10"/>
+
+</VBox>
