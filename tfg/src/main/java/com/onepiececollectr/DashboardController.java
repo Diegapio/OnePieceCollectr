@@ -4,28 +4,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.stage.Stage;
 
 public class DashboardController {
 
     @FXML private Label cardsCount;
     @FXML private Label decksCount;
     @FXML private Label eventsCount;
-    @FXML private Label progressPercent; // Nuevo: Para el texto "X.XX%"
-    @FXML private ProgressBar progressBar; // Nuevo: Para la barra visual
+    @FXML private Label progressPercent; 
+    @FXML private ProgressBar progressBar; 
+    @FXML private Label nextEventLabel;
 
     @FXML
     public void initialize() {
         if (Login.sesionUsuario != null) {
-            // Ajusta a getId_usuario() o getId() según tu clase Usuario
             int idUsuario = Login.sesionUsuario.getId();
             actualizarEstadisticas(idUsuario);
         }
@@ -33,7 +30,7 @@ public class DashboardController {
 
     private void actualizarEstadisticas(int idUsuario) {
         int cartasPoseidas = 0;
-        int totalCartasApp = App.todasLasCartas.size(); // Las 3130 cartas
+        int totalCartasApp = App.todasLasCartas.size(); 
         String sql = "SELECT COUNT(DISTINCT id_carta) FROM coleccion WHERE id_usuario = ?";
 
         try (Connection conn = Login.getConexion();
@@ -46,53 +43,60 @@ public class DashboardController {
                 cartasPoseidas = rs.getInt(1);
             }
 
-            
+            // 1. Mostrar total de cartas
             cardsCount.setText(String.valueOf(cartasPoseidas));
             
+            // 2. Calcular porcentaje y barra
             if (totalCartasApp > 0) {
                 double fraccion = (double) cartasPoseidas / totalCartasApp;
-                
                 
                 if (progressPercent != null) {
                     progressPercent.setText(String.format("%.2f%%", fraccion * 100));
                 }
-                
-                
                 if (progressBar != null) {
                     progressBar.setProgress(fraccion);
                 }
             }
 
-            // Valores de prueba hasta que metamos el resto
-            decksCount.setText("3");
-            eventsCount.setText("2");
+            
+            int numMazos = MazosController.getMisMazos().size();
+            int numEventos = EventosController.getListaEventos().size();
 
-        } catch (SQLException e) {
+            decksCount.setText(String.valueOf(numMazos));
+            eventsCount.setText(String.valueOf(numEventos));
+            if (nextEventLabel != null) {
+    if (numEventos > 0) {
+        // Obtenemos el primer evento de la lista
+        Event proximo = EventosController.getListaEventos().get(0);
+    
+        nextEventLabel.setText(proximo.getName() + " [" + proximo.getDate() + "]");
+ 
+        nextEventLabel.setStyle("-fx-font-size: 16; -fx-text-fill: #2c3e50; -fx-font-weight: bold;");
+    } else {
+        nextEventLabel.setText("Sin eventos programados");
+        nextEventLabel.setStyle("-fx-font-size: 14; -fx-text-fill: #666;");
+    }
+}
+    }catch (SQLException e) {
+            e.printStackTrace();
+        }
+         
+    }
+
+    @FXML
+    private void volverAlPrincipal(ActionEvent event) {
+        try {
+            // Si quieres volver al Dashboard desde otra pantalla, 
+            // esto está bien, pero recuerda que el initialize() ya lo hace.
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
+            Parent root = loader.load();
+            Principal.mostrarVista(root);
+        } catch (Exception e) {
+            System.err.println("Error al volver al principal: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-  @FXML
-private void volverAlPrincipal(ActionEvent event) {
-    try {
-       //Botón para volver a atrás y estar en la vista principal para poder navegar guay guay
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
-        Parent root = loader.load();
-        
-        
-        Principal.mostrarVista(root);
-        
-    } catch (Exception e) {
-        System.err.println("Error al volver al principal: " + e.getMessage());
-        e.printStackTrace();
-    }
-}
-@FXML
-private void onCardHover() {
-    // Evita el error de "Method not found"
-}
-@FXML
-private void onCardExit() {
-    // Evita el error de "Method not found" si el FXML lo tiene
-}
+    @FXML private void onCardHover() {}
+    @FXML private void onCardExit() {}
 }

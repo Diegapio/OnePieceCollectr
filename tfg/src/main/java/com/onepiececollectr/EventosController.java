@@ -6,6 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.*;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -23,8 +27,10 @@ public class EventosController {
     private Event selectedEvent = null; // Para saber si estamos editando
     private boolean showOnlyFavorites = false;
     
-    // Lista temporal de eventos (En el futuro podrías llevarla a la BD)
+   
     private static List<Event> listaEventos = new ArrayList<>();
+    public static List<Event> getListaEventos() { return listaEventos; }
+    public static void setListaEventos(List<Event> eventos) { listaEventos = eventos; }
 
     @FXML
     public void initialize() {
@@ -40,7 +46,7 @@ public class EventosController {
             }
         });
 
-        // Escuchar cambios en el buscador
+       
         searchField.textProperty().addListener((obs, oldVal, newVal) -> renderEvents());
 
         renderEvents();
@@ -60,55 +66,84 @@ public class EventosController {
     }
 
     private VBox createEventCard(Event event) {
-        VBox card = new VBox(8);
-        
-        // --- LÓGICA DE COLORES SEGÚN FECHA ---
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String styleBase = "-fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 12; -fx-border-width: 2; ";
-        
-        try {
-            LocalDate eventDate = LocalDate.parse(event.getDate(), formatter);
-            LocalDate today = LocalDate.now();
+    VBox card = new VBox(8);
+    Login loginManager = new Login();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String styleBase = "-fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 12; -fx-border-width: 2; ";
+    
+    
+    try {
+        LocalDate eventDate = LocalDate.parse(event.getDate(), formatter);
+        LocalDate today = LocalDate.now();
 
-            if (eventDate.isBefore(today)) {
-                card.setStyle(styleBase + "-fx-background-color: #ffe6e6; -fx-border-color: #e74c3c;"); // Pasado
-            } else if (!eventDate.isAfter(today.plusDays(3))) {
-                card.setStyle(styleBase + "-fx-background-color: #fff3cd; -fx-border-color: #f1c40f;"); // Próximo
-            } else {
-                card.setStyle(styleBase + "-fx-background-color: white; -fx-border-color: #bdc3c7;"); // Normal
-            }
-        } catch (Exception e) {
-            card.setStyle(styleBase + "-fx-background-color: white; -fx-border-color: #bdc3c7;");
+        if (eventDate.isBefore(today)) {
+            card.setStyle(styleBase + "-fx-background-color: #ffe6e6; -fx-border-color: #e74c3c;"); // Pasado
+        } else if (!eventDate.isAfter(today.plusDays(3))) {
+            card.setStyle(styleBase + "-fx-background-color: #fff3cd; -fx-border-color: #f1c40f;"); // Próximo
+        } else {
+            card.setStyle(styleBase + "-fx-background-color: white; -fx-border-color: #bdc3c7;"); // Normal
         }
+    } catch (Exception e) {
+        card.setStyle(styleBase + "-fx-background-color: white; -fx-border-color: #bdc3c7;");
+    }
 
-        // --- CONTENIDO DE LA TARJETA ---
-        Label name = new Label(event.getName() + (event.isFavorite() ? " ⭐" : ""));
-        name.setStyle("-fx-font-size: 16; -fx-font-weight: bold;");
+    
+    Label name = new Label(event.getName() + (event.isFavorite() ? " ⭐" : ""));
+    name.setStyle("-fx-font-size: 16; -fx-font-weight: bold;");
+    Label details = new Label("📅 " + event.getDate() + " | 📍 " + event.getLocation());
+    
+    HBox actions = new HBox(10);
 
-        Label details = new Label("📅 " + event.getDate() + " | 📍 " + event.getLocation());
-        
-        HBox actions = new HBox(10);
-        Button btnDelete = new Button("Eliminar");
-        btnDelete.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
-        btnDelete.setOnAction(e -> {
+   
+    Button btnDelete = new Button("Eliminar");
+    btnDelete.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
+    btnDelete.setOnAction(e -> {
+        // 1. Eliminar de la Base de Datos
+        String sql = "DELETE FROM eventos WHERE nombre = ? AND id_usuario = ?";
+        try (Connection conn = Login.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, event.getName());
+            pstmt.setInt(2, Login.sesionUsuario.getId());
+            pstmt.executeUpdate();
+            
+            // 2. Eliminar de la lista en memoria y refrescar
             listaEventos.remove(event);
             renderEvents();
-        });
+            loginManager.registrarEnLog("Evento eliminado: " + event.getName());
+        } catch (SQLException ex) {
+            loginManager.mostrarAlerta("Error", "No se pudo eliminar el evento de la base de datos.");
+        }
+    });
 
-        Button btnEdit = new Button("Editar");
-        btnEdit.setOnAction(e -> prepararEdicion(event));
+    
+    Button btnFav = new Button(event.isFavorite() ? "Quitar Favorito" : "Hacer Favorito");
+    btnFav.setOnAction(e -> {
+        boolean nuevoEstado = !event.isFavorite();
+        String sql = "UPDATE eventos SET favorito = ? WHERE nombre = ? AND id_usuario = ?";
+        
+        try (Connection conn = Login.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBoolean(1, nuevoEstado);
+            pstmt.setString(2, event.getName());
+            pstmt.setInt(3, Login.sesionUsuario.getId());
+            pstmt.executeUpdate();
 
-        Button btnFav = new Button(event.isFavorite() ? "Quitar Favorito" : "Hacer Favorito");
-        btnFav.setOnAction(e -> {
-            event.setFavorite(!event.isFavorite());
+            event.setFavorite(nuevoEstado);
             renderEvents();
-        });
+            loginManager.registrarEnLog("Estado favorito cambiado para: " + event.getName());
+        } catch (SQLException ex) {
+            loginManager.mostrarAlerta("Error", "No se pudo actualizar el estado de favorito.");
+        }
+    });
 
-        actions.getChildren().addAll(btnEdit, btnFav, btnDelete);
-        card.getChildren().addAll(name, details, actions);
+    Button btnEdit = new Button("Editar");
+    btnEdit.setOnAction(e -> prepararEdicion(event));
 
-        return card;
-    }
+    actions.getChildren().addAll(btnEdit, btnFav, btnDelete);
+    card.getChildren().addAll(name, details, actions);
+
+    return card;
+}
 
     private void prepararEdicion(Event event) {
         selectedEvent = event;

@@ -82,6 +82,7 @@ public class Login implements Initializable {
         if (usuarioEncontrado != null) {
             sesionUsuario = usuarioEncontrado;
             registrarEnLog("LOGIN EXITOSO: Usuario " + nombre);
+            MazosController.cargarMazosDesdeBD();
             iraPanrallaPrincipal();
         } else {
             mostrarAlerta("Error", "Usuario o contraseña incorrectos.");
