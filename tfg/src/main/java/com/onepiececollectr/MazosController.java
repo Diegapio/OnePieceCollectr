@@ -73,7 +73,7 @@ public class MazosController {
     /**
      * Crea un mazo nuevo en la base de datos y en la lista local
      */
-    @FXML
+    @FXML   
     private void createDeck() {
         Login loginManager = new Login();
         String name = (deckNameField.getText() == null || deckNameField.getText().trim().isEmpty()) 
@@ -81,10 +81,10 @@ public class MazosController {
 
         // 1. Recoger colores de la interfaz
         List<String> colors = new ArrayList<>();
-        if (redColor.isSelected()) colors.add("#e74c3c");
-        if (blueColor.isSelected()) colors.add("#3498db");
-        if (greenColor.isSelected()) colors.add("#2ecc71");
-        if (yellowColor.isSelected()) colors.add("#f1c40f");
+        if (redColor.isSelected()) colors.add("Red");
+        if (blueColor.isSelected()) colors.add("Blue");
+        if (greenColor.isSelected()) colors.add("Green");
+        if (yellowColor.isSelected()) colors.add("Yellow");
 
         // 2. Insertar en base de datos
         String sql = "INSERT INTO deck (id_usuario, nombre, colores) VALUES (?, ?, ?)";
@@ -122,18 +122,34 @@ public class MazosController {
         }
     }
 
-    private void refreshDeckList() {
-        if (deckList == null) return;
-        deckList.getChildren().clear();
-        for (Deck deck : misMazos) {
-            Button btn = new Button(deck.getNombre_deck() + " " + getColorIcons(deck));
-            btn.setPrefWidth(220);
-            btn.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 8;", 
+private void refreshDeckList() {
+    if (deckList == null) return;
+    deckList.getChildren().clear();
+
+    for (Deck deck : misMazos) {
+        // Contenedor horizontal para el mazo y el botón de borrar
+        HBox filaMazo = new HBox(10); 
+        filaMazo.setStyle("-fx-alignment: CENTER_LEFT; -fx-padding: 5;");
+
+        // 1. Botón principal del mazo
+        Button btnMazo = new Button(deck.getNombre_deck() + " " + getColorIcons(deck));
+        btnMazo.setPrefWidth(220);
+        btnMazo.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 8;", 
                          calculateGradient(deck)));
-            btn.setOnAction(e -> openDeck(deck));
-            deckList.getChildren().add(btn);
-        }
+        btnMazo.setOnAction(e -> openDeck(deck));
+
+        // 2. Botón de borrar (la X roja)
+        Button btnBorrar = new Button("🗑"); // Puedes poner "X" si no te sale el icono
+        btnBorrar.setStyle("-fx-background-color: #ff4d4d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;");
+        
+        // Al pulsar, llama al método de borrar que creamos arriba
+        btnBorrar.setOnAction(e -> borrarMazo(deck));
+
+        // Añadimos ambos al HBox y el HBox a la lista principal
+        filaMazo.getChildren().addAll(btnMazo, btnBorrar);
+        deckList.getChildren().add(filaMazo);
     }
+}
 
     private String calculateGradient(Deck deck) {
         if (deck.getColores().isEmpty()) return "#2c3e50";
@@ -194,6 +210,60 @@ public class MazosController {
         }
         return icons.toString();
     }
+    
+@FXML
+private void irAColeccionParaEditar() {
+    // IMPORTANTE: mazoSeleccionado ya tiene el mazo que abriste antes
+    if (mazoSeleccionado == null) return;
+
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/coleccion.fxml"));
+        Parent root = loader.load();
+        Principal.mostrarVista(root);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+// También añade el método goBack que pide tu FXML si no lo tienes:
+@FXML
+private void goBack() { 
+    // Muy importante: si volvemos atrás, dejamos de "editar" el mazo
+    mazoSeleccionado = null; 
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mazos.fxml"));
+        Principal.mostrarVista(loader.load());
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+private void borrarMazo(Deck mazo) {
+    // 1. Confirmación simple (opcional, pero recomendada)
+    Login.registrarEnLog("Intentando borrar mazo: " + mazo.getNombre_deck());
+
+    String sql = "DELETE FROM deck WHERE id_deck = ?";
+    
+    try (Connection conn = Login.getConexion();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setInt(1, mazo.getId_deck());
+        int filasAfectadas = pstmt.executeUpdate();
+
+        if (filasAfectadas > 0) {
+            // 2. Si se borró de la BD, lo quitamos de nuestra lista local
+            misMazos.remove(mazo);
+            
+            // 3. Refrescamos la interfaz para que desaparezca el botón
+            refreshDeckList();
+            
+            new Login().registrarEnLog("Mazo '" + mazo.getNombre_deck() + "' eliminado.");
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al borrar mazo: " + e.getMessage());
+        new Login().mostrarAlerta("Error", "No se pudo borrar el mazo de la base de datos.");
+    }
+}
 
     
 }

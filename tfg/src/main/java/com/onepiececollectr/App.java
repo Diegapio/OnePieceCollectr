@@ -55,7 +55,6 @@ public class App extends Application {
                 ));
             }
             //Debería de poner 3130 cartas o algo así, una burrada
-            System.out.println("Cartas cargadas en memoria: " + todasLasCartas.size());
             Login.registrarEnLog("Cartas cargadas en memoria: " + todasLasCartas.size());   
         } catch (SQLException e) {
             e.printStackTrace();

@@ -55,18 +55,23 @@ public class Principal {
         }
     }
 
-    // --- MÉTODOS PARA LOS BOTONES DEL MENÚ ---
-    // Todos usan las rutas en minúsculas como en tu carpeta de archivos
-
     @FXML 
     public void loadDashboard(ActionEvent event) { 
         loadVista("/view/dashboard.fxml"); 
     }
 
-    @FXML 
-    public void loadColeccion(ActionEvent event) { 
-        loadVista("/view/coleccion.fxml"); 
+    
+    @FXML
+    private void loadColeccion() {  
+    MazosController.mazoSeleccionado = null; 
+
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/coleccion.fxml"));
+        Principal.mostrarVista(loader.load());
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
 
     @FXML 
     public void loadMazos(ActionEvent event) { 

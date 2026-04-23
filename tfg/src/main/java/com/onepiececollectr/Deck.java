@@ -21,7 +21,7 @@ public class Deck {
         return String.join(",", colores);
     }
 
-    // MÉTODO NUEVO: Para cargar colores desde un String de la BD
+    
     public void setColoresDesdeString(String coloresConcat) {
         if (coloresConcat != null && !coloresConcat.isEmpty()) {
             this.colores = new ArrayList<>(Arrays.asList(coloresConcat.split(",")));
