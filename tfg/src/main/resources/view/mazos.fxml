@@ -41,5 +41,6 @@
     <VBox fx:id="deckList"
           spacing="10"
           alignment="CENTER"/>
+          <Button text="Exportar Lista (PDF)" onAction="#exportarMazoPDF" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" />
 
 </VBox>

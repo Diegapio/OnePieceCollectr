@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -22,6 +23,7 @@ public class ColeccionController {
 
     @FXML private GridPane cardGrid;
     @FXML private TextField searchField;
+    @FXML private ComboBox<String> tipoFilter;  
 
     private Set<Integer> idsPoseidos = new HashSet<>();
     private List<Carta> cartasCargadas = new ArrayList<>(); 
@@ -29,6 +31,9 @@ public class ColeccionController {
 
     @FXML
     public void initialize() {
+    tipoFilter.getItems().addAll("Todos", "LIDER", "PERSONAJE", "EVENTO", "STAGE");
+    searchField.textProperty().addListener((obs, viejo, nuevo) -> filtrarLocalmente(nuevo));
+    tipoFilter.valueProperty().addListener((obs, viejo, nuevo) -> filtrarLocalmente(searchField.getText()));
         new Thread(() -> {
             try {
                 cargarIdsPoseidos();
@@ -56,36 +61,48 @@ public class ColeccionController {
         return lista;
     }
 
-    private void filtrarLocalmente(String texto) {
-        if (cartasCargadas.isEmpty()) return;
-        String q = texto.toLowerCase().trim();
-        Deck mazo = MazosController.mazoSeleccionado;
+private void filtrarLocalmente(String texto) {
+    if (cartasCargadas.isEmpty()) return;
+    
+    String q = texto.toLowerCase().trim();
+    String tipoSeleccionado = tipoFilter.getValue();
+    Deck mazo = MazosController.mazoSeleccionado;
+    List<String> coloresPermitidos = obtenerColoresMazo(mazo);
 
-        // Si hay mazo, preparamos la lista de colores permitidos
-        List<String> coloresPermitidos = obtenerColoresMazo(mazo);
+    List<Carta> filtradas = new ArrayList<>();
+    
+    for (Carta c : cartasCargadas) {
+        // 1. Filtro de Búsqueda (Texto)
+        boolean coincideTexto = c.getNombre().toLowerCase().contains(q) || 
+                                String.valueOf(c.getId_carta()).contains(q);
+        if (!coincideTexto) continue;
 
-        List<Carta> filtradas = new ArrayList<>();
-        for (Carta c : cartasCargadas) {
-            // 1. Filtro de Búsqueda
-            if (!c.getNombre().toLowerCase().contains(q) && !String.valueOf(c.getId_carta()).contains(q)) continue;
-
-            // 2. Filtro de Color (Solo si estamos en un mazo)
-            if (mazo != null && !coloresPermitidos.isEmpty()) {
-                String colorCarta = (c.getColor() != null) ? c.getColor().toUpperCase() : "";
-                boolean coincideColor = false;
-                for (String colP : coloresPermitidos) {
-                    if (colorCarta.contains(colP)) {
-                        coincideColor = true;
-                        break;
-                    }
-                }
-                if (!coincideColor) continue; 
+        // 2. Filtro de Tipo (ComboBox)
+        if (tipoSeleccionado != null && !tipoSeleccionado.equals("Todos")) {
+            // Comparamos con el tipo de la carta (asegúrate que en tu BD coincida el texto)
+            if (!tipoSeleccionado.equalsIgnoreCase(c.getTipo())) {
+                continue;
             }
-
-            filtradas.add(c);
         }
-        pintaCartas(filtradas);
+
+        // 3. Filtro de Color (Si hay mazo)
+        if (mazo != null && !coloresPermitidos.isEmpty()) {
+            String colorCarta = (c.getColor() != null) ? c.getColor().toUpperCase() : "";
+            boolean coincideColor = false;
+            for (String colP : coloresPermitidos) {
+                if (colorCarta.contains(colP)) {
+                    coincideColor = true;
+                    break;
+                }
+            }
+            if (!coincideColor) continue;
+        }
+
+        filtradas.add(c);
     }
+    
+    pintaCartas(filtradas);
+}
 
     // Método auxiliar para traducir los colores del mazo a tu idioma de BD
     private List<String> obtenerColoresMazo(Deck mazo) {

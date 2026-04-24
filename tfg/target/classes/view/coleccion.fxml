@@ -16,6 +16,10 @@
     <TextField fx:id="searchField"
                promptText="Buscar carta..."
                prefWidth="300"/>
+               
+               <HBox spacing="10" alignment="CENTER_LEFT">
+    <ComboBox fx:id="tipoFilter" prefWidth="150" promptText="Tipo de Carta" />
+</HBox>
 
     <ScrollPane fitToWidth="true">
 

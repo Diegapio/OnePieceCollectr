@@ -1,5 +1,11 @@
 package com.onepiececollectr;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.*;
@@ -9,7 +15,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.Parent;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.awt.Desktop;
 
 public class MazosController {
 
@@ -21,6 +30,7 @@ public class MazosController {
 
     private static List<Deck> misMazos = new ArrayList<>();
     public static Deck mazoSeleccionado = null;
+    Login login = new Login();
 
     public static List<Deck> getMisMazos() { return misMazos; }
 
@@ -265,5 +275,66 @@ private void borrarMazo(Deck mazo) {
     }
 }
 
+@FXML
+private void exportarMazoPDF(ActionEvent event) {
+    Deck mazo = MazosController.mazoSeleccionado;
+    if (mazo == null || mazo.getCartas().isEmpty()) {
+        login.mostrarAlerta("Error", "El mazo está vacío.");
+        return;
+    }
+
+    // Agrupamos cartas por nombre para contar cantidades (ej: 4x Monkey D. Luffy)
+    Map<String, Integer> conteoCartas = new HashMap<>();
+    for (Carta c : mazo.getCartas()) {
+        conteoCartas.put(c.getNombre(), conteoCartas.getOrDefault(c.getNombre(), 0) + 1);
+    }
+
+    // Generamos el contenido para el PDF
+    StringBuilder contenido = new StringBuilder();
+    contenido.append("<h1>Lista de Mazo: ").append(mazo.getNombre_deck()).append("</h1>");
+    contenido.append("<ul>");
+    conteoCartas.forEach((nombre, cantidad) -> {
+        contenido.append("<li><strong>").append(cantidad).append("x</strong> ").append(nombre).append("</li>");
+    });
+    contenido.append("</ul>");
+
     
+    generarDocumentoPDF(mazo.getNombre_deck(), contenido.toString());
+}
+
+private void generarDocumentoPDF(String nombreMazo, String htmlContenido) {
+    // Creamos un nombre de archivo limpio (sin espacios raros)
+    String nombreArchivo = "Lista_" + nombreMazo.replaceAll("\\s+", "_") + ".html";
+    File file = new File(nombreArchivo);
+
+    try (FileWriter writer = new FileWriter(file)) {
+        // Le damos un poco de estilo CSS para que parezca un documento oficial
+        String htmlCompleto = "<html><head><style>" +
+                "body { font-family: 'Segoe UI', sans-serif; padding: 40px; color: #2c3e50; }" +
+                "h1 { color: #e74c3c; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; }" +
+                "ul { list-style: none; padding: 0; }" +
+                "li { padding: 10px; border-bottom: 1px solid #ecf0f1; font-size: 18px; }" +
+                "b { color: #e74c3c; }" +
+                ".footer { margin-top: 50px; font-size: 12px; color: #bdc3c7; }" +
+                "</style></head><body>" +
+                htmlContenido +
+                "<div class='footer'>Generado por OnePieceCollectr - 2026</div>" +
+                "</body></html>";
+
+        writer.write(htmlCompleto);
+        System.out.println("Archivo generado: " + file.getAbsolutePath());
+
+        // Intentamos abrir el archivo automáticamente en el navegador
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().browse(file.toURI());
+        } else {
+            login.mostrarAlerta("Éxito", "Lista generada en: " + file.getName());
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        login.mostrarAlerta("Error", "No se pudo generar el archivo de exportación.");
+    }
+}
+
 }
