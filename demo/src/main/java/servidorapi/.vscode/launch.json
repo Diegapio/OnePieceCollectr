@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "servidorapi.Main",
+            "projectName": "backend",
+            "env": {
+                "GEMINI_API_KEY": "AIzaSyC18SwXjNB4VtsoLYrB7KtfXspmFpeHdlM"
+            }
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
