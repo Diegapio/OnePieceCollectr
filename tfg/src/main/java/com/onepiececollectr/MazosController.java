@@ -9,10 +9,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -334,6 +337,23 @@ private void generarDocumentoPDF(String nombreMazo, String htmlContenido) {
     } catch (IOException e) {
         e.printStackTrace();
         login.mostrarAlerta("Error", "No se pudo generar el archivo de exportación.");
+    }
+}
+
+@FXML
+    private Button btnMazoIA;
+@FXML
+private void irAGeneradorIA() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/generadorIA.fxml"));
+        Parent root = loader.load();
+        
+        // Esto cambia la escena en la ventana actual
+        Stage stage = (Stage) btnMazoIA.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
 }
 
