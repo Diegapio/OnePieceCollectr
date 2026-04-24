@@ -13,7 +13,7 @@ public class IAController {
     @PostMapping("/mazo")
     public String generarMazo(@RequestBody String prompt) {
         try {
-            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + API_KEY;
+            String url = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=" + API_KEY;
             HttpClient client = HttpClient.newHttpClient();
             
             String body = "{ \"contents\": [{ \"parts\":[{ \"text\": \"" + prompt + "\" }] }] }";
