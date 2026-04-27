@@ -1,24 +1,24 @@
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\App.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\CardDetailController.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Carta.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Carta_set.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Coleccion.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\ColeccionController.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\DashboardController.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Deck.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Deck_carta.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\DeckIAService.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Event.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\EventosController.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\GeneradorIAController.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Login.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\MainController.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\MarketController.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\MazosController.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Mercado.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\models\Card.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\models\User.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Principal.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Set.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Usuario.java
-C:\Users\ikern\Downloads\di-015 (1)\di-015\OnePieceCollectr\tfg\src\main\java\module-info.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\App.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\CardDetailController.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Carta.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Carta_set.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Coleccion.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\ColeccionController.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\DashboardController.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Deck.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Deck_carta.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\DeckIAService.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Event.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\EventosController.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\GeneradorIAController.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Login.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\MainController.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\MarketController.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\MazosController.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Mercado.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\models\Card.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\models\User.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Principal.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Set.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\com\onepiececollectr\Usuario.java
+C:\Users\ikern\OneDrive\Documentos\OnePieceCollectr\tfg\src\main\java\module-info.java

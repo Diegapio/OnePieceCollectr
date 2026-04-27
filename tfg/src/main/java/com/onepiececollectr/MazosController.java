@@ -1,27 +1,26 @@
 package com.onepiececollectr;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.awt.Desktop;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 public class MazosController {
 
@@ -29,330 +28,317 @@ public class MazosController {
     @FXML private VBox deckList;
     @FXML private Label deckInfoLabel;
     @FXML private TextField deckNameField;
-    @FXML private CheckBox redColor, blueColor, greenColor, yellowColor;
+
+    @FXML private CheckBox redColor;
+    @FXML private CheckBox blueColor;
+    @FXML private CheckBox greenColor;
+    @FXML private CheckBox yellowColor;
+
+    // 🔥 NUEVOS COLORES
+    @FXML private CheckBox purpleColor;
+    @FXML private CheckBox blackColor;
 
     private static List<Deck> misMazos = new ArrayList<>();
     public static Deck mazoSeleccionado = null;
+
     Login login = new Login();
 
-    public static List<Deck> getMisMazos() { return misMazos; }
+    @FXML private Button btnMazoIA;
+
+    public static List<Deck> getMisMazos() {
+        return misMazos;
+    }
 
     @FXML
     public void initialize() {
-        // Al entrar a la vista, si la lista está vacía, intentamos cargar
+
         if (misMazos.isEmpty() && Login.sesionUsuario != null) {
             cargarMazosDesdeBD();
         }
-        
+
         if (deckList != null) {
             refreshDeckList();
         }
-        
+
         if (deckGrid != null && mazoSeleccionado != null) {
             renderDeck(mazoSeleccionado);
         }
     }
 
-    /**
-     * Carga todos los mazos del usuario desde Supabase
-     */
     public static void cargarMazosDesdeBD() {
         String sql = "SELECT * FROM deck WHERE id_usuario = ?";
-        Login loginManager = new Login();
-        
+
         try (Connection conn = Login.getConexion();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            
+
             pstmt.setInt(1, Login.sesionUsuario.getId());
             ResultSet rs = pstmt.executeQuery();
 
-            misMazos.clear(); 
+            misMazos.clear();
+
             while (rs.next()) {
                 Deck d = new Deck(
-                    rs.getInt("id_deck"),
-                    rs.getInt("id_usuario"),
-                    rs.getString("nombre")
+                        rs.getInt("id_deck"),
+                        rs.getInt("id_usuario"),
+                        rs.getString("nombre")
                 );
-                // Leemos la columna de colores que añadimos
                 d.setColoresDesdeString(rs.getString("colores"));
                 misMazos.add(d);
             }
-            loginManager.registrarEnLog("Mazos sincronizados con éxito.");
+
         } catch (SQLException e) {
-            loginManager.registrarEnLog("Error crítico cargando mazos: " + e.getMessage());
+            Login.registrarEnLog("Error cargando mazos: " + e.getMessage());
         }
     }
 
-    /**
-     * Crea un mazo nuevo en la base de datos y en la lista local
-     */
-    @FXML   
+    @FXML
     private void createDeck() {
-        Login loginManager = new Login();
-        String name = (deckNameField.getText() == null || deckNameField.getText().trim().isEmpty()) 
-                      ? "Nuevo Mazo" : deckNameField.getText().trim();
 
-        // 1. Recoger colores de la interfaz
+        String name = (deckNameField.getText() != null && !deckNameField.getText().trim().isEmpty())
+                ? deckNameField.getText().trim()
+                : "Nuevo Mazo";
+
         List<String> colors = new ArrayList<>();
-        if (redColor.isSelected()) colors.add("Red");
-        if (blueColor.isSelected()) colors.add("Blue");
-        if (greenColor.isSelected()) colors.add("Green");
-        if (yellowColor.isSelected()) colors.add("Yellow");
 
-        // 2. Insertar en base de datos
+        if (redColor.isSelected()) colors.add("#e74c3c");
+        if (blueColor.isSelected()) colors.add("#3498db");
+        if (greenColor.isSelected()) colors.add("#2ecc71");
+        if (yellowColor.isSelected()) colors.add("#f1c40f");
+
+        // 🔥 NUEVOS
+        if (purpleColor != null && purpleColor.isSelected()) colors.add("#9b59b6");
+        if (blackColor != null && blackColor.isSelected()) colors.add("#2c3e50");
+
         String sql = "INSERT INTO deck (id_usuario, nombre, colores) VALUES (?, ?, ?)";
-        
+
         try (Connection conn = Login.getConexion();
-             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            
+             PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
             pstmt.setInt(1, Login.sesionUsuario.getId());
             pstmt.setString(2, name);
-            pstmt.setString(3, String.join(",", colors)); 
-            
+            pstmt.setString(3, String.join(",", colors));
             pstmt.executeUpdate();
+
             ResultSet rs = pstmt.getGeneratedKeys();
 
             if (rs.next()) {
-                int idGenerado = rs.getInt(1);
-                Deck newDeck = new Deck(idGenerado, Login.sesionUsuario.getId(), name);
+                int id = rs.getInt(1);
+
+                Deck newDeck = new Deck(id, Login.sesionUsuario.getId(), name);
                 newDeck.setColores(colors);
 
                 misMazos.add(newDeck);
-                
-                // Limpiar UI
+                refreshDeckList();
+
                 deckNameField.clear();
                 redColor.setSelected(false);
                 blueColor.setSelected(false);
                 greenColor.setSelected(false);
                 yellowColor.setSelected(false);
-                
-                refreshDeckList();
-                loginManager.registrarEnLog("Mazo '" + name + "' guardado en la nube.");
+
+                if (purpleColor != null) purpleColor.setSelected(false);
+                if (blackColor != null) blackColor.setSelected(false);
             }
+
         } catch (SQLException e) {
-            loginManager.registrarEnLog("Fallo al crear mazo: " + e.getMessage());
-            loginManager.mostrarAlerta("Error", "No se pudo guardar el mazo. Revisa la conexión.");
+            login.mostrarAlerta("Error", "No se pudo crear el mazo");
         }
     }
 
-private void refreshDeckList() {
-    if (deckList == null) return;
-    deckList.getChildren().clear();
+    private void refreshDeckList() {
 
-    for (Deck deck : misMazos) {
-        // Contenedor horizontal para el mazo y el botón de borrar
-        HBox filaMazo = new HBox(10); 
-        filaMazo.setStyle("-fx-alignment: CENTER_LEFT; -fx-padding: 5;");
+        deckList.getChildren().clear();
 
-        // 1. Botón principal del mazo
-        Button btnMazo = new Button(deck.getNombre_deck() + " " + getColorIcons(deck));
-        btnMazo.setPrefWidth(220);
-        btnMazo.setStyle(String.format("-fx-background-color: %s; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10; -fx-background-radius: 8;", 
-                         calculateGradient(deck)));
-        btnMazo.setOnAction(e -> openDeck(deck));
+        for (Deck deck : misMazos) {
 
-        // 2. Botón de borrar (la X roja)
-        Button btnBorrar = new Button("🗑"); // Puedes poner "X" si no te sale el icono
-        btnBorrar.setStyle("-fx-background-color: #ff4d4d; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10;");
-        
-        // Al pulsar, llama al método de borrar que creamos arriba
-        btnBorrar.setOnAction(e -> borrarMazo(deck));
+            HBox fila = new HBox(10);
+            fila.setStyle("-fx-alignment: CENTER_LEFT; -fx-padding: 5;");
 
-        // Añadimos ambos al HBox y el HBox a la lista principal
-        filaMazo.getChildren().addAll(btnMazo, btnBorrar);
-        deckList.getChildren().add(filaMazo);
+            Button btn = new Button(
+                    deck.getNombre_deck() + " " + getColorIcons(deck)
+            );
+
+            btn.setPrefWidth(220);
+            btn.setStyle(String.format("""
+                -fx-background-color: %s;
+                -fx-text-fill: white;
+                -fx-font-weight: bold;
+                -fx-padding: 10;
+                -fx-background-radius: 8;
+            """, calculateGradient(deck)));
+
+            btn.setOnAction(e -> openDeck(deck));
+
+            Button deleteBtn = new Button("🗑");
+            deleteBtn.setStyle("-fx-background-color: red; -fx-text-fill: white;");
+            deleteBtn.setOnAction(e -> borrarMazo(deck));
+
+            fila.getChildren().addAll(btn, deleteBtn);
+            deckList.getChildren().add(fila);
+        }
     }
-}
 
     private String calculateGradient(Deck deck) {
-        if (deck.getColores().isEmpty()) return "#2c3e50";
-        if (deck.getColores().size() == 1) return deck.getColores().get(0);
+
+        if (deck.getColores().isEmpty()) {
+            return "#2c3e50";
+        }
+
+        if (deck.getColores().size() == 1) {
+            return deck.getColores().get(0);
+        }
+
         return "linear-gradient(to right, " + String.join(", ", deck.getColores()) + ")";
     }
 
-   private void openDeck(Deck deck) {
-    
-    mazoSeleccionado = deck; 
+    private String getColorIcons(Deck deck) {
 
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/deckDetail.fxml"));
-        Parent view = loader.load();
-        Principal.mostrarVista(view);
-        
-        MazosController controller = loader.getController();
-        controller.renderDeck(deck);
-    } catch (Exception e) {
-        e.printStackTrace();
+        StringBuilder icons = new StringBuilder();
+
+        for (String c : deck.getColores()) {
+
+            if (c.equals("#e74c3c")) icons.append("🔴");
+            if (c.equals("#3498db")) icons.append("🔵");
+            if (c.equals("#2ecc71")) icons.append("🟢");
+            if (c.equals("#f1c40f")) icons.append("🟡");
+            if (c.equals("#9b59b6")) icons.append("🟣"); // nuevo
+            if (c.equals("#2c3e50")) icons.append("⚫"); // nuevo
+        }
+
+        return icons.toString();
     }
-}
+
+    private void openDeck(Deck deck) {
+
+        mazoSeleccionado = deck;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/deckDetail.fxml"));
+            Parent view = loader.load();
+
+            Principal.mostrarVista(view);
+
+            MazosController controller = loader.getController();
+            controller.renderDeck(deck);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void renderDeck(Deck deck) {
-        if (deckGrid == null) return;
-        deckGrid.getChildren().clear();
-        deckInfoLabel.setText(deck.getNombre_deck() + " (" + deck.getCartas().size() + "/50)");
 
-        int col = 0, row = 0;
-        for (Carta carta : deck.getCartas()) {
-            VBox cardUI = createMiniCard(carta, deck);
-            deckGrid.add(cardUI, col, row);
-            if (++col == 4) { col = 0; row++; }
+        deckGrid.getChildren().clear();
+
+        deckInfoLabel.setText(
+                deck.getNombre_deck() + " (" + deck.getCartas().size() + "/50)"
+        );
+
+        int col = 0;
+        int row = 0;
+
+        for (Carta c : deck.getCartas()) {
+
+            VBox card = createMiniCard(c, deck);
+
+            deckGrid.add(card, col, row);
+
+            col++;
+            if (col == 4) {
+                col = 0;
+                row++;
+            }
         }
     }
 
     private VBox createMiniCard(Carta carta, Deck deck) {
-        ImageView img = new ImageView(new Image(carta.getImagen_url(), 80, 100, true, true));
-        Button delBtn = new Button("X");
-        delBtn.setStyle("-fx-background-color: red; -fx-text-fill: white;");
-        delBtn.setOnAction(e -> {
+
+        ImageView img = new ImageView(
+                new Image(carta.getImagen_url(), 80, 100, true, true)
+        );
+
+        Button del = new Button("X");
+
+        del.setOnAction(e -> {
             deck.getCartas().remove(carta);
             renderDeck(deck);
         });
 
-        VBox box = new VBox(5, img, new Label(carta.getNombre()), delBtn);
-        box.setStyle("-fx-alignment: center; -fx-padding: 5; -fx-border-color: #ddd;");
+        VBox box = new VBox(5, img, new Label(carta.getNombre()), del);
+        box.setStyle("-fx-alignment: center;");
+
         return box;
     }
 
-    private String getColorIcons(Deck deck) {
-        StringBuilder icons = new StringBuilder();
-        for (String c : deck.getColores()) {
-            if (c.contains("e74c3c")) icons.append("🔴");
-            if (c.contains("3498db")) icons.append("🔵");
-            if (c.contains("2ecc71")) icons.append("🟢");
-            if (c.contains("f1c40f")) icons.append("🟡");
-        }
-        return icons.toString();
-    }
-    
-@FXML
-private void irAColeccionParaEditar() {
-    // IMPORTANTE: mazoSeleccionado ya tiene el mazo que abriste antes
-    if (mazoSeleccionado == null) return;
+    private void borrarMazo(Deck mazo) {
 
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/coleccion.fxml"));
-        Parent root = loader.load();
-        Principal.mostrarVista(root);
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
+        String sql = "DELETE FROM deck WHERE id_deck = ?";
 
-// También añade el método goBack que pide tu FXML si no lo tienes:
-@FXML
-private void goBack() { 
-    // Muy importante: si volvemos atrás, dejamos de "editar" el mazo
-    mazoSeleccionado = null; 
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/mazos.fxml"));
-        Principal.mostrarVista(loader.load());
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
+        try (Connection conn = Login.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-private void borrarMazo(Deck mazo) {
-    // 1. Confirmación simple (opcional, pero recomendada)
-    Login.registrarEnLog("Intentando borrar mazo: " + mazo.getNombre_deck());
+            pstmt.setInt(1, mazo.getId_deck());
+            pstmt.executeUpdate();
 
-    String sql = "DELETE FROM deck WHERE id_deck = ?";
-    
-    try (Connection conn = Login.getConexion();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        
-        pstmt.setInt(1, mazo.getId_deck());
-        int filasAfectadas = pstmt.executeUpdate();
-
-        if (filasAfectadas > 0) {
-            // 2. Si se borró de la BD, lo quitamos de nuestra lista local
             misMazos.remove(mazo);
-            
-            // 3. Refrescamos la interfaz para que desaparezca el botón
             refreshDeckList();
-            
-            new Login().registrarEnLog("Mazo '" + mazo.getNombre_deck() + "' eliminado.");
-        }
-    } catch (SQLException e) {
-        System.err.println("Error al borrar mazo: " + e.getMessage());
-        new Login().mostrarAlerta("Error", "No se pudo borrar el mazo de la base de datos.");
-    }
-}
 
-@FXML
+        } catch (SQLException e) {
+            login.mostrarAlerta("Error", "No se pudo borrar el mazo");
+        }
+    }
+
+    @FXML
+    private void irAGeneradorIA() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/generadorIA.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnMazoIA.getScene().getWindow();
+            stage.setScene(new Scene(root));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
 private void exportarMazoPDF(ActionEvent event) {
-    Deck mazo = MazosController.mazoSeleccionado;
-    if (mazo == null || mazo.getCartas().isEmpty()) {
-        login.mostrarAlerta("Error", "El mazo está vacío.");
+
+    if (mazoSeleccionado == null || mazoSeleccionado.getCartas().isEmpty()) {
+        login.mostrarAlerta("Error", "El mazo está vacío o no seleccionado.");
         return;
     }
 
-    // Agrupamos cartas por nombre para contar cantidades (ej: 4x Monkey D. Luffy)
-    Map<String, Integer> conteoCartas = new HashMap<>();
-    for (Carta c : mazo.getCartas()) {
-        conteoCartas.put(c.getNombre(), conteoCartas.getOrDefault(c.getNombre(), 0) + 1);
+    Map<String, Integer> conteo = new HashMap<>();
+
+    for (Carta c : mazoSeleccionado.getCartas()) {
+        conteo.put(c.getNombre(), conteo.getOrDefault(c.getNombre(), 0) + 1);
     }
 
-    // Generamos el contenido para el PDF
     StringBuilder contenido = new StringBuilder();
-    contenido.append("<h1>Lista de Mazo: ").append(mazo.getNombre_deck()).append("</h1>");
-    contenido.append("<ul>");
-    conteoCartas.forEach((nombre, cantidad) -> {
-        contenido.append("<li><strong>").append(cantidad).append("x</strong> ").append(nombre).append("</li>");
-    });
+    contenido.append("<h1>").append(mazoSeleccionado.getNombre_deck()).append("</h1><ul>");
+
+    conteo.forEach((nombre, cantidad) ->
+            contenido.append("<li>").append(cantidad).append("x ").append(nombre).append("</li>")
+    );
+
     contenido.append("</ul>");
 
-    
-    generarDocumentoPDF(mazo.getNombre_deck(), contenido.toString());
+    generarDocumentoPDF(mazoSeleccionado.getNombre_deck(), contenido.toString());
 }
+private void generarDocumentoPDF(String nombre, String html) {
 
-private void generarDocumentoPDF(String nombreMazo, String htmlContenido) {
-    // Creamos un nombre de archivo limpio (sin espacios raros)
-    String nombreArchivo = "Lista_" + nombreMazo.replaceAll("\\s+", "_") + ".html";
-    File file = new File(nombreArchivo);
-
-    try (FileWriter writer = new FileWriter(file)) {
-        // Le damos un poco de estilo CSS para que parezca un documento oficial
-        String htmlCompleto = "<html><head><style>" +
-                "body { font-family: 'Segoe UI', sans-serif; padding: 40px; color: #2c3e50; }" +
-                "h1 { color: #e74c3c; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; }" +
-                "ul { list-style: none; padding: 0; }" +
-                "li { padding: 10px; border-bottom: 1px solid #ecf0f1; font-size: 18px; }" +
-                "b { color: #e74c3c; }" +
-                ".footer { margin-top: 50px; font-size: 12px; color: #bdc3c7; }" +
-                "</style></head><body>" +
-                htmlContenido +
-                "<div class='footer'>Generado por OnePieceCollectr - 2026</div>" +
-                "</body></html>";
-
-        writer.write(htmlCompleto);
-        System.out.println("Archivo generado: " + file.getAbsolutePath());
-
-        // Intentamos abrir el archivo automáticamente en el navegador
-        if (Desktop.isDesktopSupported()) {
-            Desktop.getDesktop().browse(file.toURI());
-        } else {
-            login.mostrarAlerta("Éxito", "Lista generada en: " + file.getName());
-        }
-
-    } catch (IOException e) {
-        e.printStackTrace();
-        login.mostrarAlerta("Error", "No se pudo generar el archivo de exportación.");
-    }
-}
-
-@FXML
-    private Button btnMazoIA;
-@FXML
-private void irAGeneradorIA() {
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/generadorIA.fxml"));
-        Parent root = loader.load();
-        
-        // Esto cambia la escena en la ventana actual
-        Stage stage = (Stage) btnMazoIA.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    } catch (IOException e) {
+        File file = new File("mazo_" + nombre + ".html");
+        FileWriter writer = new FileWriter(file);
+
+        writer.write("<html><body>" + html + "</body></html>");
+        writer.close();
+
+        Desktop.getDesktop().browse(file.toURI());
+
+    } catch (Exception e) {
         e.printStackTrace();
     }
 }

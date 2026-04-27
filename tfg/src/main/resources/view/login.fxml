@@ -3,26 +3,74 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 
-<VBox alignment="CENTER"
-      spacing="15"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.onepiececollectr.Login">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.onepiececollectr.Login">
 
-    <Label text="One Piece Collectr"
-           style="-fx-font-size: 28;" />
+    <!-- 🌈 Fondo -->
+    <VBox style="-fx-background-color: linear-gradient(to bottom, #1e3c72, #2a5298);"
+          alignment="CENTER">
 
-    <TextField fx:id="usernameField"
-               promptText="Usuario"
-               prefWidth="200"/>
+        <!-- 📦 Card -->
+        <VBox spacing="20"
+              alignment="CENTER"
+              prefWidth="320"
+              style="
+                -fx-background-color: white;
+                -fx-padding: 30;
+                -fx-background-radius: 15;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10,0,0,5);
+              ">
 
-    <PasswordField fx:id="passwordField"
-                   promptText="Contraseña"
-                   prefWidth="200"/>
+            <!-- 🏴 Título -->
+            <Label text="🏴‍☠️ OnePieceCollectr"
+                   style="-fx-font-size: 22; -fx-font-weight: bold;" />
 
-    <Button text="Login"
-            onAction="#IniciarSesion"/>
+            <!-- 👤 Usuario -->
+            <TextField fx:id="usernameField"
+                       promptText="Usuario"
+                       prefWidth="250"
+                       style="
+                         -fx-background-radius: 8;
+                         -fx-border-radius: 8;
+                         -fx-border-color: #ddd;
+                         -fx-padding: 8;
+                       "/>
 
-    <Button text="Registrarse"
-            onAction="#registrarNuevoUsuario"/>
+            <!-- 🔒 Contraseña -->
+            <PasswordField fx:id="passwordField"
+                           promptText="Contraseña"
+                           prefWidth="250"
+                           style="
+                             -fx-background-radius: 8;
+                             -fx-border-radius: 8;
+                             -fx-border-color: #ddd;
+                             -fx-padding: 8;
+                           "/>
 
-</VBox>
+            <!-- 🔵 Login -->
+            <Button text="Iniciar sesión"
+                    onAction="#IniciarSesion"
+                    prefWidth="250"
+                    style="
+                      -fx-background-color: #3498db;
+                      -fx-text-fill: white;
+                      -fx-font-weight: bold;
+                      -fx-background-radius: 8;
+                    "/>
+
+            <!-- 🟢 Registro -->
+            <Button text="Crear cuenta"
+                    onAction="#registrarNuevoUsuario"
+                    prefWidth="250"
+                    style="
+                      -fx-background-color: #2ecc71;
+                      -fx-text-fill: white;
+                      -fx-font-weight: bold;
+                      -fx-background-radius: 8;
+                    "/>
+
+        </VBox>
+
+    </VBox>
+
+</StackPane>

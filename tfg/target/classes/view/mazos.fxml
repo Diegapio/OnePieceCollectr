@@ -36,7 +36,7 @@
         <CheckBox fx:id="yellowColor" text="Amarillo"
                   style="-fx-text-fill: goldenrod;"/>
 
-        <!-- 🆕 NUEVOS COLORES -->
+        <!-- NUEVOS -->
         <CheckBox fx:id="purpleColor" text="Morado"
                   style="-fx-text-fill: purple;"/>
 
