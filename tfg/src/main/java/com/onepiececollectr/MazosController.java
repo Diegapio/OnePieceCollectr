@@ -209,23 +209,26 @@ public class MazosController {
     }
 
     private void openDeck(Deck deck) {
+    mazoSeleccionado = deck;
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/deckDetail.fxml"));
+        Parent view = loader.load();
 
-        mazoSeleccionado = deck;
+        // IMPORTANTE: Primero mostramos la vista
+        Principal.mostrarVista(view);
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/deckDetail.fxml"));
-            Parent view = loader.load();
-
-            Principal.mostrarVista(view);
-
-            MazosController controller = loader.getController();
+        // Obtenemos el controlador de la nueva vista cargada
+        // Si deckDetail.fxml usa MazosController, esto está bien:
+        MazosController controller = loader.getController();
+        if (controller != null) {
             controller.renderDeck(deck);
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    }
 
+    } catch (Exception e) {
+        System.err.println("Error abriendo el mazo: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
     public void renderDeck(Deck deck) {
 
         deckGrid.getChildren().clear();
@@ -287,21 +290,6 @@ public class MazosController {
             login.mostrarAlerta("Error", "No se pudo borrar el mazo");
         }
     }
-
-    @FXML
-    private void irAGeneradorIA() {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/generadorIA.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) btnMazoIA.getScene().getWindow();
-            stage.setScene(new Scene(root));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     @FXML
 private void exportarMazoPDF(ActionEvent event) {
 
@@ -339,6 +327,30 @@ private void generarDocumentoPDF(String nombre, String html) {
         Desktop.getDesktop().browse(file.toURI());
 
     } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+@FXML
+private void volver() {
+    try {
+        // Para volver al listado de mazos o al dashboard
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+        Parent root = loader.load();
+        Principal.mostrarVista(root);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+@FXML
+private void irAColeccionParaEditar() {
+    try {
+        // Para ir a la colección y añadir cartas al mazo seleccionado
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/coleccion.fxml"));
+        Parent root = loader.load();
+        Principal.mostrarVista(root);
+    } catch (IOException e) {
         e.printStackTrace();
     }
 }

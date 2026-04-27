@@ -12,7 +12,7 @@
       fx:controller="com.onepiececollectr.MazosController">
      
 <Button text="⬅ Volver a mazos"
-        onAction="#goBack"/>
+        onAction="#volver"/>
     <Label text="Cartas del mazo"
            style="-fx-font-size: 24; -fx-font-weight: bold;" />
 

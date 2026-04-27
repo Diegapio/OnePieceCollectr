@@ -1,7 +1,7 @@
 package com.onepiececollectr;
 
 public class Carta {
-    private int id_carta; 
+    private String id_carta; 
     private String nombre;
     private String tipo;
     private String color;
@@ -9,7 +9,7 @@ public class Carta {
     private String imagen_url;
 
     // Otro constructor
-    public Carta(int id_carta, String nombre, String tipo, String color, String rareza, String imagen_url) {
+    public Carta(String id_carta, String nombre, String tipo, String color, String rareza, String imagen_url) {
         this.id_carta = id_carta;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -19,8 +19,8 @@ public class Carta {
     }
 
     // Getters y Setters
-    public int getId_carta() { return id_carta; }
-    public void setId_carta(int id_carta) { this.id_carta = id_carta; }
+    public String getId_carta() { return id_carta; }
+    public void setId_carta(String id_carta) { this.id_carta = id_carta; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }

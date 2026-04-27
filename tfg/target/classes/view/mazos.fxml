@@ -53,9 +53,10 @@
             onAction="#exportarMazoPDF"
             style="-fx-background-color: #2ecc71; -fx-text-fill: white;" />
 
-    <Button fx:id="btnMazoIA" 
+    <!-- <Button fx:id="btnMazoIA" 
             text="Consultar a la IA" 
             onAction="#irAGeneradorIA" 
             style="-fx-background-color: #f1c40f; -fx-text-fill: black;" />
+ -->
 
 </VBox>

@@ -25,7 +25,8 @@ public class ColeccionController {
     @FXML private TextField searchField;
     @FXML private ComboBox<String> tipoFilter;  
 
-    private Set<Integer> idsPoseidos = new HashSet<>();
+    // Busca donde tengas declarada la lista de IDs poseídos y cámbiala a String
+    private Set<String> idsPoseidos = new HashSet<>();
     private List<Carta> cartasCargadas = new ArrayList<>(); 
     private int ticketBusqueda = 0; 
 
@@ -54,7 +55,7 @@ public class ColeccionController {
         String sql = "SELECT * FROM carta";
         try (Connection conn = Login.getConexion(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
-                lista.add(new Carta(rs.getInt("id_carta"), rs.getString("nombre"),
+                lista.add(new Carta(rs.getString("id_carta"), rs.getString("nombre"),
                     rs.getString("tipo"), rs.getString("color"), rs.getString("rareza"), rs.getString("imagen_url")));
             }
         } catch (SQLException e) { e.printStackTrace(); }
@@ -215,7 +216,7 @@ private void filtrarLocalmente(String texto) {
         Deck mazo = MazosController.mazoSeleccionado;
         String sql = "INSERT INTO deck_carta (id_deck, id_carta, cantidad) VALUES (?, ?, 1) ON CONFLICT (id_deck, id_carta) DO UPDATE SET cantidad = deck_carta.cantidad + 1";
         try (Connection conn = Login.getConexion(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, mazo.getId_deck()); pstmt.setInt(2, carta.getId_carta());
+            pstmt.setInt(1, mazo.getId_deck()); pstmt.setString(2, carta.getId_carta());
             pstmt.executeUpdate();
             mazo.getCartas().add(carta); 
             Platform.runLater(() -> filtrarLocalmente(searchField.getText()));
@@ -228,22 +229,22 @@ private void filtrarLocalmente(String texto) {
         try (Connection conn = Login.getConexion(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, Login.sesionUsuario.getId());
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) idsPoseidos.add(rs.getInt("id_carta"));
+            while (rs.next()) idsPoseidos.add(rs.getString("id_carta"));
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
-    private void registrarEnColeccion(int idCarta) {
+    private void registrarEnColeccion(String idCarta) {
         String sql = "INSERT INTO coleccion (id_usuario, id_carta, cantidad) VALUES (?, ?, 1) ON CONFLICT DO NOTHING";
         try (Connection conn = Login.getConexion(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, Login.sesionUsuario.getId()); pstmt.setInt(2, idCarta);
+            pstmt.setInt(1, Login.sesionUsuario.getId()); pstmt.setString(2, String.valueOf(idCarta));
             pstmt.executeUpdate(); idsPoseidos.add(idCarta);
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
-    private void borrarDeMiColeccion(int idCarta) {
+    private void borrarDeMiColeccion(String idCarta) {
         String sql = "DELETE FROM coleccion WHERE id_usuario = ? AND id_carta = ?";
         try (Connection conn = Login.getConexion(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, Login.sesionUsuario.getId()); pstmt.setInt(2, idCarta);
+            pstmt.setInt(1, Login.sesionUsuario.getId()); pstmt.setString(2, idCarta);
             pstmt.executeUpdate(); idsPoseidos.remove(idCarta);
         } catch (SQLException e) { e.printStackTrace(); }
     }

@@ -46,7 +46,7 @@ public class App extends Application {
             
             while (rs.next()) {
                 todasLasCartas.add(new Carta(
-                    rs.getInt("id_carta"),
+                    rs.getString("id_carta"),
                     rs.getString("nombre"),
                     rs.getString("tipo"),
                     rs.getString("color"),
