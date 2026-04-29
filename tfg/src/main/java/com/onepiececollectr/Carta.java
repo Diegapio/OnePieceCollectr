@@ -18,6 +18,10 @@ public class Carta {
         this.imagen_url = imagen_url;
     }
 
+    public Carta(){
+        
+    }
+
     // Getters y Setters
     public String getId_carta() { return id_carta; }
     public void setId_carta(String id_carta) { this.id_carta = id_carta; }

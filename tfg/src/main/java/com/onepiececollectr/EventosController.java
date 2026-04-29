@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -153,35 +154,87 @@ public class EventosController {
         selectedEventLabel.setText("Editando: " + event.getName());
     }
 
-    @FXML
-    private void saveEvent() {
-        String name = nameField.getText();
-        String location = locationField.getText();
-        LocalDate date = datePicker.getValue();
+   @FXML
+private void saveEvent() {
+    String name = nameField.getText();
+    String location = locationField.getText();
+    LocalDate date = datePicker.getValue();
+    Login loginManager = new Login();
 
-        if (name.isEmpty() || location.isEmpty() || date == null) {
-            selectedEventLabel.setText("⚠️ Rellena todos los campos");
-            return;
-        }
+    if (name.isEmpty() || location.isEmpty() || date == null) {
+        selectedEventLabel.setText("⚠️ Rellena todos los campos");
+        return;
+    }
 
-        String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    String formattedDate = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        if (selectedEvent != null) {
-            // Actualizar existente
+    if (selectedEvent != null) {
+        // --- ACTUALIZAR EN BD ---
+        String sql = "UPDATE eventos SET nombre = ?, fecha = ?, lugar = ? WHERE nombre = ? AND id_usuario = ?";
+        try (Connection conn = Login.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, formattedDate);
+            pstmt.setString(3, location);
+            pstmt.setString(4, selectedEvent.getName()); // Nombre antiguo para el WHERE
+            pstmt.setInt(5, Login.sesionUsuario.getId());
+            pstmt.executeUpdate();
+
+            // Actualizar memoria
             selectedEvent.setName(name);
             selectedEvent.setLocation(location);
             selectedEvent.setDate(formattedDate);
             selectedEvent = null;
-            selectedEventLabel.setText("✅ Evento actualizado");
-        } else {
-            // Crear nuevo
-            listaEventos.add(new Event(name, formattedDate, location));
-            selectedEventLabel.setText("✅ Evento guardado");
+            selectedEventLabel.setText("✅ Evento actualizado en BD");
+        } catch (SQLException e) {
+            loginManager.mostrarAlerta("Error", "No se pudo actualizar en la base de datos.");
         }
+    } else {
+        // --- INSERTAR EN BD ---
+        String sql = "INSERT INTO eventos (id_usuario, nombre, fecha, lugar, favorito) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = Login.getConexion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, Login.sesionUsuario.getId());
+            pstmt.setString(2, name);
+            pstmt.setString(3, formattedDate);
+            pstmt.setString(4, location);
+            pstmt.setBoolean(5, false);
+            pstmt.executeUpdate();
 
-        limpiarCampos();
-        renderEvents();
+            // Actualizar memoria
+            listaEventos.add(new Event(name, formattedDate, location));
+            selectedEventLabel.setText("✅ Evento guardado en BD");
+        } catch (SQLException e) {
+            loginManager.mostrarAlerta("Error", "No se pudo guardar el evento.");
+            e.printStackTrace();
+        }
     }
+
+    limpiarCampos();
+    renderEvents();
+}   
+private void cargarEventosDesdeBD() {
+    String sql = "SELECT * FROM eventos WHERE id_usuario = ?";
+    try (Connection conn = Login.getConexion();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        
+        pstmt.setInt(1, Login.sesionUsuario.getId());
+        ResultSet rs = pstmt.executeQuery();
+        
+        listaEventos.clear();
+        while (rs.next()) {
+            Event ev = new Event(
+                rs.getString("nombre"),
+                rs.getString("fecha"),
+                rs.getString("lugar")
+            );
+            ev.setFavorite(rs.getBoolean("favorito"));
+            listaEventos.add(ev);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
 
     @FXML
     private void toggleFavorites() {
