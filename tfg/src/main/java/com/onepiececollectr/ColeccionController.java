@@ -118,41 +118,61 @@ public class ColeccionController {
             }
         }).start();
     }
+private VBox createCard(Carta cardData) {
+    ImageView image = new ImageView();
+    try { 
+        image.setImage(new Image(cardData.getImagen_url(), 105, 145, true, true)); 
+    } catch (Exception e) {
+        System.err.println("Error cargando imagen: " + e.getMessage());
+    }
+    
+    image.setFitWidth(105); 
+    image.setFitHeight(145);
+    
+    Label name = new Label(cardData.getNombre());
+    name.setWrapText(true);
+    name.setStyle("-fx-font-size: 10px; -fx-alignment: center; -fx-text-alignment: center;");
 
-    private VBox createCard(Carta cardData) {
-        ImageView image = new ImageView();
-        try { image.setImage(new Image(cardData.getImagen_url(), 105, 145, true, true)); } catch (Exception e) {}
-        image.setFitWidth(105);
-        image.setFitHeight(145);
-        Label name = new Label(cardData.getNombre());
-        name.setWrapText(true);
-        name.setStyle("-fx-font-size: 10px; -fx-alignment: center; -fx-text-alignment: center;");
+    VBox card = new VBox(5, image, name);
+    card.setPrefSize(130, 190);
+    card.setCursor(javafx.scene.Cursor.HAND);
 
-        VBox card = new VBox(5, image, name);
-        card.setPrefSize(130, 190);
-        card.setCursor(javafx.scene.Cursor.HAND);
+    // Pintamos el estilo inicial (Gris, Amarillo, Verde o Rojo)
+    actualizarEstiloCarta(card, cardData);
 
-        actualizarEstiloCarta(card, cardData);
+    card.setOnMouseClicked(event -> {
+        // --- NUEVA LÓGICA: MODO SELECCIÓN MERCADO ---
+        if (MarketController.modoSeleccionMercado) {
+            if (MarketController.listaParaOptimizar.contains(cardData)) {
+                MarketController.listaParaOptimizar.remove(cardData);
+                // Al quitarla, devolvemos su color original de colección/mazo
+                actualizarEstiloCarta(card, cardData);
+            } else {
+                // Solo permitimos seleccionar cartas que el usuario ya posee
+                if (idsPoseidos.contains(cardData.getId_carta())) {
+                    MarketController.listaParaOptimizar.add(cardData);
+                    // Pintamos de AZUL para indicar que está en la lista de compra/venta
+                    card.setStyle("-fx-background-color: #3498db; -fx-border-color: #2980b9; -fx-border-width: 3; -fx-padding: 5; -fx-alignment: center; -fx-background-radius: 5;");
+                    card.setOpacity(1.0);
+                } else {
+                    login.mostrarAlerta("Mercado", "Solo puedes seleccionar cartas que ya posees.");
+                }
+            }
+            return; // Importante: Salimos aquí para no abrir el popup del mazo
+        }
 
-        card.setOnMouseClicked(event -> {
+        // --- LÓGICA NORMAL (Mazo / Colección) ---
         if (event.getButton() == MouseButton.SECONDARY) {
             borrarDeMiColeccion(cardData.getId_carta());
             actualizarEstiloCarta(card, cardData);
         } else {
-            // 💡 TU GRAN IDEA: 
-            // Si hay un mazo seleccionado, abrimos el selector de copias
-            if (MazosController.mazoSeleccionado != null) {
-                abrirSelectorDeCopias(cardData);
-            } else {
-                // Si NO hay mazo, solo la añadimos a nuestra colección personal
-                registrarEnColeccion(cardData.getId_carta());
-                actualizarEstiloCarta(card, cardData);
-                System.out.println("Añadida a colección personal: " + cardData.getNombre());
-            }
+            // Si hay un mazo seleccionado, abre el popup; si no, añade a colección personal
+            abrirSelectorDeCopias(cardData);
         }
     });
-        return card;
-    }
+    
+    return card;
+}
 
 private void abrirSelectorDeCopias(Carta carta) {
     try {
@@ -198,9 +218,13 @@ private void actualizarEstiloCarta(VBox card, Carta c) {
     // Verificamos si es un líder [cite: 80]
     boolean esLider = "LIDER".equalsIgnoreCase(c.getTipo());
     int limite = esLider ? 1 : 4;
-
+    // Si la carta está en la lista de optimización de mercado, se mantiene azul
+    if (MarketController.modoSeleccionMercado && MarketController.listaParaOptimizar.contains(c)) {
+        card.setStyle("-fx-background-color: #3498db; -fx-border-color: #2980b9; -fx-border-width: 3; -fx-padding: 5; -fx-alignment: center; -fx-background-radius: 5;");
+        card.setOpacity(1.0);
+    }
     // 🔴 ROJO: Si ya hemos llegado al límite (1 para Líder, 4 para el resto) [cite: 81, 82]
-    if (copias >= limite) {
+    else if (copias >= limite) {
         card.setStyle("-fx-background-color: #fadbd8; -fx-border-color: #c0392b; -fx-border-width: 3; -fx-padding: 5; -fx-alignment: center; -fx-background-radius: 5;");
         card.setOpacity(1.0);
     } 

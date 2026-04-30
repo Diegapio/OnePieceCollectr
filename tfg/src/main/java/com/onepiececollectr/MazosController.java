@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 
 public class MazosController {
 
-    // --- ELEMENTOS FXML ---
+    // Cosas FXML
     @FXML private GridPane deckGrid;
     @FXML private VBox deckList;
     @FXML private Label deckInfoLabel;
@@ -33,7 +33,7 @@ public class MazosController {
     @FXML private CheckBox redColor, blueColor, greenColor, yellowColor, purpleColor, blackColor;
     @FXML private Button btnMazoIA;
 
-    // --- VARIABLES DE ESTADO ---
+    // Variables de clase
     private Carta cartaActual;      
     private int cantidadEnMazo = 0;
     private static List<Deck> misMazos = new ArrayList<>();
@@ -58,7 +58,7 @@ public class MazosController {
         }
     }
 
-    // --- GESTIÓN DE MAZOS (LISTA IZQUIERDA) ---
+    // Gestión de mazos, crear, borrar, cargar desde BD, etc.
 
     public static void cargarMazosDesdeBD() {
         String sql = "SELECT * FROM deck WHERE id_usuario = ?";
@@ -137,11 +137,11 @@ public class MazosController {
         } catch (SQLException e) { login.mostrarAlerta("Error", "No se pudo borrar"); }
     }
 
-    // --- GESTIÓN DE CARTAS (DENTRO DEL MAZO) ---
+    // Gestión de cartas dentro del mazo, cargar cartas, renderizar, abrir detalle, contador, etc.
 
  public void cargarCartasDelMazo(Deck mazo) {
     mazo.getCartas().clear();
-    // 1. Traemos también la columna 'cantidad' de la tabla intermedia
+
     String sql = "SELECT c.*, dc.cantidad FROM carta c " +
                  "JOIN deck_carta dc ON c.id_carta = dc.id_carta " +
                  "WHERE dc.id_deck = ?";
@@ -153,8 +153,8 @@ public class MazosController {
         ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()) {
-            int cantidadEnBD = rs.getInt("cantidad"); // 
-            // 2. Añadimos la carta a la lista tantas veces como diga la BD
+            int cantidadEnBD = rs.getInt("cantidad");  
+            
             for (int i = 0; i < cantidadEnBD; i++) {
                 mazo.getCartas().add(new Carta(
                     rs.getString("id_carta"),
@@ -173,7 +173,7 @@ public void renderDeck(Deck mazo) {
     if (deckGrid == null || mazo == null) return;
     deckGrid.getChildren().clear();
 
-    // 1. Agrupamos las cartas por su ID para sumar cantidades
+   
     Map<String, Integer> conteo = new HashMap<>();
     Map<String, Carta> unicas = new HashMap<>();
 
@@ -182,7 +182,7 @@ public void renderDeck(Deck mazo) {
         unicas.put(c.getId_carta(), c);
     }
 
-    // 2. Dibujamos solo una vez cada carta con su multiplicador real
+    
     int col = 0, row = 0;
     for (String id : conteo.keySet()) {
         Carta carta = unicas.get(id);
@@ -201,12 +201,12 @@ public void renderDeck(Deck mazo) {
     StackPane stack = new StackPane();
     ImageView img = new ImageView(new Image(carta.getImagen_url(), 80, 110, true, true));
     
-    // 🔥 CAMBIO AQUÍ: Al hacer clic, abrimos la ventana de detalle
+    
     img.setOnMouseClicked(e -> { 
         this.cartaActual = carta; 
         this.cantidadEnMazo = cantidad; 
-        actualizarVista(); // Actualiza el label que tienes en la vista principal
-        abrirVentanaDetalle(carta); // <--- Nueva función para el popup
+        actualizarVista(); 
+        abrirVentanaDetalle(carta);
     });
 
     Label lbl = new Label("x" + cantidad);
@@ -231,10 +231,10 @@ private void abrirVentanaDetalle(Carta carta) {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
 
-        // Cuando se cierre esta ventanita, el mazo principal se redibuja solo
+        
         stage.setOnHiding(event -> {
-            cargarCartasDelMazo(mazoSeleccionado); // Recarga con el nuevo cargarCartas que hicimos
-            renderDeck(mazoSeleccionado);         // Dibuja el x4, x1, etc.
+            cargarCartasDelMazo(mazoSeleccionado); 
+            renderDeck(mazoSeleccionado);
         });
 
         stage.show();
@@ -248,7 +248,7 @@ private void abrirVentanaDetalle(Carta carta) {
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
-    // --- SISTEMA DE CONTADOR (+1/-1/+4/-4) ---
+    // Ultimos cambios, contador y botones para sumar/restar cartas al mazo, con actualización en BD y vista
 
     @FXML private void sumarUno() { cambiarCantidad(1); }
     @FXML private void restarUno() { cambiarCantidad(-1); }
