@@ -32,6 +32,10 @@ public class MazosController {
 
     @FXML private CheckBox redColor, blueColor, greenColor, yellowColor, purpleColor, blackColor;
     @FXML private Button btnMazoIA;
+    @FXML private void sumarUno() { cambiarCantidad(1); }
+    @FXML private void restarUno() { cambiarCantidad(-1); }
+    @FXML private void sumarMax() { cambiarCantidad(4); }
+    @FXML private void restarMax() { cambiarCantidad(-4); }
 
     // Variables de clase
     private Carta cartaActual;      
@@ -157,13 +161,19 @@ public class MazosController {
             
             for (int i = 0; i < cantidadEnBD; i++) {
                 mazo.getCartas().add(new Carta(
-                    rs.getString("id_carta"),
-                    rs.getString("nombre"),
-                    rs.getString("tipo"),
-                    rs.getString("color"),
-                    rs.getString("rareza"),
-                    rs.getString("imagen_url")
-                ));
+                rs.getString("id_carta"),
+                rs.getString("nombre"),
+                rs.getString("tipo"),
+                rs.getString("color"),
+                rs.getString("rareza"),
+                rs.getString("imagen_url"),
+                rs.getString("texto"),
+                (Integer) rs.getObject("coste"),
+                (Integer) rs.getObject("poder"),
+                (Integer) rs.getObject("contador"),
+                (String) rs.getString("subtipos"),
+                (String) rs.getString("atributo")
+            ));
             }
         }
     } catch (SQLException e) { e.printStackTrace(); }
@@ -250,10 +260,7 @@ private void abrirVentanaDetalle(Carta carta) {
 
     // Ultimos cambios, contador y botones para sumar/restar cartas al mazo, con actualización en BD y vista
 
-    @FXML private void sumarUno() { cambiarCantidad(1); }
-    @FXML private void restarUno() { cambiarCantidad(-1); }
-    @FXML private void sumarMax() { cambiarCantidad(4); }
-    @FXML private void restarMax() { cambiarCantidad(-4); }
+    
 
     private void cambiarCantidad(int delta) {
         if (mazoSeleccionado == null || cartaActual == null) return;

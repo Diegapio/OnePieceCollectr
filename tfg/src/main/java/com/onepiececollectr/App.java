@@ -46,13 +46,19 @@ public class App extends Application {
             
             while (rs.next()) {
                 todasLasCartas.add(new Carta(
-                    rs.getString("id_carta"),
-                    rs.getString("nombre"),
-                    rs.getString("tipo"),
-                    rs.getString("color"),
-                    rs.getString("rareza"),
-                    rs.getString("imagen_url")
-                ));
+                rs.getString("id_carta"),
+                rs.getString("nombre"),
+                rs.getString("tipo"),
+                rs.getString("color"),
+                rs.getString("rareza"),
+                rs.getString("imagen_url"),
+                rs.getString("texto"),
+                (Integer) rs.getObject("coste"),
+                (Integer) rs.getObject("poder"),
+                (Integer) rs.getObject("contador"),
+                (String) rs.getString("subtipos"),
+                (String) rs.getString("atributo")
+            ));
             }
             //Debería de poner 3130 cartas o algo así, una burrada
             Login.registrarEnLog("Cartas cargadas en memoria: " + todasLasCartas.size());   

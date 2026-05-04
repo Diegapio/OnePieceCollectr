@@ -96,9 +96,9 @@ public class MarketController {
     @FXML
     private void abrirCardTrader() {
         try {
-            String url = "https://www.cardtrader.com/en/optimization";
+            String url = "https://www.cardtrader.com/wishlists/new";
             Desktop.getDesktop().browse(new URI(url));
-            statusLabel.setText("🌐 ¡Copia los IDs y pégalos en CardTrader!");
+            statusLabel.setText("¡Copia los IDs y pégalos en CardTrader!");
         } catch (Exception e) { e.printStackTrace(); }
     }
 
@@ -106,12 +106,12 @@ public class MarketController {
     private void limpiarLista() {
         listaParaOptimizar.clear();
         actualizarListaTexto();
-        statusLabel.setText("🧹 Lista de optimización vaciada.");
+        statusLabel.setText("Lista de optimización vaciada.");
     }
 
     @FXML
     private void volverAlPrincipal(ActionEvent event) {
-        modoSeleccionMercado = false; // Desactivamos el modo al salir
+        modoSeleccionMercado = false; 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
             Principal.mostrarVista(loader.load());

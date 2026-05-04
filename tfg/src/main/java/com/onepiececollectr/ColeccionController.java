@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -28,7 +29,12 @@ public class ColeccionController {
 
     @FXML private GridPane cardGrid;
     @FXML private TextField searchField;
-    @FXML private ComboBox<String> tipoFilter;  
+    @FXML private ComboBox<String> tipoFilter; 
+    @FXML private CheckBox checkPoseidas;
+    @FXML private CheckBox checkNoPoseidas;
+    @FXML private ComboBox<String> comboCoste;
+    @FXML private ComboBox<String> comboContador;
+    @FXML private ComboBox<String> comboVida; 
 
     private Set<String> idsPoseidos = new HashSet<>();
     private List<Carta> cartasCargadas = new ArrayList<>(); 
@@ -39,6 +45,24 @@ public class ColeccionController {
         tipoFilter.getItems().addAll("Todos", "LIDER", "PERSONAJE", "EVENTO", "STAGE");
         searchField.textProperty().addListener((obs, viejo, nuevo) -> filtrarLocalmente(nuevo));
         tipoFilter.valueProperty().addListener((obs, viejo, nuevo) -> filtrarLocalmente(searchField.getText()));
+
+      if (comboCoste != null) {
+            comboCoste.getItems().addAll("Todos", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+            comboCoste.setValue("Todos");
+        }
+
+        if (comboContador != null) {
+            comboContador.getItems().addAll("Todos", "0", "1000", "2000");
+            comboContador.setValue("Todos");
+        }
+        if (comboVida != null) {
+            comboVida.getItems().addAll("Todos", "1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000", "9000", "10000", "11000", "12000", "13000");
+            comboVida.setValue("Todos");
+        }
+
+        // Listener para los Checkboxes
+        checkPoseidas.selectedProperty().addListener((obs, v, n) -> handleFiltro());
+        checkNoPoseidas.selectedProperty().addListener((obs, v, n) -> handleFiltro());
         
         new Thread(() -> {
             try {
@@ -50,41 +74,96 @@ public class ColeccionController {
     }
 
     private List<Carta> cargarCartasDesdeBD() {
-        List<Carta> lista = new ArrayList<>();
-        String sql = "SELECT * FROM carta";
-        try (Connection conn = Login.getConexion(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                lista.add(new Carta(rs.getString("id_carta"), rs.getString("nombre"),
-                    rs.getString("tipo"), rs.getString("color"), rs.getString("rareza"), rs.getString("imagen_url")));
-            }
-        } catch (SQLException e) { e.printStackTrace(); }
-        return lista;
-    }
-
-    private void filtrarLocalmente(String texto) {
-        if (cartasCargadas.isEmpty()) return;
-        String q = texto.toLowerCase().trim();
-        String tipoSeleccionado = tipoFilter.getValue();
-        Deck mazo = MazosController.mazoSeleccionado;
-        List<String> coloresPermitidos = obtenerColoresMazo(mazo);
-
-        List<Carta> filtradas = new ArrayList<>();
-        for (Carta c : cartasCargadas) {
-            if (!c.getNombre().toLowerCase().contains(q) && !c.getId_carta().toLowerCase().contains(q)) continue;
-            if (tipoSeleccionado != null && !tipoSeleccionado.equals("Todos") && !tipoSeleccionado.equalsIgnoreCase(c.getTipo())) continue;
-
-            if (mazo != null && !coloresPermitidos.isEmpty()) {
-                String colorCarta = (c.getColor() != null) ? c.getColor().toUpperCase() : "";
-                boolean coincideColor = false;
-                for (String colP : coloresPermitidos) {
-                    if (colorCarta.contains(colP)) { coincideColor = true; break; }
-                }
-                if (!coincideColor) continue;
-            }
-            filtradas.add(c);
+    List<Carta> lista = new ArrayList<>();
+    String sql = "SELECT * FROM carta";
+    try (Connection conn = Login.getConexion(); 
+         Statement stmt = conn.createStatement(); 
+         ResultSet rs = stmt.executeQuery(sql)) {
+        
+        while (rs.next()) {
+            lista.add(new Carta(
+                rs.getString("id_carta"),
+                rs.getString("nombre"),
+                rs.getString("tipo"),
+                rs.getString("color"),
+                rs.getString("rareza"),
+                rs.getString("imagen_url"),
+                rs.getString("texto"),
+                (Integer) rs.getObject("coste"),
+                (Integer) rs.getObject("poder"),
+                (Integer) rs.getObject("contador"),
+                (String) rs.getString("subtipos"),
+                (String) rs.getString("atributo")
+            ));
         }
-        pintaCartas(filtradas);
+    } catch (SQLException e) { e.printStackTrace(); }
+    return lista;
+}
+
+@FXML
+private void handleFiltro() {
+    filtrarLocalmente(searchField.getText());
+}
+
+@FXML
+private void handleSearch() {
+    filtrarLocalmente(searchField.getText());
+}
+    private void filtrarLocalmente(String texto) {
+    if (cartasCargadas.isEmpty()) return;
+    
+    String q = texto.toLowerCase().trim();
+    String tipoSel = tipoFilter.getValue();
+    String costeSel = comboCoste.getValue();
+    String contadorSel = comboContador.getValue();
+    String vidaSel = comboVida.getValue();
+
+    // Obtener colores legales si hay un mazo seleccionado
+    List<String> coloresLegales = obtenerColoresMazo(MazosController.mazoSeleccionado);
+
+    List<Carta> filtradas = new ArrayList<>();
+
+    for (Carta c : cartasCargadas) {
+        // --- NUEVA LÓGICA DE FILTRO POR COLOR DEL MAZO ---
+        if (MazosController.mazoSeleccionado != null && !coloresLegales.isEmpty()) {
+            // Si el color de la carta no está en la lista de colores del mazo, la saltamos
+            // (Usamos split o contains si la carta tiene varios colores en la BD)
+            boolean colorValido = false;
+            for (String colLegal : coloresLegales) {
+                if (c.getColor().toUpperCase().contains(colLegal)) {
+                    colorValido = true;
+                    break;
+                }
+            }
+            if (!colorValido) continue;
+        }
+
+        
+        boolean coincideTexto = c.getNombre().toLowerCase().contains(q) || 
+                                c.getId_carta().toLowerCase().contains(q) ||
+                                c.getTexto().toLowerCase().contains(q) || 
+                                c.getSubtipos().toLowerCase().contains(q) || 
+                                c.getAtributo().toLowerCase().contains(q);
+        
+        if (!coincideTexto) continue;
+
+        // Filtro de Posesión
+        boolean esPoseida = idsPoseidos.contains(c.getId_carta());
+        if (checkPoseidas.isSelected() && !checkNoPoseidas.isSelected() && !esPoseida) continue;
+        if (checkNoPoseidas.isSelected() && !checkPoseidas.isSelected() && esPoseida) continue;
+
+        // Filtros Numéricos
+        if (costeSel != null && !costeSel.equals("Todos") && c.getCoste() != Integer.parseInt(costeSel)) continue;
+        if (contadorSel != null && !contadorSel.equals("Todos") && c.getContador() != Integer.parseInt(contadorSel)) continue;
+        if (vidaSel != null && !vidaSel.equals("Todos") && c.getPoder() != Integer.parseInt(vidaSel)) continue;
+        
+        // Filtro Tipo
+        if (tipoSel != null && !tipoSel.equals("Todos") && !c.getTipo().equalsIgnoreCase(tipoSel)) continue;
+
+        filtradas.add(c);
     }
+    pintaCartas(filtradas);
+}
 
     private List<String> obtenerColoresMazo(Deck mazo) {
         List<String> colores = new ArrayList<>();
@@ -162,13 +241,21 @@ private VBox createCard(Carta cardData) {
         }
 
         // --- LÓGICA NORMAL (Mazo / Colección) ---
-        if (event.getButton() == MouseButton.SECONDARY) {
-            borrarDeMiColeccion(cardData.getId_carta());
-            actualizarEstiloCarta(card, cardData);
-        } else {
-            // Si hay un mazo seleccionado, abre el popup; si no, añade a colección personal
-            abrirSelectorDeCopias(cardData);
-        }
+        // --- LÓGICA NORMAL (Mazo / Colección) ---
+if (event.getButton() == MouseButton.SECONDARY) {
+    borrarDeMiColeccion(cardData.getId_carta());
+    actualizarEstiloCarta(card, cardData);
+} else {
+    // CAMBIO AQUÍ: Verificar si hay un mazo seleccionado
+    if (MazosController.mazoSeleccionado != null) {
+        // Si hay mazo, pedimos cuántas copias añadir
+        abrirSelectorDeCopias(cardData);
+    } else {
+        // Si NO hay mazo, solo la añadimos a nuestra colección personal
+        registrarEnColeccion(cardData.getId_carta());
+        actualizarEstiloCarta(card, cardData);
+    }
+}
     });
     
     return card;
@@ -187,8 +274,7 @@ private void abrirSelectorDeCopias(Carta carta) {
         stage.setTitle("Gestionar Copias - " + carta.getNombre());
         stage.setScene(new Scene(root));
         
-        // --- LA MAGIA DEL REFRESCO ---
-        // 1. Esperamos a que el usuario cierre la ventana
+        
         stage.showAndWait(); 
         
         // 2. En cuanto se cierra, obligamos al mazo a recargarse de la BD
