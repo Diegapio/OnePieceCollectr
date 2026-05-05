@@ -6,29 +6,63 @@
 
 <VBox spacing="20"
       alignment="TOP_CENTER"
+      style="-fx-padding: 20;"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.onepiececollectr.ColeccionController">
 
     <Label text="Colección"
-           style="-fx-font-size: 28;" />
+           style="-fx-font-size: 28; -fx-font-weight: bold;" />
 
+    <!-- Barra de búsqueda principal -->
     <TextField fx:id="searchField"
-               promptText="Buscar carta..."
-               prefWidth="300"/>
+               promptText="Buscar nombre, ID o texto de habilidad..."
+               prefWidth="400"
+               onKeyReleased="#handleSearch"/>
 
-    <ScrollPane fitToWidth="true">
+    <!-- SECCIÓN DE FILTROS NUEVOS -->
+    <HBox spacing="15" alignment="CENTER" style="-fx-background-color: #f4f4f4; -fx-padding: 10; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-radius: 8;">
+        
+        <!-- Filtro por Tipo (Existente) -->
+        <VBox spacing="5">
+            <Label text="Tipo:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+            <ComboBox fx:id="tipoFilter" prefWidth="130" promptText="Tipo de Carta" onAction="#handleFiltro" />
+        </VBox>
 
+        <!-- Filtro por Contador (Counter) -->
+        <VBox spacing="5">
+            <Label text="Counter:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+            <ComboBox fx:id="comboContador" prefWidth="100" promptText="Counter" onAction="#handleFiltro" />
+        </VBox>
+        <VBox spacing="5">
+            <Label text="Coste:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+            <ComboBox fx:id="comboCoste" prefWidth="100" promptText="Coste" onAction="#handleFiltro" />
+        </VBox>
+
+        <!-- Filtro por Vida -->
+        <VBox spacing="5">
+            <Label text="Poder:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+            <ComboBox fx:id="comboVida" prefWidth="90" promptText="Poder" onAction="#handleFiltro" />
+        </VBox>
+
+        <Separator orientation="VERTICAL" />
+
+        <!-- Checkboxes de Posesión -->
+        <VBox spacing="5" alignment="CENTER_LEFT">
+            <CheckBox fx:id="checkPoseidas" text="Poseídas" selected="true" onAction="#handleFiltro" />
+            <CheckBox fx:id="checkNoPoseidas" text="No Poseídas" selected="true" onAction="#handleFiltro" />
+        </VBox>
+        
+    </HBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
         <GridPane fx:id="cardGrid"
                   hgap="20"
                   vgap="20"
                   alignment="CENTER">
-
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
-
         </GridPane>
-
     </ScrollPane>
 
 </VBox>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 20; -fx-background-color: #f4f4f4;" 
+      xmlns:fx="http://javafx.com/fxml" fx:controller="com.onepiececollectr.MarketController">
+    
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Button text="← Volver" onAction="#volverAlPrincipal" style="-fx-background-color: #7f8c8d; -fx-text-fill: white;"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <!-- <Label fx:id="moneyLabel" text="Dinero: 50€" style="-fx-font-size: 16; -fx-font-weight: bold;" /> -->
+    </HBox>
+
+    <Label text="Mercado de Cartas" style="-fx-font-size: 28; -fx-font-weight: bold;" />
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill: #27ae60; -fx-font-size: 14;" />
+
+    <HBox spacing="20">
+        <!-- Parte Izquierda: El Mercado -->
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+            <GridPane fx:id="marketGrid" hgap="15" vgap="15"/>
+        </ScrollPane>
+
+        <!-- Parte Derecha: CardTrader Optimizer -->
+        <VBox spacing="10" prefWidth="250" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #dcdde1; -fx-border-radius: 10;">
+            <Label text="Optimizador CardTrader" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
+            <Button text="➕ Seleccionar de Colección" onAction="#irASeleccionarDeColeccion" maxWidth="Infinity" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+            
+            <Label text="IDs seleccionados:"/>
+            <TextArea fx:id="txtIdsParaCardTrader" prefHeight="200" editable="false" wrapText="true" style="-fx-font-family: 'Courier New';"/>
+            
+            <Button text="🌐 Abrir CardTrader" onAction="#abrirCardTrader" maxWidth="Infinity" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+            <!-- CORRECCIÓN AQUÍ: Se eliminó variant="danger" -->
+            <Button text="🗑 Limpiar Lista" onAction="#limpiarLista" maxWidth="Infinity" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        </VBox>
+    </HBox>
+</VBox>

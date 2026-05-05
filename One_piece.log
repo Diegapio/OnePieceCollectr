@@ -1,0 +1,2077 @@
+[2026-03-12 11:19:03] Conexión con One Piece DB establecida.
+[2026-03-12 11:19:10] LOGIN: Usuario Prueba ha entrado.
+[2026-03-12 11:19:30] Conexión con One Piece DB establecida.
+[2026-03-12 11:19:40] LOGIN: Usuario Prueba ha entrado.
+[2026-03-18 13:40:12] Conexión con One Piece DB establecida.
+[2026-03-18 13:40:37] ERROR REGISTRO: ERROR: duplicate key value violates unique constraint "Usuario_nombre_key"
+  Detail: Key (nombre)=(Prueba) already exists.
+[2026-03-18 13:42:09] Conexión con One Piece DB establecida.
+[2026-03-18 13:42:22] REGISTRO: Nuevo usuario creado: Pruebas
+[2026-03-18 13:42:56] Conexión con One Piece DB establecida.
+[2026-03-18 13:43:07] LOGIN FALLIDO: Contraseña incorrecta para Pruebas
+[2026-03-18 13:43:08] LOGIN FALLIDO: Datos incorrectos para el usu  ario: Pruebas
+[2026-03-18 13:43:21] LOGIN: Usuario Pruebas ha entrado.
+[2026-03-18 13:43:50] Conexión con One Piece DB establecida.
+[2026-03-18 13:44:04] LOGIN: Usuario Pruebas ha entrado.
+[2026-03-23 09:17:48] Conexión con One Piece DB establecida.
+[2026-03-23 09:17:59] ERROR REGISTRO: ERROR: column "contraseña" of relation "usuario" does not exist
+  Position: 30
+[2026-03-23 09:18:03] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:18:04] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
+[2026-03-23 09:19:32] Conexión con One Piece DB establecida.
+[2026-03-23 09:19:45] REGISTRO: Nuevo usuario creado: Pruebas
+[2026-03-23 09:33:09] Conexión con One Piece DB establecida.
+[2026-03-23 09:33:24] ERROR REGISTRO: ERROR: duplicate key value violates unique constraint "usuario_nombre_key"
+  Detail: Key (nombre)=(Pruebas) already exists.
+[2026-03-23 09:33:45] Conexión con One Piece DB establecida.
+[2026-03-23 09:34:24] Conexión con One Piece DB establecida.
+[2026-03-23 09:34:35] REGISTRO: Nuevo usuario creado: Pruebas
+[2026-03-23 09:34:40] ERROR CARGANDO A MAZOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml
+
+[2026-03-23 09:34:42] ERROR CARGANDO AL MERCADO: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml
+
+[2026-03-23 09:34:44] ERROR CARGANDO A EVENTOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/eventos.fxml
+
+[2026-03-23 09:36:35] Conexión con One Piece DB establecida.
+[2026-03-23 09:36:43] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:36:44] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
+[2026-03-23 09:36:51] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:36:52] LOGIN FALLIDO: Datos incorrectos para el usuario: Pruebas
+[2026-03-23 09:37:17] REGISTRO: Nuevo usuario creado: Prueba
+[2026-03-23 09:37:26] Conexión con One Piece DB establecida.
+[2026-03-23 09:37:32] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:37:34] LOGIN FALLIDO: Datos incorrectos para el usuario: Prueba
+[2026-03-23 09:39:45] Conexión con One Piece DB establecida.
+[2026-03-23 09:39:51] ERROR BUSQUEDA: The column name id was not found in this ResultSet.
+[2026-03-23 09:39:53] LOGIN FALLIDO: Datos incorrectos para el usuario: Prueba
+[2026-03-23 09:42:28] Conexión con One Piece DB establecida.
+[2026-03-23 09:42:35] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:42:37] LOGIN FALLIDO: Datos incorrectos para el usuario: Prueba
+[2026-03-23 09:42:49] REGISTRO: Nuevo usuario creado: 1
+[2026-03-23 09:42:57] Conexión con One Piece DB establecida.
+[2026-03-23 09:43:01] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:43:02] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:49:14] Conexión con One Piece DB establecida.
+[2026-03-23 09:49:19] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:49:21] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:49:22] REGISTRO: Nuevo usuario creado: 1
+[2026-03-23 09:49:31] Conexión con One Piece DB establecida.
+[2026-03-23 09:49:37] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:49:39] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:51:29] Conexión con One Piece DB establecida.
+[2026-03-23 09:51:32] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:51:33] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:53:54] Conexión con One Piece DB establecida.
+[2026-03-23 09:53:58] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:53:59] LOGIN FALLIDO: Datos incorrectos para el usuario: 1
+[2026-03-23 09:54:04] REGISTRO: Nuevo usuario creado: 2
+[2026-03-23 09:54:09] Conexión con One Piece DB establecida.
+[2026-03-23 09:54:12] ERROR BUSQUEDA: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:54:13] LOGIN FALLIDO: Datos incorrectos para el usuario: 2
+[2026-03-23 09:55:22] Conexión con One Piece DB establecida.
+[2026-03-23 09:56:23] Conexión con One Piece DB establecida.
+[2026-03-23 09:56:26] REGISTRO: Nuevo usuario creado: 1
+[2026-03-23 09:56:32] Conexión con One Piece DB establecida.
+[2026-03-23 09:56:32] ERROR BUSQUEDA BD: ERROR: column "id" does not exist
+  Position: 8
+[2026-03-23 09:56:33] LOGIN FALLIDO: Datos incorrectos para: 1
+[2026-03-23 10:00:28] Conexión con One Piece DB establecida.
+[2026-03-23 10:00:31] LOGIN EXITOSO: Usuario 1
+[2026-03-24 18:20:51] Conexión con One Piece DB establecida.
+[2026-03-24 18:21:06] LOGIN EXITOSO: Usuario 1
+[2026-03-24 18:21:09] ERROR CARGANDO A MAZOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml
+
+[2026-04-07 07:30:53] Conexión con One Piece DB establecida.
+[2026-04-07 07:31:02] LOGIN EXITOSO: Usuario 1
+[2026-04-07 07:32:09] Conexión con One Piece DB establecida.
+[2026-04-07 07:32:15] LOGIN EXITOSO: Usuario 1
+[2026-04-07 07:32:45] Conexión con One Piece DB establecida.
+[2026-04-07 07:32:50] LOGIN EXITOSO: Usuario 1
+[2026-04-07 07:33:18] Conexión con One Piece DB establecida.
+[2026-04-07 07:33:22] LOGIN EXITOSO: Usuario 1
+[2026-04-07 07:33:58] Conexión con One Piece DB establecida.
+[2026-04-07 07:33:58] Cartas cargadas en memoria: 3130
+[2026-04-07 07:35:42] Conexión con One Piece DB establecida.
+[2026-04-07 07:35:42] Cartas cargadas en memoria: 3130
+[2026-04-07 07:35:43] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:06] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:07] Cartas cargadas en memoria: 3130
+[2026-04-07 07:56:07] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:11] LOGIN EXITOSO: Usuario 1
+[2026-04-07 07:56:16] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:37] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:37] Cartas cargadas en memoria: 3130
+[2026-04-07 07:56:38] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:41] LOGIN EXITOSO: Usuario 1
+[2026-04-07 07:56:43] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:52] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:52] Cartas cargadas en memoria: 3130
+[2026-04-07 07:56:53] Conexión con One Piece DB establecida.
+[2026-04-07 07:56:56] LOGIN EXITOSO: Usuario 1
+[2026-04-07 07:56:58] Conexión con One Piece DB establecida.
+[2026-04-07 08:05:57] Conexión con One Piece DB establecida.
+[2026-04-07 08:05:58] Cartas cargadas en memoria: 3130
+[2026-04-07 08:05:58] Conexión con One Piece DB establecida.
+[2026-04-07 08:05:58] Conexión con One Piece DB establecida.
+[2026-04-07 08:05:58] Cartas cargadas en memoria: 3130
+[2026-04-07 08:06:03] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:06:06] Conexión con One Piece DB establecida.
+[2026-04-07 08:07:26] Conexión con One Piece DB establecida.
+[2026-04-07 08:07:26] Cartas cargadas en memoria: 3130
+[2026-04-07 08:07:26] Conexión con One Piece DB establecida.
+[2026-04-07 08:07:27] Conexión con One Piece DB establecida.
+[2026-04-07 08:07:27] Cartas cargadas en memoria: 3130
+[2026-04-07 08:07:30] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:07:33] Conexión con One Piece DB establecida.
+[2026-04-07 08:09:15] Conexión con One Piece DB establecida.
+[2026-04-07 08:09:15] Cartas cargadas en memoria: 3130
+[2026-04-07 08:09:15] Conexión con One Piece DB establecida.
+[2026-04-07 08:09:16] Conexión con One Piece DB establecida.
+[2026-04-07 08:09:16] Cartas cargadas en memoria: 3130
+[2026-04-07 08:09:19] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:09:20] Conexión con One Piece DB establecida.
+[2026-04-07 08:10:43] Conexión con One Piece DB establecida.
+[2026-04-07 08:10:43] Cartas cargadas en memoria: 3130
+[2026-04-07 08:10:44] Conexión con One Piece DB establecida.
+[2026-04-07 08:10:44] Conexión con One Piece DB establecida.
+[2026-04-07 08:10:44] Cartas cargadas en memoria: 3130
+[2026-04-07 08:10:48] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:10:50] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:07] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:07] Cartas cargadas en memoria: 3130
+[2026-04-07 08:14:07] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:08] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:08] Cartas cargadas en memoria: 3130
+[2026-04-07 08:14:10] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:14:12] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:18] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:19] ERROR AL MARCAR CARTA: ERROR: column "id_carta" is of type integer but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 68
+[2026-04-07 08:14:22] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:22] ERROR AL MARCAR CARTA: ERROR: column "id_carta" is of type integer but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 68
+[2026-04-07 08:14:24] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:24] ERROR AL MARCAR CARTA: ERROR: column "id_carta" is of type integer but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 68
+[2026-04-07 08:14:27] Conexión con One Piece DB establecida.
+[2026-04-07 08:14:27] ERROR AL MARCAR CARTA: ERROR: column "id_carta" is of type integer but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 68
+[2026-04-07 08:15:07] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:07] Cartas cargadas en memoria: 3130
+[2026-04-07 08:15:07] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:08] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:08] Cartas cargadas en memoria: 3130
+[2026-04-07 08:15:12] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:15:17] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:31] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:31] Cartas cargadas en memoria: 3130
+[2026-04-07 08:15:32] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:32] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:32] Cartas cargadas en memoria: 3130
+[2026-04-07 08:15:35] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:15:36] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:41] Carta guardada en colección: Perona
+[2026-04-07 08:15:41] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:41] ERROR AL MARCAR CARTA: ERROR: column "id_carta" is of type integer but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 68
+[2026-04-07 08:15:42] Carta guardada en colección: Radical Beam!!
+[2026-04-07 08:15:42] Conexión con One Piece DB establecida.
+[2026-04-07 08:15:43] ERROR AL MARCAR CARTA: ERROR: column "id_carta" is of type integer but expression is of type character varying
+  Hint: You will need to rewrite or cast the expression.
+  Position: 68
+[2026-04-07 08:20:22] Conexión con One Piece DB establecida.
+[2026-04-07 08:20:23] Cartas cargadas en memoria: 3130
+[2026-04-07 08:20:23] Conexión con One Piece DB establecida.
+[2026-04-07 08:20:23] Conexión con One Piece DB establecida.
+[2026-04-07 08:20:23] Cartas cargadas en memoria: 3130
+[2026-04-07 08:20:28] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:20:29] Conexión con One Piece DB establecida.
+[2026-04-07 08:20:34] Conexión con One Piece DB establecida.
+[2026-04-07 08:20:34] Carta guardada en colección: Donquixote Doflamingo (073)
+[2026-04-07 08:24:36] Conexión con One Piece DB establecida.
+[2026-04-07 08:24:37] Cartas cargadas en memoria: 3130
+[2026-04-07 08:24:37] Conexión con One Piece DB establecida.
+[2026-04-07 08:24:37] Conexión con One Piece DB establecida.
+[2026-04-07 08:24:37] Cartas cargadas en memoria: 3130
+[2026-04-07 08:24:41] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:24:43] Conexión con One Piece DB establecida.
+[2026-04-07 08:24:48] Conexión con One Piece DB establecida.
+[2026-04-07 08:24:48] Carta guardada en colección: Perona
+[2026-04-07 08:25:02] Conexión con One Piece DB establecida.
+[2026-04-07 08:25:02] Carta guardada en colección: Perona
+[2026-04-07 08:25:40] Conexión con One Piece DB establecida.
+[2026-04-07 08:25:40] Cartas cargadas en memoria: 3130
+[2026-04-07 08:25:40] Conexión con One Piece DB establecida.
+[2026-04-07 08:25:41] Conexión con One Piece DB establecida.
+[2026-04-07 08:25:41] Cartas cargadas en memoria: 3130
+[2026-04-07 08:25:43] LOGIN EXITOSO: Usuario 1
+[2026-04-07 08:25:45] Conexión con One Piece DB establecida.
+[2026-04-13 07:56:21] Conexión con One Piece DB establecida.
+[2026-04-13 07:56:21] Cartas cargadas en memoria: 3130
+[2026-04-13 07:56:22] Conexión con One Piece DB establecida.
+[2026-04-13 07:56:22] Cartas cargadas en memoria: 3130
+[2026-04-13 07:56:22] Conexión con One Piece DB establecida.
+[2026-04-13 07:56:27] LOGIN EXITOSO: Usuario 1
+[2026-04-13 07:56:29] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:31] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:31] Cartas cargadas en memoria: 3130
+[2026-04-13 07:58:32] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:32] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:32] Cartas cargadas en memoria: 3130
+[2026-04-13 07:58:35] LOGIN EXITOSO: Usuario 1
+[2026-04-13 07:58:37] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:44] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:48] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:48] Carta guardada en colección: Perona
+[2026-04-13 07:58:55] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:55] Cartas cargadas en memoria: 3130
+[2026-04-13 07:58:56] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:56] Conexión con One Piece DB establecida.
+[2026-04-13 07:58:56] Cartas cargadas en memoria: 3130
+[2026-04-13 07:58:59] LOGIN EXITOSO: Usuario 1
+[2026-04-13 07:59:01] Conexión con One Piece DB establecida.
+[2026-04-14 12:24:38] ERROR CONEXION: El intento de conexión falló.
+[2026-04-14 12:25:27] Conexión con One Piece DB establecida.
+[2026-04-14 12:25:29] Cartas cargadas en memoria: 3130
+[2026-04-14 12:25:30] Conexión con One Piece DB establecida.
+[2026-04-14 12:25:30] Conexión con One Piece DB establecida.
+[2026-04-14 12:25:30] Cartas cargadas en memoria: 3130
+[2026-04-14 12:26:25] LOGIN EXITOSO: Usuario 1
+[2026-04-14 12:26:28] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:36] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:46] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:47] Carta guardada en colección: Otama
+[2026-04-14 12:26:56] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:57] Cartas cargadas en memoria: 3130
+[2026-04-14 12:26:58] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:58] Conexión con One Piece DB establecida.
+[2026-04-14 12:26:58] Cartas cargadas en memoria: 3130
+[2026-04-14 12:27:02] LOGIN EXITOSO: Usuario 1
+[2026-04-14 12:27:04] Conexión con One Piece DB establecida.
+[2026-04-14 12:28:20] ERROR CARGANDO A MAZOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml
+
+[2026-04-14 12:28:24] ERROR CARGANDO A EVENTOS: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/eventos.fxml
+
+[2026-04-14 13:06:27] Conexión con One Piece DB establecida.
+[2026-04-14 13:06:28] Cartas cargadas en memoria: 3130
+[2026-04-14 13:06:29] Conexión con One Piece DB establecida.
+[2026-04-14 13:06:29] Conexión con One Piece DB establecida.
+[2026-04-14 13:06:30] Cartas cargadas en memoria: 3130
+[2026-04-14 13:06:52] LOGIN EXITOSO: Usuario 1
+[2026-04-14 13:07:22] Conexión con One Piece DB establecida.
+[2026-04-14 13:07:38] Conexión con One Piece DB establecida.
+[2026-04-14 13:07:38] Carta guardada en colección: Radical Beam!!
+[2026-04-14 13:07:59] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:00] Cartas cargadas en memoria: 3130
+[2026-04-14 13:08:02] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:02] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:03] Cartas cargadas en memoria: 3130
+[2026-04-14 13:08:06] LOGIN EXITOSO: Usuario 1
+[2026-04-14 13:08:09] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:30] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:55] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:56] Cartas cargadas en memoria: 3130
+[2026-04-14 13:08:56] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:57] Conexión con One Piece DB establecida.
+[2026-04-14 13:08:57] Cartas cargadas en memoria: 3130
+[2026-04-14 13:09:03] LOGIN EXITOSO: Usuario 1
+[2026-04-14 13:09:25] Conexión con One Piece DB establecida.
+[2026-04-14 13:09:44] Conexión con One Piece DB establecida.
+[2026-04-14 13:09:45] Carta guardada en colección: Trafalgar Law (047)
+[2026-04-14 13:09:46] Conexión con One Piece DB establecida.
+[2026-04-14 13:09:46] Carta guardada en colección: Eustass"Captain"Kid
+[2026-04-14 13:09:48] Conexión con One Piece DB establecida.
+[2026-04-14 13:09:48] Carta guardada en colección: Eustass"Captain"Kid
+[2026-04-14 13:14:39] Conexión con One Piece DB establecida.
+[2026-04-14 13:14:40] Cartas cargadas en memoria: 3130
+[2026-04-14 13:14:41] Conexión con One Piece DB establecida.
+[2026-04-14 13:14:41] Conexión con One Piece DB establecida.
+[2026-04-14 13:14:42] Cartas cargadas en memoria: 3130
+[2026-04-14 13:14:45] LOGIN EXITOSO: Usuario 1
+[2026-04-14 13:15:11] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:08] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:09] Cartas cargadas en memoria: 3130
+[2026-04-14 13:16:10] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:10] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:10] Cartas cargadas en memoria: 3130
+[2026-04-14 13:16:14] REGISTRO: Nuevo usuario creado: 2
+[2026-04-14 13:16:19] Conexión con One Piece DB establecida.
+[2026-04-14 13:16:20] LOGIN EXITOSO: Usuario 2
+[2026-04-14 13:16:23] Conexión con One Piece DB establecida.
+[2026-04-14 13:18:51] Conexión con One Piece DB establecida.
+[2026-04-14 13:18:56] Conexión con One Piece DB establecida.
+[2026-04-14 13:18:57] Carta guardada en colección: Radical Beam!!
+[2026-04-20 14:23:02] Conexión con One Piece DB establecida.
+[2026-04-20 14:23:03] Cartas cargadas en memoria: 3130
+[2026-04-20 14:24:05] Conexión con One Piece DB establecida.
+[2026-04-20 14:24:05] Cartas cargadas en memoria: 3130
+[2026-04-20 14:27:31] Conexión con One Piece DB establecida.
+[2026-04-20 14:27:31] Cartas cargadas en memoria: 3130
+[2026-04-20 14:29:34] Conexión con One Piece DB establecida.
+[2026-04-20 14:29:35] Cartas cargadas en memoria: 3130
+[2026-04-20 14:32:56] Conexión con One Piece DB establecida.
+[2026-04-20 14:32:56] Cartas cargadas en memoria: 3130
+[2026-04-20 14:32:56] Conexión con One Piece DB establecida.
+[2026-04-20 14:32:57] Conexión con One Piece DB establecida.
+[2026-04-20 14:32:57] Cartas cargadas en memoria: 3130
+[2026-04-20 14:33:02] LOGIN EXITOSO: Usuario 1
+[2026-04-20 14:33:05] Conexión con One Piece DB establecida.
+[2026-04-21 10:29:15] Conexión con One Piece DB establecida.
+[2026-04-21 10:29:16] Cartas cargadas en memoria: 3130
+[2026-04-21 10:29:17] Conexión con One Piece DB establecida.
+[2026-04-21 10:29:17] Conexión con One Piece DB establecida.
+[2026-04-21 10:29:17] Cartas cargadas en memoria: 3130
+[2026-04-21 10:40:54] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:40:54] ERROR CARGANDO VISTA /view/Dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/Dashboard.fxml:33
+
+[2026-04-21 10:41:00] Conexión con One Piece DB establecida.
+[2026-04-21 10:41:09] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:41:12] ERROR CARGANDO VISTA /view/mercado.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml:11
+
+[2026-04-21 10:41:15] ERROR CARGANDO VISTA /view/Dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/Dashboard.fxml:33
+
+[2026-04-21 10:43:06] Conexión con One Piece DB establecida.
+[2026-04-21 10:43:06] Cartas cargadas en memoria: 3130
+[2026-04-21 10:43:06] Conexión con One Piece DB establecida.
+[2026-04-21 10:43:07] Conexión con One Piece DB establecida.
+[2026-04-21 10:43:07] Cartas cargadas en memoria: 3130
+[2026-04-21 10:43:11] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:43:11] ERROR CARGANDO VISTA /view/Dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/Dashboard.fxml:33
+
+[2026-04-21 10:43:14] ERROR CARGANDO VISTA /view/dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/dashboard.fxml:33
+
+[2026-04-21 10:43:18] Conexión con One Piece DB establecida.
+[2026-04-21 10:43:19] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:43:22] ERROR CARGANDO VISTA /view/mercado.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml:11
+
+[2026-04-21 10:49:29] Conexión con One Piece DB establecida.
+[2026-04-21 10:49:29] Cartas cargadas en memoria: 3130
+[2026-04-21 10:49:30] Conexión con One Piece DB establecida.
+[2026-04-21 10:49:30] Conexión con One Piece DB establecida.
+[2026-04-21 10:49:30] Cartas cargadas en memoria: 3130
+[2026-04-21 10:49:34] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:49:34] ERROR CARGANDO VISTA /view/dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/dashboard.fxml:29
+
+[2026-04-21 10:49:39] ERROR CARGANDO VISTA /view/dashboard.fxml: Error resolving onMouseEntered='#onCardHover', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/dashboard.fxml:29
+
+[2026-04-21 10:49:42] Conexión con One Piece DB establecida.
+[2026-04-21 10:49:43] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:49:46] ERROR CARGANDO VISTA /view/mercado.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml:11
+
+[2026-04-21 10:49:48] ERROR CARGANDO VISTA /view/eventos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/eventos.fxml:14
+
+[2026-04-21 10:54:42] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:43] Cartas cargadas en memoria: 3130
+[2026-04-21 10:54:43] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:43] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:43] Cartas cargadas en memoria: 3130
+[2026-04-21 10:54:47] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:54:48] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:55] Conexión con One Piece DB establecida.
+[2026-04-21 10:54:57] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:56:27] Conexión con One Piece DB establecida.
+[2026-04-21 10:56:27] Cartas cargadas en memoria: 3130
+[2026-04-21 10:56:27] Conexión con One Piece DB establecida.
+[2026-04-21 10:56:28] Conexión con One Piece DB establecida.
+[2026-04-21 10:56:28] Cartas cargadas en memoria: 3130
+[2026-04-21 10:56:37] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:56:37] Conexión con One Piece DB establecida.
+[2026-04-21 10:56:39] ERROR CARGANDO VISTA /view/mazos.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:11
+
+[2026-04-21 10:57:11] Conexión con One Piece DB establecida.
+[2026-04-21 10:57:11] Cartas cargadas en memoria: 3130
+[2026-04-21 10:57:12] Conexión con One Piece DB establecida.
+[2026-04-21 10:57:12] Conexión con One Piece DB establecida.
+[2026-04-21 10:57:12] Cartas cargadas en memoria: 3130
+[2026-04-21 10:57:16] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:57:17] Conexión con One Piece DB establecida.
+[2026-04-21 10:57:20] Conexión con One Piece DB establecida.
+[2026-04-21 10:58:40] Conexión con One Piece DB establecida.
+[2026-04-21 10:58:41] Cartas cargadas en memoria: 3130
+[2026-04-21 10:58:41] Conexión con One Piece DB establecida.
+[2026-04-21 10:58:41] Conexión con One Piece DB establecida.
+[2026-04-21 10:58:42] Cartas cargadas en memoria: 3130
+[2026-04-21 10:58:45] LOGIN EXITOSO: Usuario 1
+[2026-04-21 10:58:45] Conexión con One Piece DB establecida.
+[2026-04-21 11:00:59] Conexión con One Piece DB establecida.
+[2026-04-21 11:00:59] Cartas cargadas en memoria: 3130
+[2026-04-21 11:01:00] Conexión con One Piece DB establecida.
+[2026-04-21 11:01:00] Conexión con One Piece DB establecida.
+[2026-04-21 11:01:00] Cartas cargadas en memoria: 3130
+[2026-04-21 11:01:04] LOGIN EXITOSO: Usuario 1
+[2026-04-21 11:01:04] Conexión con One Piece DB establecida.
+[2026-04-21 11:01:17] Conexión con One Piece DB establecida.
+[2026-04-21 11:02:09] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:04] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:04] Cartas cargadas en memoria: 3130
+[2026-04-21 13:57:05] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:05] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:05] Cartas cargadas en memoria: 3130
+[2026-04-21 13:57:09] LOGIN EXITOSO: Usuario 1
+[2026-04-21 13:57:09] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:14] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:38] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:44] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:44] Cartas cargadas en memoria: 3130
+[2026-04-21 13:57:44] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:44] Conexión con One Piece DB establecida.
+[2026-04-21 13:57:45] Cartas cargadas en memoria: 3130
+[2026-04-21 13:57:48] LOGIN EXITOSO: Usuario 1
+[2026-04-21 13:57:48] Conexión con One Piece DB establecida.
+[2026-04-21 14:07:11] Conexión con One Piece DB establecida.
+[2026-04-21 14:07:12] Cartas cargadas en memoria: 3130
+[2026-04-21 14:07:12] Conexión con One Piece DB establecida.
+[2026-04-21 14:07:12] Conexión con One Piece DB establecida.
+[2026-04-21 14:07:13] Cartas cargadas en memoria: 3130
+[2026-04-21 14:07:17] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:07:18] Conexión con One Piece DB establecida.
+[2026-04-21 14:07:30] Conexión con One Piece DB establecida.
+[2026-04-21 14:07:30] ERROR SQL al crear mazo: ERROR: relation "decks" does not exist
+  Position: 13
+[2026-04-21 14:07:40] Conexión con One Piece DB establecida.
+[2026-04-21 14:07:40] ERROR SQL al crear mazo: ERROR: relation "decks" does not exist
+  Position: 13
+[2026-04-21 14:08:46] Conexión con One Piece DB establecida.
+[2026-04-21 14:08:47] Cartas cargadas en memoria: 3130
+[2026-04-21 14:08:47] Conexión con One Piece DB establecida.
+[2026-04-21 14:08:48] Conexión con One Piece DB establecida.
+[2026-04-21 14:08:48] Cartas cargadas en memoria: 3130
+[2026-04-21 14:08:51] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:08:52] Conexión con One Piece DB establecida.
+[2026-04-21 14:09:00] Conexión con One Piece DB establecida.
+[2026-04-21 14:09:00] ERROR SQL al crear mazo: ERROR: relation "decks" does not exist
+  Position: 13
+[2026-04-21 14:09:22] Conexión con One Piece DB establecida.
+[2026-04-21 14:22:06] Conexión con One Piece DB establecida.
+[2026-04-21 14:22:07] Cartas cargadas en memoria: 3130
+[2026-04-21 14:22:08] Conexión con One Piece DB establecida.
+[2026-04-21 14:22:08] Conexión con One Piece DB establecida.
+[2026-04-21 14:22:08] Cartas cargadas en memoria: 3130
+[2026-04-21 14:22:12] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:22:13] Conexión con One Piece DB establecida.
+[2026-04-21 14:22:21] Conexión con One Piece DB establecida.
+[2026-04-21 14:22:21] Mazo creado exitosamente: ID 1 - Usuario: 8
+[2026-04-21 14:22:24] Conexión con One Piece DB establecida.
+[2026-04-21 14:22:36] Conexión con One Piece DB establecida.
+[2026-04-21 14:28:49] Conexión con One Piece DB establecida.
+[2026-04-21 14:28:50] Cartas cargadas en memoria: 3130
+[2026-04-21 14:28:50] Conexión con One Piece DB establecida.
+[2026-04-21 14:28:50] Conexión con One Piece DB establecida.
+[2026-04-21 14:28:50] Cartas cargadas en memoria: 3130
+[2026-04-21 14:28:53] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:28:54] Conexión con One Piece DB establecida.
+[2026-04-21 14:29:08] Conexión con One Piece DB establecida.
+[2026-04-21 14:29:08] Mazo creado exitosamente: ID 2 - Usuario: 8
+[2026-04-21 14:29:26] Conexión con One Piece DB establecida.
+[2026-04-21 14:29:32] Conexión con One Piece DB establecida.
+[2026-04-21 14:29:33] Cartas cargadas en memoria: 3130
+[2026-04-21 14:29:34] Conexión con One Piece DB establecida.
+[2026-04-21 14:29:34] Conexión con One Piece DB establecida.
+[2026-04-21 14:29:34] Cartas cargadas en memoria: 3130
+[2026-04-21 14:29:37] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:29:38] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:09] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:09] Cartas cargadas en memoria: 3130
+[2026-04-21 14:32:09] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:10] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:10] Cartas cargadas en memoria: 3130
+[2026-04-21 14:32:13] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:32:14] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:21] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:21] Mazo creado exitosamente: ID 3 - Usuario: 8
+[2026-04-21 14:32:26] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:26] Cartas cargadas en memoria: 3130
+[2026-04-21 14:32:27] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:27] Conexión con One Piece DB establecida.
+[2026-04-21 14:32:27] Cartas cargadas en memoria: 3130
+[2026-04-21 14:32:30] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:32:31] Conexión con One Piece DB establecida.
+[2026-04-21 14:41:47] Conexión con One Piece DB establecida.
+[2026-04-21 14:41:47] Cartas cargadas en memoria: 3130
+[2026-04-21 14:41:47] Conexión con One Piece DB establecida.
+[2026-04-21 14:41:47] Conexión con One Piece DB establecida.
+[2026-04-21 14:41:48] Cartas cargadas en memoria: 3130
+[2026-04-21 14:41:51] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:41:52] Conexión con One Piece DB establecida.
+[2026-04-21 14:41:52] Error al cargar mazos: The column name colores was not found in this ResultSet.
+[2026-04-21 14:41:52] Conexión con One Piece DB establecida.
+[2026-04-21 14:42:02] Conexión con One Piece DB establecida.
+[2026-04-21 14:42:02] Error SQL al crear mazo: ERROR: column "colores" of relation "deck" does not exist
+  Position: 39
+[2026-04-21 14:42:13] Conexión con One Piece DB establecida.
+[2026-04-21 14:42:13] Error SQL al crear mazo: ERROR: column "colores" of relation "deck" does not exist
+  Position: 39
+[2026-04-21 14:42:16] Conexión con One Piece DB establecida.
+[2026-04-21 14:42:16] Error SQL al crear mazo: ERROR: column "colores" of relation "deck" does not exist
+  Position: 39
+[2026-04-21 14:42:16] Conexión con One Piece DB establecida.
+[2026-04-21 14:42:16] Error SQL al crear mazo: ERROR: column "colores" of relation "deck" does not exist
+  Position: 39
+[2026-04-21 14:42:18] Conexión con One Piece DB establecida.
+[2026-04-21 14:42:18] Error SQL al crear mazo: ERROR: column "colores" of relation "deck" does not exist
+  Position: 39
+[2026-04-21 14:42:18] Conexión con One Piece DB establecida.
+[2026-04-21 14:42:18] Error SQL al crear mazo: ERROR: column "colores" of relation "deck" does not exist
+  Position: 39
+[2026-04-21 14:45:21] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:21] Cartas cargadas en memoria: 3130
+[2026-04-21 14:45:22] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:22] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:22] Cartas cargadas en memoria: 3130
+[2026-04-21 14:45:26] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:45:27] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:27] Error crítico cargando mazos: The column name colores was not found in this ResultSet.
+[2026-04-21 14:45:27] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:31] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:35] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:35] La carta ya existía en la colección (no se insertó nada nuevo).
+[2026-04-21 14:45:35] Carta guardada en colección: Perona
+[2026-04-21 14:45:45] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:45] Error crítico cargando mazos: The column name colores was not found in this ResultSet.
+[2026-04-21 14:45:53] Conexión con One Piece DB establecida.
+[2026-04-21 14:45:53] Fallo al crear mazo: ERROR: column "colores" of relation "deck" does not exist
+  Position: 39
+[2026-04-21 14:47:30] Conexión con One Piece DB establecida.
+[2026-04-21 14:47:31] Cartas cargadas en memoria: 3130
+[2026-04-21 14:47:31] Conexión con One Piece DB establecida.
+[2026-04-21 14:47:31] Conexión con One Piece DB establecida.
+[2026-04-21 14:47:31] Cartas cargadas en memoria: 3130
+[2026-04-21 14:47:45] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:47:45] Conexión con One Piece DB establecida.
+[2026-04-21 14:47:45] Mazos sincronizados con éxito.
+[2026-04-21 14:47:46] Conexión con One Piece DB establecida.
+[2026-04-21 14:48:13] Conexión con One Piece DB establecida.
+[2026-04-21 14:48:13] Mazo 'yaho' guardado en la nube.
+[2026-04-21 14:48:17] Conexión con One Piece DB establecida.
+[2026-04-21 14:48:17] Cartas cargadas en memoria: 3130
+[2026-04-21 14:48:18] Conexión con One Piece DB establecida.
+[2026-04-21 14:48:18] Conexión con One Piece DB establecida.
+[2026-04-21 14:48:18] Cartas cargadas en memoria: 3130
+[2026-04-21 14:48:22] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:48:22] Conexión con One Piece DB establecida.
+[2026-04-21 14:48:23] Mazos sincronizados con éxito.
+[2026-04-21 14:48:23] Conexión con One Piece DB establecida.
+[2026-04-21 14:56:37] Conexión con One Piece DB establecida.
+[2026-04-21 14:56:37] Cartas cargadas en memoria: 3130
+[2026-04-21 14:56:38] Conexión con One Piece DB establecida.
+[2026-04-21 14:56:38] Conexión con One Piece DB establecida.
+[2026-04-21 14:56:38] Cartas cargadas en memoria: 3130
+[2026-04-21 14:56:41] LOGIN EXITOSO: Usuario 1
+[2026-04-21 14:56:42] Conexión con One Piece DB establecida.
+[2026-04-21 14:56:42] Mazos sincronizados con éxito.
+[2026-04-21 14:56:42] Conexión con One Piece DB establecida.
+[2026-04-21 14:56:44] Conexión con One Piece DB establecida.
+[2026-04-22 10:43:02] Conexión con One Piece DB establecida.
+[2026-04-22 10:43:03] Cartas cargadas en memoria: 3130
+[2026-04-22 10:43:03] Conexión con One Piece DB establecida.
+[2026-04-22 10:43:04] Conexión con One Piece DB establecida.
+[2026-04-22 10:43:04] Cartas cargadas en memoria: 3130
+[2026-04-22 10:43:08] LOGIN EXITOSO: Usuario 1
+[2026-04-22 10:43:08] Conexión con One Piece DB establecida.
+[2026-04-22 10:43:08] Mazos sincronizados con éxito.
+[2026-04-22 10:43:09] Conexión con One Piece DB establecida.
+[2026-04-22 10:43:11] Conexión con One Piece DB establecida.
+[2026-04-22 12:39:42] Conexión con One Piece DB establecida.
+[2026-04-22 12:39:42] Cartas cargadas en memoria: 3130
+[2026-04-22 12:39:42] Conexión con One Piece DB establecida.
+[2026-04-22 12:39:43] Conexión con One Piece DB establecida.
+[2026-04-22 12:39:43] Cartas cargadas en memoria: 3130
+[2026-04-22 12:39:47] LOGIN EXITOSO: Usuario 1
+[2026-04-22 12:39:47] Conexión con One Piece DB establecida.
+[2026-04-22 12:39:47] Mazos sincronizados con éxito.
+[2026-04-22 12:39:48] Conexión con One Piece DB establecida.
+[2026-04-22 12:39:51] Conexión con One Piece DB establecida.
+[2026-04-23 10:30:31] Conexión con One Piece DB establecida.
+[2026-04-23 10:30:32] Cartas cargadas en memoria: 3130
+[2026-04-23 10:30:32] Conexión con One Piece DB establecida.
+[2026-04-23 10:30:32] Conexión con One Piece DB establecida.
+[2026-04-23 10:30:33] Cartas cargadas en memoria: 3130
+[2026-04-23 10:30:37] LOGIN EXITOSO: Usuario 1
+[2026-04-23 10:30:37] Conexión con One Piece DB establecida.
+[2026-04-23 10:30:37] Mazos sincronizados con éxito.
+[2026-04-23 10:30:38] Conexión con One Piece DB establecida.
+[2026-04-23 10:30:44] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:19] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:23] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:26] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:37] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:38] Cartas cargadas en memoria: 3130
+[2026-04-23 10:31:38] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:38] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:38] Cartas cargadas en memoria: 3130
+[2026-04-23 10:31:42] LOGIN EXITOSO: Usuario 1
+[2026-04-23 10:31:43] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:43] Mazos sincronizados con éxito.
+[2026-04-23 10:31:43] Conexión con One Piece DB establecida.
+[2026-04-23 10:31:46] Conexión con One Piece DB establecida.
+[2026-04-23 10:32:00] Conexión con One Piece DB establecida.
+[2026-04-23 10:32:00] Mazo 'ola' guardado en la nube.
+[2026-04-23 10:32:05] Conexión con One Piece DB establecida.
+[2026-04-23 10:32:14] Conexión con One Piece DB establecida.
+[2026-04-23 10:32:15] Conexión con One Piece DB establecida.
+[2026-04-23 10:32:15] Conexión con One Piece DB establecida.
+[2026-04-23 10:32:18] Conexión con One Piece DB establecida.
+[2026-04-23 10:32:20] Conexión con One Piece DB establecida.
+[2026-04-23 10:32:27] Conexión con One Piece DB establecida.
+[2026-04-23 10:35:37] Conexión con One Piece DB establecida.
+[2026-04-23 10:35:37] Cartas cargadas en memoria: 3130
+[2026-04-23 10:35:37] Conexión con One Piece DB establecida.
+[2026-04-23 10:35:38] Conexión con One Piece DB establecida.
+[2026-04-23 10:35:38] Cartas cargadas en memoria: 3130
+[2026-04-23 10:35:41] LOGIN EXITOSO: Usuario 1
+[2026-04-23 10:35:42] Conexión con One Piece DB establecida.
+[2026-04-23 10:35:42] Mazos sincronizados con éxito.
+[2026-04-23 10:35:42] Conexión con One Piece DB establecida.
+[2026-04-23 10:35:48] Conexión con One Piece DB establecida.
+[2026-04-23 10:35:54] Conexión con One Piece DB establecida.
+[2026-04-23 10:35:56] Conexión con One Piece DB establecida.
+[2026-04-23 10:36:04] Conexión con One Piece DB establecida.
+[2026-04-23 10:47:15] Conexión con One Piece DB establecida.
+[2026-04-23 10:47:15] Cartas cargadas en memoria: 3130
+[2026-04-23 10:47:16] Conexión con One Piece DB establecida.
+[2026-04-23 10:47:16] Conexión con One Piece DB establecida.
+[2026-04-23 10:47:16] Cartas cargadas en memoria: 3130
+[2026-04-23 10:48:04] LOGIN EXITOSO: Usuario 1
+[2026-04-23 10:48:05] Conexión con One Piece DB establecida.
+[2026-04-23 10:48:05] Mazos sincronizados con éxito.
+[2026-04-23 10:48:05] ERROR NAVEGACION: Error resolving onAction='#loadColeccion', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/principal.fxml:15
+
+[2026-04-23 10:49:35] Conexión con One Piece DB establecida.
+[2026-04-23 10:49:35] Cartas cargadas en memoria: 3130
+[2026-04-23 10:49:36] Conexión con One Piece DB establecida.
+[2026-04-23 10:49:36] Conexión con One Piece DB establecida.
+[2026-04-23 10:49:36] Cartas cargadas en memoria: 3130
+[2026-04-23 10:49:39] LOGIN EXITOSO: Usuario 1
+[2026-04-23 10:49:39] Conexión con One Piece DB establecida.
+[2026-04-23 10:49:39] Mazos sincronizados con éxito.
+[2026-04-23 10:49:40] Conexión con One Piece DB establecida.
+[2026-04-23 10:49:48] Conexión con One Piece DB establecida.
+[2026-04-23 10:49:55] Conexión con One Piece DB establecida.
+[2026-04-23 10:49:56] Conexión con One Piece DB establecida.
+[2026-04-23 10:51:52] Conexión con One Piece DB establecida.
+[2026-04-23 10:51:52] Cartas cargadas en memoria: 3130
+[2026-04-23 10:51:53] Conexión con One Piece DB establecida.
+[2026-04-23 10:51:53] Conexión con One Piece DB establecida.
+[2026-04-23 10:51:53] Cartas cargadas en memoria: 3130
+[2026-04-23 10:51:57] LOGIN EXITOSO: Usuario 1
+[2026-04-23 10:51:57] Conexión con One Piece DB establecida.
+[2026-04-23 10:51:57] Mazos sincronizados con éxito.
+[2026-04-23 10:51:58] Conexión con One Piece DB establecida.
+[2026-04-23 10:52:03] Conexión con One Piece DB establecida.
+[2026-04-23 10:52:11] Conexión con One Piece DB establecida.
+[2026-04-23 10:52:11] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 10:52:15] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:27] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:27] Cartas cargadas en memoria: 3130
+[2026-04-23 10:54:28] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:28] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:29] Cartas cargadas en memoria: 3130
+[2026-04-23 10:54:32] LOGIN EXITOSO: Usuario 1
+[2026-04-23 10:54:33] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:33] Mazos sincronizados con éxito.
+[2026-04-23 10:54:33] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:39] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:39] Mazo 'ola' eliminado.
+[2026-04-23 10:54:41] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:41] Mazo 'luffy' eliminado.
+[2026-04-23 10:54:42] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:42] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 10:54:43] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:44] Mazo 'yaho' eliminado.
+[2026-04-23 10:54:44] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:45] Mazo 'ola' eliminado.
+[2026-04-23 10:54:46] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:46] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 10:54:58] Conexión con One Piece DB establecida.
+[2026-04-23 10:54:58] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 10:55:11] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:12] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:13] Cartas cargadas en memoria: 3130
+[2026-04-23 11:02:13] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:13] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:14] Cartas cargadas en memoria: 3130
+[2026-04-23 11:02:18] LOGIN EXITOSO: Usuario 1
+[2026-04-23 11:02:18] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:18] Mazos sincronizados con éxito.
+[2026-04-23 11:02:19] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:27] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:28] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:37] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:37] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:41] Conexión con One Piece DB establecida.
+[2026-04-23 11:02:41] Conexión con One Piece DB establecida.
+[2026-04-23 11:04:01] Conexión con One Piece DB establecida.
+[2026-04-23 11:04:02] Conexión con One Piece DB establecida.
+[2026-04-23 12:47:26] Conexión con One Piece DB establecida.
+[2026-04-23 12:47:27] Cartas cargadas en memoria: 3130
+[2026-04-23 12:47:29] Conexión con One Piece DB establecida.
+[2026-04-23 12:47:29] Conexión con One Piece DB establecida.
+[2026-04-23 12:47:29] Cartas cargadas en memoria: 3130
+[2026-04-23 12:47:39] LOGIN EXITOSO: Usuario 1
+[2026-04-23 12:47:39] Conexión con One Piece DB establecida.
+[2026-04-23 12:47:40] Mazos sincronizados con éxito.
+[2026-04-23 12:47:41] Conexión con One Piece DB establecida.
+[2026-04-23 12:47:47] Conexión con One Piece DB establecida.
+[2026-04-23 12:47:48] Conexión con One Piece DB establecida.
+[2026-04-23 12:48:20] Conexión con One Piece DB establecida.
+[2026-04-23 12:48:22] Conexión con One Piece DB establecida.
+[2026-04-23 12:48:42] Conexión con One Piece DB establecida.
+[2026-04-23 12:48:44] Conexión con One Piece DB establecida.
+[2026-04-23 12:48:49] Conexión con One Piece DB establecida.
+[2026-04-23 12:48:50] Conexión con One Piece DB establecida.
+[2026-04-23 12:48:59] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 12:49:00] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:00] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 12:49:02] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:02] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 12:49:07] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 12:49:08] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:08] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 12:49:15] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:15] Mazo 'a' guardado en la nube.
+[2026-04-23 12:49:19] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:19] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:29] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:30] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:52] Conexión con One Piece DB establecida.
+[2026-04-23 12:49:53] Conexión con One Piece DB establecida.
+[2026-04-23 12:50:03] Conexión con One Piece DB establecida.
+[2026-04-23 12:50:08] ERROR CONEXION: El intento de conexión falló.
+[2026-04-23 12:50:16] Conexión con One Piece DB establecida.
+[2026-04-23 12:50:16] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:02] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:03] Cartas cargadas en memoria: 3130
+[2026-04-23 13:00:04] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:04] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:05] Cartas cargadas en memoria: 3130
+[2026-04-23 13:00:08] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:00:09] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:09] Mazos sincronizados con éxito.
+[2026-04-23 13:00:10] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:14] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:15] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:22] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:32] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:40] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:48] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:53] Conexión con One Piece DB establecida.
+[2026-04-23 13:00:54] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:14] Intentando borrar mazo: a
+[2026-04-23 13:01:15] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:15] Mazo 'a' eliminado.
+[2026-04-23 13:01:18] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:18] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:01:21] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:22] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:28] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:38] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:01:38] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:38] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:01:41] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:41] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:01:45] Conexión con One Piece DB establecida.
+[2026-04-23 13:01:46] Conexión con One Piece DB establecida.
+[2026-04-23 13:02:17] Conexión con One Piece DB establecida.
+[2026-04-23 13:02:26] Conexión con One Piece DB establecida.
+[2026-04-23 13:02:34] Conexión con One Piece DB establecida.
+[2026-04-23 13:02:35] Conexión con One Piece DB establecida.
+[2026-04-23 13:02:48] Conexión con One Piece DB establecida.
+[2026-04-23 13:10:57] Conexión con One Piece DB establecida.
+[2026-04-23 13:10:58] Cartas cargadas en memoria: 3130
+[2026-04-23 13:10:58] Conexión con One Piece DB establecida.
+[2026-04-23 13:10:59] Conexión con One Piece DB establecida.
+[2026-04-23 13:10:59] Cartas cargadas en memoria: 3130
+[2026-04-23 13:11:03] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:11:03] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:03] Mazos sincronizados con éxito.
+[2026-04-23 13:11:04] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:08] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:11:08] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:08] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:11:12] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:12] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:11:17] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:17] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:22] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:31] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:32] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:39] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:39] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:43] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:44] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:50] Conexión con One Piece DB establecida.
+[2026-04-23 13:11:51] Conexión con One Piece DB establecida.
+[2026-04-23 13:12:37] Conexión con One Piece DB establecida.
+[2026-04-23 13:12:37] Conexión con One Piece DB establecida.
+[2026-04-23 13:12:46] Conexión con One Piece DB establecida.
+[2026-04-23 13:12:47] Conexión con One Piece DB establecida.
+[2026-04-23 13:12:55] Conexión con One Piece DB establecida.
+[2026-04-23 13:12:56] Conexión con One Piece DB establecida.
+[2026-04-23 13:12:59] Conexión con One Piece DB establecida.
+[2026-04-23 13:12:59] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:32] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:32] Cartas cargadas en memoria: 3130
+[2026-04-23 13:17:33] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:33] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:34] Cartas cargadas en memoria: 3130
+[2026-04-23 13:17:37] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:17:38] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:38] Mazos sincronizados con éxito.
+[2026-04-23 13:17:38] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:42] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:17:42] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:43] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:17:45] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:48] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:48] Mazos sincronizados con éxito.
+[2026-04-23 13:17:54] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:54] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:17:57] Conexión con One Piece DB establecida.
+[2026-04-23 13:17:59] Conexión con One Piece DB establecida.
+[2026-04-23 13:18:06] Conexión con One Piece DB establecida.
+[2026-04-23 13:18:24] Conexión con One Piece DB establecida.
+[2026-04-23 13:18:25] Conexión con One Piece DB establecida.
+[2026-04-23 13:18:42] Conexión con One Piece DB establecida.
+[2026-04-23 13:18:42] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:13] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:14] Cartas cargadas en memoria: 3130
+[2026-04-23 13:23:14] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:14] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:14] Cartas cargadas en memoria: 3130
+[2026-04-23 13:23:19] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:23:20] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:20] Mazos sincronizados con éxito.
+[2026-04-23 13:23:20] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:25] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:23:25] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:25] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:23:28] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:28] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:23:32] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:32] Conexión con One Piece DB establecida.
+[2026-04-23 13:23:49] Conexión con One Piece DB establecida.
+[2026-04-23 13:24:15] Conexión con One Piece DB establecida.
+[2026-04-23 13:24:16] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:14] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:14] Cartas cargadas en memoria: 3130
+[2026-04-23 13:25:15] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:15] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:15] Cartas cargadas en memoria: 3130
+[2026-04-23 13:25:19] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:25:19] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:19] Mazos sincronizados con éxito.
+[2026-04-23 13:25:20] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:30] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:25:31] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:31] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:25:38] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:38] Mazo 'luffy' guardado en la nube.
+[2026-04-23 13:25:44] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:44] Conexión con One Piece DB establecida.
+[2026-04-23 13:25:48] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:27] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:28] Cartas cargadas en memoria: 3130
+[2026-04-23 13:27:28] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:28] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:28] Cartas cargadas en memoria: 3130
+[2026-04-23 13:27:31] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:27:31] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:32] Mazos sincronizados con éxito.
+[2026-04-23 13:27:32] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:35] Intentando borrar mazo: luffy
+[2026-04-23 13:27:36] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:36] Mazo 'luffy' eliminado.
+[2026-04-23 13:27:40] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:40] Mazo 'luffy' guardado en la nube.
+[2026-04-23 13:27:44] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:45] Conexión con One Piece DB establecida.
+[2026-04-23 13:27:50] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:34] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:35] Cartas cargadas en memoria: 3130
+[2026-04-23 13:28:35] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:35] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:35] Cartas cargadas en memoria: 3130
+[2026-04-23 13:28:39] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:28:40] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:40] Mazos sincronizados con éxito.
+[2026-04-23 13:28:40] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:48] Intentando borrar mazo: luffy
+[2026-04-23 13:28:48] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:48] Mazo 'luffy' eliminado.
+[2026-04-23 13:28:51] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:51] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:28:54] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:54] Conexión con One Piece DB establecida.
+[2026-04-23 13:28:58] Conexión con One Piece DB establecida.
+[2026-04-23 13:31:45] Conexión con One Piece DB establecida.
+[2026-04-23 13:31:45] Cartas cargadas en memoria: 3130
+[2026-04-23 13:31:46] Conexión con One Piece DB establecida.
+[2026-04-23 13:31:46] Conexión con One Piece DB establecida.
+[2026-04-23 13:31:46] Cartas cargadas en memoria: 3130
+[2026-04-23 13:31:49] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:31:49] Conexión con One Piece DB establecida.
+[2026-04-23 13:31:49] Mazos sincronizados con éxito.
+[2026-04-23 13:31:50] Conexión con One Piece DB establecida.
+[2026-04-23 13:31:53] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:31:54] Conexión con One Piece DB establecida.
+[2026-04-23 13:31:54] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:31:57] Conexión con One Piece DB establecida.
+[2026-04-23 13:31:57] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:31:59] Conexión con One Piece DB establecida.
+[2026-04-23 13:32:00] Conexión con One Piece DB establecida.
+[2026-04-23 13:32:03] Conexión con One Piece DB establecida.
+[2026-04-23 13:35:43] Conexión con One Piece DB establecida.
+[2026-04-23 13:35:43] Cartas cargadas en memoria: 3130
+[2026-04-23 13:35:44] Conexión con One Piece DB establecida.
+[2026-04-23 13:35:44] Conexión con One Piece DB establecida.
+[2026-04-23 13:35:45] Cartas cargadas en memoria: 3130
+[2026-04-23 13:35:48] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:35:49] Conexión con One Piece DB establecida.
+[2026-04-23 13:35:49] Mazos sincronizados con éxito.
+[2026-04-23 13:35:50] Conexión con One Piece DB establecida.
+[2026-04-23 13:35:54] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:35:54] Conexión con One Piece DB establecida.
+[2026-04-23 13:35:54] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:35:57] Conexión con One Piece DB establecida.
+[2026-04-23 13:35:57] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:36:00] Conexión con One Piece DB establecida.
+[2026-04-23 13:36:00] Conexión con One Piece DB establecida.
+[2026-04-23 13:36:04] Conexión con One Piece DB establecida.
+[2026-04-23 13:36:13] Conexión con One Piece DB establecida.
+[2026-04-23 13:36:14] Conexión con One Piece DB establecida.
+[2026-04-23 13:37:01] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:37:01] Conexión con One Piece DB establecida.
+[2026-04-23 13:37:01] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:37:04] Conexión con One Piece DB establecida.
+[2026-04-23 13:37:04] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:37:07] Conexión con One Piece DB establecida.
+[2026-04-23 13:37:07] Conexión con One Piece DB establecida.
+[2026-04-23 13:37:14] Conexión con One Piece DB establecida.
+[2026-04-23 13:37:28] Conexión con One Piece DB establecida.
+[2026-04-23 13:37:29] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:14] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:15] Cartas cargadas en memoria: 3130
+[2026-04-23 13:43:15] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:15] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:16] Cartas cargadas en memoria: 3130
+[2026-04-23 13:43:19] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:43:19] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:19] Mazos sincronizados con éxito.
+[2026-04-23 13:43:20] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:23] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:43:23] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:23] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:43:29] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:29] Mazo 'luffy' guardado en la nube.
+[2026-04-23 13:43:33] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:33] Conexión con One Piece DB establecida.
+[2026-04-23 13:43:38] Conexión con One Piece DB establecida.
+[2026-04-23 13:44:01] Conexión con One Piece DB establecida.
+[2026-04-23 13:44:02] Conexión con One Piece DB establecida.
+[2026-04-23 13:45:09] Conexión con One Piece DB establecida.
+[2026-04-23 13:45:10] Cartas cargadas en memoria: 3130
+[2026-04-23 13:45:10] Conexión con One Piece DB establecida.
+[2026-04-23 13:45:10] Conexión con One Piece DB establecida.
+[2026-04-23 13:45:10] Cartas cargadas en memoria: 3130
+[2026-04-23 13:45:23] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:45:23] Conexión con One Piece DB establecida.
+[2026-04-23 13:45:24] Mazos sincronizados con éxito.
+[2026-04-23 13:45:24] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:15] Intentando borrar mazo: luffy
+[2026-04-23 13:47:15] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:15] Mazo 'luffy' eliminado.
+[2026-04-23 13:47:19] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:19] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:47:21] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:22] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:28] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:32] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:34] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:36] Conexión con One Piece DB establecida.
+[2026-04-23 13:47:37] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:07] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:08] Cartas cargadas en memoria: 3130
+[2026-04-23 13:49:08] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:08] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:08] Cartas cargadas en memoria: 3130
+[2026-04-23 13:49:12] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:49:12] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:12] Mazos sincronizados con éxito.
+[2026-04-23 13:49:13] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:17] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:49:17] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:17] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:49:20] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:20] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:49:23] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:24] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:28] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:38] Conexión con One Piece DB establecida.
+[2026-04-23 13:49:39] Conexión con One Piece DB establecida.
+[2026-04-23 13:53:55] Conexión con One Piece DB establecida.
+[2026-04-23 13:53:55] Cartas cargadas en memoria: 3130
+[2026-04-23 13:53:56] Conexión con One Piece DB establecida.
+[2026-04-23 13:53:56] Conexión con One Piece DB establecida.
+[2026-04-23 13:53:57] Cartas cargadas en memoria: 3130
+[2026-04-23 13:53:59] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:53:59] Conexión con One Piece DB establecida.
+[2026-04-23 13:54:00] Mazos sincronizados con éxito.
+[2026-04-23 13:54:00] Conexión con One Piece DB establecida.
+[2026-04-23 13:54:07] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:54:08] Conexión con One Piece DB establecida.
+[2026-04-23 13:54:08] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:54:14] Conexión con One Piece DB establecida.
+[2026-04-23 13:54:14] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:54:17] Conexión con One Piece DB establecida.
+[2026-04-23 13:54:18] Conexión con One Piece DB establecida.
+[2026-04-23 13:54:21] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:39] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:39] Cartas cargadas en memoria: 3130
+[2026-04-23 13:55:39] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:39] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:40] Cartas cargadas en memoria: 3130
+[2026-04-23 13:55:43] LOGIN EXITOSO: Usuario 1
+[2026-04-23 13:55:44] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:44] Mazos sincronizados con éxito.
+[2026-04-23 13:55:44] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:47] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 13:55:48] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:48] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 13:55:50] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:50] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 13:55:53] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:54] Conexión con One Piece DB establecida.
+[2026-04-23 13:55:59] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:02] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:03] Cartas cargadas en memoria: 3130
+[2026-04-23 14:00:03] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:04] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:04] Cartas cargadas en memoria: 3130
+[2026-04-23 14:00:06] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:00:07] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:07] Mazos sincronizados con éxito.
+[2026-04-23 14:00:07] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:12] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:00:12] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:12] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:00:15] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:15] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:00:18] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:18] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:21] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:36] Conexión con One Piece DB establecida.
+[2026-04-23 14:00:36] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:34] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:35] Cartas cargadas en memoria: 3130
+[2026-04-23 14:06:35] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:35] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:36] Cartas cargadas en memoria: 3130
+[2026-04-23 14:06:39] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:06:40] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:40] Mazos sincronizados con éxito.
+[2026-04-23 14:06:40] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:43] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:06:44] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:44] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:06:46] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:46] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:06:50] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:51] Conexión con One Piece DB establecida.
+[2026-04-23 14:06:53] Conexión con One Piece DB establecida.
+[2026-04-23 14:08:22] Conexión con One Piece DB establecida.
+[2026-04-23 14:08:22] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:10] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:10] Cartas cargadas en memoria: 3130
+[2026-04-23 14:10:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:11] Cartas cargadas en memoria: 3130
+[2026-04-23 14:10:17] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:10:18] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:18] Mazos sincronizados con éxito.
+[2026-04-23 14:10:18] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:22] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:10:22] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:22] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:10:25] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:25] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:10:28] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:29] Conexión con One Piece DB establecida.
+[2026-04-23 14:10:45] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:03] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:03] Cartas cargadas en memoria: 3130
+[2026-04-23 14:15:04] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:04] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:04] Cartas cargadas en memoria: 3130
+[2026-04-23 14:15:08] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:15:08] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:08] Mazos sincronizados con éxito.
+[2026-04-23 14:15:09] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:29] Conexión con One Piece DB establecida.
+[2026-04-23 14:15:29] Conexión con One Piece DB establecida.
+[2026-04-23 14:18:02] Conexión con One Piece DB establecida.
+[2026-04-23 14:18:02] Cartas cargadas en memoria: 3130
+[2026-04-23 14:18:03] Conexión con One Piece DB establecida.
+[2026-04-23 14:18:03] Conexión con One Piece DB establecida.
+[2026-04-23 14:18:03] Cartas cargadas en memoria: 3130
+[2026-04-23 14:18:07] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:18:08] Conexión con One Piece DB establecida.
+[2026-04-23 14:18:08] Mazos sincronizados con éxito.
+[2026-04-23 14:18:09] Conexión con One Piece DB establecida.
+[2026-04-23 14:18:12] Conexión con One Piece DB establecida.
+[2026-04-23 14:18:12] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:03] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:03] Cartas cargadas en memoria: 3130
+[2026-04-23 14:20:03] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:04] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:04] Cartas cargadas en memoria: 3130
+[2026-04-23 14:20:10] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:20:10] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:10] Mazos sincronizados con éxito.
+[2026-04-23 14:20:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:15] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:16] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:44] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:44] Cartas cargadas en memoria: 3130
+[2026-04-23 14:20:44] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:44] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:45] Cartas cargadas en memoria: 3130
+[2026-04-23 14:20:48] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:20:49] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:49] Mazos sincronizados con éxito.
+[2026-04-23 14:20:49] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:53] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:54] Conexión con One Piece DB establecida.
+[2026-04-23 14:20:59] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:21:00] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:00] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:21:05] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:06] Cartas cargadas en memoria: 3130
+[2026-04-23 14:21:06] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:06] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:07] Cartas cargadas en memoria: 3130
+[2026-04-23 14:21:10] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:21:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:11] Mazos sincronizados con éxito.
+[2026-04-23 14:21:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:14] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:14] Mazos sincronizados con éxito.
+[2026-04-23 14:21:17] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:17] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:21:20] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:20] Conexión con One Piece DB establecida.
+[2026-04-23 14:21:24] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:34] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:34] Cartas cargadas en memoria: 3130
+[2026-04-23 14:22:34] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:35] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:35] Cartas cargadas en memoria: 3130
+[2026-04-23 14:22:39] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:22:39] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:39] Mazos sincronizados con éxito.
+[2026-04-23 14:22:40] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:43] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:22:44] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:44] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:22:49] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:49] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:22:53] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:54] Conexión con One Piece DB establecida.
+[2026-04-23 14:22:58] Conexión con One Piece DB establecida.
+[2026-04-23 14:23:40] Conexión con One Piece DB establecida.
+[2026-04-23 14:23:41] Conexión con One Piece DB establecida.
+[2026-04-23 14:23:49] Conexión con One Piece DB establecida.
+[2026-04-23 14:23:49] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:08] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:08] Cartas cargadas en memoria: 3130
+[2026-04-23 14:25:09] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:09] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:09] Cartas cargadas en memoria: 3130
+[2026-04-23 14:25:13] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:25:14] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:14] Mazos sincronizados con éxito.
+[2026-04-23 14:25:14] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:17] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:25:18] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:18] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:25:20] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:20] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:25:23] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:24] Conexión con One Piece DB establecida.
+[2026-04-23 14:25:30] Conexión con One Piece DB establecida.
+[2026-04-23 14:26:49] Conexión con One Piece DB establecida.
+[2026-04-23 14:26:49] Cartas cargadas en memoria: 3130
+[2026-04-23 14:26:50] Conexión con One Piece DB establecida.
+[2026-04-23 14:26:50] Conexión con One Piece DB establecida.
+[2026-04-23 14:26:50] Cartas cargadas en memoria: 3130
+[2026-04-23 14:26:54] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:26:54] Conexión con One Piece DB establecida.
+[2026-04-23 14:26:54] Mazos sincronizados con éxito.
+[2026-04-23 14:26:55] Conexión con One Piece DB establecida.
+[2026-04-23 14:28:53] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:28:53] Conexión con One Piece DB establecida.
+[2026-04-23 14:28:53] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:28:56] Conexión con One Piece DB establecida.
+[2026-04-23 14:28:56] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:28:59] Conexión con One Piece DB establecida.
+[2026-04-23 14:28:59] Conexión con One Piece DB establecida.
+[2026-04-23 14:29:21] Conexión con One Piece DB establecida.
+[2026-04-23 14:29:22] Conexión con One Piece DB establecida.
+[2026-04-23 14:31:15] Conexión con One Piece DB establecida.
+[2026-04-23 14:31:18] Conexión con One Piece DB establecida.
+[2026-04-23 14:31:21] Conexión con One Piece DB establecida.
+[2026-04-23 14:31:23] Conexión con One Piece DB establecida.
+[2026-04-23 14:31:48] Conexión con One Piece DB establecida.
+[2026-04-23 14:31:48] Conexión con One Piece DB establecida.
+[2026-04-23 14:33:21] Conexión con One Piece DB establecida.
+[2026-04-23 14:33:22] Cartas cargadas en memoria: 3130
+[2026-04-23 14:33:22] Conexión con One Piece DB establecida.
+[2026-04-23 14:33:22] Conexión con One Piece DB establecida.
+[2026-04-23 14:33:22] Cartas cargadas en memoria: 3130
+[2026-04-23 14:34:08] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:34:08] Conexión con One Piece DB establecida.
+[2026-04-23 14:34:08] Mazos sincronizados con éxito.
+[2026-04-23 14:34:09] Conexión con One Piece DB establecida.
+[2026-04-23 14:34:12] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:34:12] Conexión con One Piece DB establecida.
+[2026-04-23 14:34:12] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:34:15] Conexión con One Piece DB establecida.
+[2026-04-23 14:34:15] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:34:17] Conexión con One Piece DB establecida.
+[2026-04-23 14:34:18] Conexión con One Piece DB establecida.
+[2026-04-23 14:35:58] Conexión con One Piece DB establecida.
+[2026-04-23 14:35:59] Conexión con One Piece DB establecida.
+[2026-04-23 14:36:21] Conexión con One Piece DB establecida.
+[2026-04-23 14:36:22] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:09] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:09] Cartas cargadas en memoria: 3130
+[2026-04-23 14:37:09] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:09] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:10] Cartas cargadas en memoria: 3130
+[2026-04-23 14:37:14] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:37:14] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:14] Mazos sincronizados con éxito.
+[2026-04-23 14:37:15] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:19] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:37:20] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:20] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:37:24] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:24] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:37:26] Conexión con One Piece DB establecida.
+[2026-04-23 14:37:27] Conexión con One Piece DB establecida.
+[2026-04-23 14:38:38] Conexión con One Piece DB establecida.
+[2026-04-23 14:38:38] Cartas cargadas en memoria: 3130
+[2026-04-23 14:38:39] Conexión con One Piece DB establecida.
+[2026-04-23 14:38:40] Conexión con One Piece DB establecida.
+[2026-04-23 14:38:40] Cartas cargadas en memoria: 3130
+[2026-04-23 14:39:22] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:39:22] Conexión con One Piece DB establecida.
+[2026-04-23 14:39:22] Mazos sincronizados con éxito.
+[2026-04-23 14:39:23] Conexión con One Piece DB establecida.
+[2026-04-23 14:40:04] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:40:04] Conexión con One Piece DB establecida.
+[2026-04-23 14:40:04] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:40:07] Conexión con One Piece DB establecida.
+[2026-04-23 14:40:07] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-23 14:40:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:40:11] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:19] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:20] Cartas cargadas en memoria: 3130
+[2026-04-23 14:44:20] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:20] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:21] Cartas cargadas en memoria: 3130
+[2026-04-23 14:44:24] LOGIN EXITOSO: Usuario 1
+[2026-04-23 14:44:25] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:25] Mazos sincronizados con éxito.
+[2026-04-23 14:44:25] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:39] Intentando borrar mazo: Nuevo Mazo
+[2026-04-23 14:44:39] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:39] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-23 14:44:46] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:46] Mazo 'a' guardado en la nube.
+[2026-04-23 14:44:49] Conexión con One Piece DB establecida.
+[2026-04-23 14:44:50] Conexión con One Piece DB establecida.
+[2026-04-23 14:45:23] Conexión con One Piece DB establecida.
+[2026-04-24 11:06:14] Conexión con One Piece DB establecida.
+[2026-04-24 11:06:14] Cartas cargadas en memoria: 3130
+[2026-04-24 11:06:15] Conexión con One Piece DB establecida.
+[2026-04-24 11:06:15] Conexión con One Piece DB establecida.
+[2026-04-24 11:06:15] Cartas cargadas en memoria: 3130
+[2026-04-24 11:06:21] LOGIN EXITOSO: Usuario 1
+[2026-04-24 11:06:21] Conexión con One Piece DB establecida.
+[2026-04-24 11:06:22] Mazos sincronizados con éxito.
+[2026-04-24 11:06:22] Conexión con One Piece DB establecida.
+[2026-04-24 11:06:29] Conexión con One Piece DB establecida.
+[2026-04-24 11:06:29] Conexión con One Piece DB establecida.
+[2026-04-24 11:10:12] Conexión con One Piece DB establecida.
+[2026-04-24 11:10:35] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:02] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:29] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:32] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:34] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:37] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:40] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:42] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:45] Conexión con One Piece DB establecida.
+[2026-04-24 11:11:47] Conexión con One Piece DB establecida.
+[2026-04-24 11:12:51] Conexión con One Piece DB establecida.
+[2026-04-24 11:12:51] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-24 11:13:43] Conexión con One Piece DB establecida.
+[2026-04-24 11:13:43] Cartas cargadas en memoria: 3130
+[2026-04-24 11:13:44] Conexión con One Piece DB establecida.
+[2026-04-24 11:13:44] Conexión con One Piece DB establecida.
+[2026-04-24 11:13:45] Cartas cargadas en memoria: 3130
+[2026-04-24 11:13:50] LOGIN EXITOSO: Usuario 1
+[2026-04-24 11:13:50] Conexión con One Piece DB establecida.
+[2026-04-24 11:13:50] Mazos sincronizados con éxito.
+[2026-04-24 11:13:51] Conexión con One Piece DB establecida.
+[2026-04-24 11:13:54] Intentando borrar mazo: Nuevo Mazo
+[2026-04-24 11:13:55] Conexión con One Piece DB establecida.
+[2026-04-24 11:13:55] Mazo 'Nuevo Mazo' eliminado.
+[2026-04-24 11:14:04] Conexión con One Piece DB establecida.
+[2026-04-24 11:14:04] Mazo 'Nuevo Mazo' guardado en la nube.
+[2026-04-24 11:14:08] Conexión con One Piece DB establecida.
+[2026-04-24 11:14:09] Conexión con One Piece DB establecida.
+[2026-04-24 11:14:14] Conexión con One Piece DB establecida.
+[2026-04-24 11:30:34] Conexión con One Piece DB establecida.
+[2026-04-24 11:30:34] Cartas cargadas en memoria: 3130
+[2026-04-24 11:30:35] Conexión con One Piece DB establecida.
+[2026-04-24 11:30:35] Conexión con One Piece DB establecida.
+[2026-04-24 11:30:35] Cartas cargadas en memoria: 3130
+[2026-04-24 11:30:38] LOGIN EXITOSO: Usuario 1
+[2026-04-24 11:30:39] Conexión con One Piece DB establecida.
+[2026-04-24 11:30:39] Mazos sincronizados con éxito.
+[2026-04-24 11:30:39] Conexión con One Piece DB establecida.
+[2026-04-24 11:30:42] Conexión con One Piece DB establecida.
+[2026-04-24 11:30:43] Conexión con One Piece DB establecida.
+[2026-04-24 11:32:48] Conexión con One Piece DB establecida.
+[2026-04-24 11:32:48] Cartas cargadas en memoria: 3130
+[2026-04-24 11:32:49] Conexión con One Piece DB establecida.
+[2026-04-24 11:32:49] Conexión con One Piece DB establecida.
+[2026-04-24 11:32:50] Cartas cargadas en memoria: 3130
+[2026-04-24 11:32:52] LOGIN EXITOSO: Usuario 1
+[2026-04-24 11:32:52] Conexión con One Piece DB establecida.
+[2026-04-24 11:32:52] Mazos sincronizados con éxito.
+[2026-04-24 11:32:53] Conexión con One Piece DB establecida.
+[2026-04-24 11:33:31] Conexión con One Piece DB establecida.
+[2026-04-24 11:33:32] Conexión con One Piece DB establecida.
+[2026-04-27 11:50:09] Conexión con One Piece DB establecida.
+[2026-04-27 11:50:09] Cartas cargadas en memoria: 3281
+[2026-04-27 11:50:09] Conexión con One Piece DB establecida.
+[2026-04-27 11:50:10] Conexión con One Piece DB establecida.
+[2026-04-27 11:50:10] Cartas cargadas en memoria: 3281
+[2026-04-27 11:50:14] LOGIN EXITOSO: Usuario 1
+[2026-04-27 11:50:14] Conexión con One Piece DB establecida.
+[2026-04-27 11:50:15] Conexión con One Piece DB establecida.
+[2026-04-27 11:50:20] Conexión con One Piece DB establecida.
+[2026-04-28 13:03:53] Conexión con One Piece DB establecida.
+[2026-04-28 13:04:00] Cartas cargadas en memoria: 2135
+[2026-04-28 13:04:07] ERROR CONEXION: El intento de conexión falló.
+[2026-04-28 13:04:14] Conexión con One Piece DB establecida.
+[2026-04-28 13:04:19] Conexión con One Piece DB establecida.
+[2026-04-28 13:04:21] LOGIN EXITOSO: Usuario 1
+[2026-04-28 13:04:22] Cartas cargadas en memoria: 2135
+[2026-04-28 13:04:24] Conexión con One Piece DB establecida.
+[2026-04-28 13:04:26] Conexión con One Piece DB establecida.
+[2026-04-28 13:04:46] Conexión con One Piece DB establecida.
+[2026-04-28 13:04:50] Conexión con One Piece DB establecida.
+[2026-04-28 13:05:23] Conexión con One Piece DB establecida.
+[2026-04-28 13:45:07] Conexión con One Piece DB establecida.
+[2026-04-28 13:45:08] Cartas cargadas en memoria: 2135
+[2026-04-28 13:45:09] Conexión con One Piece DB establecida.
+[2026-04-28 13:45:10] Conexión con One Piece DB establecida.
+[2026-04-28 13:45:10] Cartas cargadas en memoria: 2135
+[2026-04-28 13:47:38] LOGIN EXITOSO: Usuario 1
+[2026-04-28 13:47:39] Conexión con One Piece DB establecida.
+[2026-04-28 13:47:40] Conexión con One Piece DB establecida.
+[2026-04-28 13:47:43] Conexión con One Piece DB establecida.
+[2026-04-28 13:47:44] Conexión con One Piece DB establecida.
+[2026-04-28 13:48:39] Conexión con One Piece DB establecida.
+[2026-04-28 13:48:44] Conexión con One Piece DB establecida.
+[2026-04-28 13:49:07] Conexión con One Piece DB establecida.
+[2026-04-28 13:49:14] Conexión con One Piece DB establecida.
+[2026-04-28 13:49:21] Conexión con One Piece DB establecida.
+[2026-04-28 13:49:22] Conexión con One Piece DB establecida.
+[2026-04-28 13:49:43] Conexión con One Piece DB establecida.
+[2026-04-28 13:49:58] Conexión con One Piece DB establecida.
+[2026-04-28 13:50:03] Conexión con One Piece DB establecida.
+[2026-04-28 13:50:08] Conexión con One Piece DB establecida.
+[2026-04-28 13:50:12] Conexión con One Piece DB establecida.
+[2026-04-28 13:50:31] Conexión con One Piece DB establecida.
+[2026-04-28 13:51:12] Conexión con One Piece DB establecida.
+[2026-04-28 13:51:12] Estado favorito cambiado para: fdfg
+[2026-04-28 13:51:27] Conexión con One Piece DB establecida.
+[2026-04-28 13:52:27] Conexión con One Piece DB establecida.
+[2026-04-28 13:52:29] Cartas cargadas en memoria: 2135
+[2026-04-28 13:52:30] Conexión con One Piece DB establecida.
+[2026-04-28 13:52:30] Conexión con One Piece DB establecida.
+[2026-04-28 13:52:31] Cartas cargadas en memoria: 2135
+[2026-04-28 13:53:01] REGISTRO: Nuevo usuario creado: 3
+[2026-04-28 13:53:11] Conexión con One Piece DB establecida.
+[2026-04-28 13:53:11] LOGIN EXITOSO: Usuario 3
+[2026-04-28 13:53:12] Conexión con One Piece DB establecida.
+[2026-04-28 13:53:13] Conexión con One Piece DB establecida.
+[2026-04-28 13:53:54] Conexión con One Piece DB establecida.
+[2026-04-28 13:53:55] Conexión con One Piece DB establecida.
+[2026-04-28 13:53:55] Error cargando mazos: An I/O error occurred while sending to the backend.
+[2026-04-29 09:23:45] Conexión con One Piece DB establecida.
+[2026-04-29 09:23:45] Cartas cargadas en memoria: 2135
+[2026-04-29 09:23:46] Conexión con One Piece DB establecida.
+[2026-04-29 09:23:46] Conexión con One Piece DB establecida.
+[2026-04-29 09:23:46] Cartas cargadas en memoria: 2135
+[2026-04-29 09:23:50] LOGIN EXITOSO: Usuario 1
+[2026-04-29 09:23:50] Conexión con One Piece DB establecida.
+[2026-04-29 09:23:51] Conexión con One Piece DB establecida.
+[2026-04-29 09:23:54] Conexión con One Piece DB establecida.
+[2026-04-29 09:23:56] Conexión con One Piece DB establecida.
+[2026-04-29 09:23:59] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:02] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:04] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:06] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:07] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:12] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:17] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:20] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:22] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:25] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:31] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:34] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:42] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:43] Cartas cargadas en memoria: 2135
+[2026-04-29 09:24:43] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:44] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:44] Cartas cargadas en memoria: 2135
+[2026-04-29 09:24:47] LOGIN EXITOSO: Usuario 1
+[2026-04-29 09:24:48] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:48] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:56] Conexión con One Piece DB establecida.
+[2026-04-29 09:24:59] Conexión con One Piece DB establecida.
+[2026-04-29 10:10:22] Conexión con One Piece DB establecida.
+[2026-04-29 10:10:23] Cartas cargadas en memoria: 2135
+[2026-04-29 10:10:24] Conexión con One Piece DB establecida.
+[2026-04-29 10:10:24] Conexión con One Piece DB establecida.
+[2026-04-29 10:10:24] Cartas cargadas en memoria: 2135
+[2026-04-29 10:10:28] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:10:29] Conexión con One Piece DB establecida.
+[2026-04-29 10:10:30] Conexión con One Piece DB establecida.
+[2026-04-29 10:10:39] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:15] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:16] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:17] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:18] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:24] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:32] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:36] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:39] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:42] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:47] Conexión con One Piece DB establecida.
+[2026-04-29 10:11:48] Conexión con One Piece DB establecida.
+[2026-04-29 10:19:00] Conexión con One Piece DB establecida.
+[2026-04-29 10:19:00] Cartas cargadas en memoria: 2135
+[2026-04-29 10:19:01] Conexión con One Piece DB establecida.
+[2026-04-29 10:19:01] Conexión con One Piece DB establecida.
+[2026-04-29 10:19:01] Cartas cargadas en memoria: 2135
+[2026-04-29 10:19:08] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:19:08] Conexión con One Piece DB establecida.
+[2026-04-29 10:19:09] Conexión con One Piece DB establecida.
+[2026-04-29 10:19:14] Conexión con One Piece DB establecida.
+[2026-04-29 10:19:19] Conexión con One Piece DB establecida.
+[2026-04-29 10:20:31] Conexión con One Piece DB establecida.
+[2026-04-29 10:20:31] Cartas cargadas en memoria: 2135
+[2026-04-29 10:20:32] Conexión con One Piece DB establecida.
+[2026-04-29 10:20:32] Conexión con One Piece DB establecida.
+[2026-04-29 10:20:32] Cartas cargadas en memoria: 2135
+[2026-04-29 10:20:36] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:20:37] Conexión con One Piece DB establecida.
+[2026-04-29 10:20:38] Conexión con One Piece DB establecida.
+[2026-04-29 10:20:41] Conexión con One Piece DB establecida.
+[2026-04-29 10:20:46] Conexión con One Piece DB establecida.
+[2026-04-29 10:21:34] Conexión con One Piece DB establecida.
+[2026-04-29 10:21:34] Cartas cargadas en memoria: 2135
+[2026-04-29 10:21:35] Conexión con One Piece DB establecida.
+[2026-04-29 10:21:35] Conexión con One Piece DB establecida.
+[2026-04-29 10:21:35] Cartas cargadas en memoria: 2135
+[2026-04-29 10:21:40] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:21:40] Conexión con One Piece DB establecida.
+[2026-04-29 10:21:41] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:11] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:12] Cartas cargadas en memoria: 2135
+[2026-04-29 10:25:12] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:13] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:14] Cartas cargadas en memoria: 2135
+[2026-04-29 10:25:17] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:25:17] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:18] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:22] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:22] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:25] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:26] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:34] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:40] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:44] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:47] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:48] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:54] Conexión con One Piece DB establecida.
+[2026-04-29 10:25:55] Conexión con One Piece DB establecida.
+[2026-04-29 10:35:32] Conexión con One Piece DB establecida.
+[2026-04-29 10:35:33] Cartas cargadas en memoria: 2135
+[2026-04-29 10:35:33] Conexión con One Piece DB establecida.
+[2026-04-29 10:35:33] Conexión con One Piece DB establecida.
+[2026-04-29 10:35:34] Cartas cargadas en memoria: 2135
+[2026-04-29 10:35:37] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:35:38] Conexión con One Piece DB establecida.
+[2026-04-29 10:35:38] Conexión con One Piece DB establecida.
+[2026-04-29 10:35:40] ERROR CARGANDO VISTA /view/mazos.fxml: Error resolving onAction='#createDeck', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:23
+
+[2026-04-29 10:39:53] Conexión con One Piece DB establecida.
+[2026-04-29 10:39:54] Cartas cargadas en memoria: 2135
+[2026-04-29 10:39:55] Conexión con One Piece DB establecida.
+[2026-04-29 10:39:55] Conexión con One Piece DB establecida.
+[2026-04-29 10:39:55] Cartas cargadas en memoria: 2135
+[2026-04-29 10:40:00] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:40:01] Conexión con One Piece DB establecida.
+[2026-04-29 10:40:01] Conexión con One Piece DB establecida.
+[2026-04-29 10:40:03] ERROR CARGANDO VISTA /view/mazos.fxml: Error resolving onAction='#exportarMazoPDF', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mazos.fxml:54
+
+[2026-04-29 10:41:13] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:14] Cartas cargadas en memoria: 2135
+[2026-04-29 10:41:15] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:15] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:16] Cartas cargadas en memoria: 2135
+[2026-04-29 10:41:18] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:41:19] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:19] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:23] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:27] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:27] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:30] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:30] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:35] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:38] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:41] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:44] Conexión con One Piece DB establecida.
+[2026-04-29 10:41:48] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:12] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:14] Cartas cargadas en memoria: 2135
+[2026-04-29 10:48:14] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:14] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:14] Cartas cargadas en memoria: 2135
+[2026-04-29 10:48:18] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:48:18] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:19] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:22] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:25] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:25] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:28] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:28] Conexión con One Piece DB establecida.
+[2026-04-29 10:48:31] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:29] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:29] Cartas cargadas en memoria: 2135
+[2026-04-29 10:50:30] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:30] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:30] Cartas cargadas en memoria: 2135
+[2026-04-29 10:50:34] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:50:35] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:35] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:39] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:43] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:43] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:45] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:45] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:48] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:51] Conexión con One Piece DB establecida.
+[2026-04-29 10:50:52] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:03] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:06] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:31] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:32] Cartas cargadas en memoria: 2135
+[2026-04-29 10:51:33] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:33] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:33] Cartas cargadas en memoria: 2135
+[2026-04-29 10:51:36] LOGIN EXITOSO: Usuario 1
+[2026-04-29 10:51:37] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:37] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:39] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:40] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:42] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:44] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:49] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:52] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:52] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:54] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:54] Conexión con One Piece DB establecida.
+[2026-04-29 10:51:58] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:27] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:27] Cartas cargadas en memoria: 2135
+[2026-04-29 11:02:28] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:28] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:29] Cartas cargadas en memoria: 2135
+[2026-04-29 11:02:32] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:02:32] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:33] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:36] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:40] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:40] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:49] Conexión con One Piece DB establecida.
+[2026-04-29 11:02:50] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:18] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:20] Cartas cargadas en memoria: 2135
+[2026-04-29 11:05:20] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:20] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:20] Cartas cargadas en memoria: 2135
+[2026-04-29 11:05:24] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:05:24] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:25] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:54] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:54] Cartas cargadas en memoria: 2135
+[2026-04-29 11:05:54] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:55] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:55] Cartas cargadas en memoria: 2135
+[2026-04-29 11:05:58] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:05:58] Conexión con One Piece DB establecida.
+[2026-04-29 11:05:59] Conexión con One Piece DB establecida.
+[2026-04-29 11:06:02] Conexión con One Piece DB establecida.
+[2026-04-29 11:06:05] Conexión con One Piece DB establecida.
+[2026-04-29 11:06:05] Conexión con One Piece DB establecida.
+[2026-04-29 11:06:08] Conexión con One Piece DB establecida.
+[2026-04-29 11:07:23] Conexión con One Piece DB establecida.
+[2026-04-29 11:07:24] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:42] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:42] Cartas cargadas en memoria: 2135
+[2026-04-29 11:08:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:43] Cartas cargadas en memoria: 2135
+[2026-04-29 11:08:48] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:08:49] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:49] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:53] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:55] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:56] Conexión con One Piece DB establecida.
+[2026-04-29 11:08:59] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:38] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:39] Cartas cargadas en memoria: 2135
+[2026-04-29 11:14:40] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:40] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:40] Cartas cargadas en memoria: 2135
+[2026-04-29 11:14:43] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:14:44] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:44] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:48] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:52] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:55] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:56] Conexión con One Piece DB establecida.
+[2026-04-29 11:14:57] Conexión con One Piece DB establecida.
+[2026-04-29 11:15:04] Conexión con One Piece DB establecida.
+[2026-04-29 11:16:53] Conexión con One Piece DB establecida.
+[2026-04-29 11:16:53] Cartas cargadas en memoria: 2135
+[2026-04-29 11:16:54] Conexión con One Piece DB establecida.
+[2026-04-29 11:16:54] Conexión con One Piece DB establecida.
+[2026-04-29 11:16:54] Cartas cargadas en memoria: 2135
+[2026-04-29 11:16:58] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:16:58] Conexión con One Piece DB establecida.
+[2026-04-29 11:16:59] Conexión con One Piece DB establecida.
+[2026-04-29 11:17:06] Conexión con One Piece DB establecida.
+[2026-04-29 11:21:10] Conexión con One Piece DB establecida.
+[2026-04-29 11:21:11] Cartas cargadas en memoria: 2135
+[2026-04-29 11:21:11] Conexión con One Piece DB establecida.
+[2026-04-29 11:21:11] Conexión con One Piece DB establecida.
+[2026-04-29 11:21:12] Cartas cargadas en memoria: 2135
+[2026-04-29 11:24:38] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:38] Cartas cargadas en memoria: 2135
+[2026-04-29 11:24:39] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:39] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:39] Cartas cargadas en memoria: 2135
+[2026-04-29 11:24:42] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:24:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:47] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:49] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:50] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:54] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:56] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:58] Conexión con One Piece DB establecida.
+[2026-04-29 11:24:59] Conexión con One Piece DB establecida.
+[2026-04-29 11:25:06] Conexión con One Piece DB establecida.
+[2026-04-29 11:25:09] Conexión con One Piece DB establecida.
+[2026-04-29 11:25:15] Conexión con One Piece DB establecida.
+[2026-04-29 11:25:17] Conexión con One Piece DB establecida.
+[2026-04-29 11:25:23] Conexión con One Piece DB establecida.
+[2026-04-29 11:25:29] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:38] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:38] Cartas cargadas en memoria: 2135
+[2026-04-29 11:28:39] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:39] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:39] Cartas cargadas en memoria: 2135
+[2026-04-29 11:28:42] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:28:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:47] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:47] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:50] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:52] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:53] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:54] Conexión con One Piece DB establecida.
+[2026-04-29 11:28:55] Conexión con One Piece DB establecida.
+[2026-04-29 11:30:31] Conexión con One Piece DB establecida.
+[2026-04-29 11:30:33] Conexión con One Piece DB establecida.
+[2026-04-29 11:30:39] Conexión con One Piece DB establecida.
+[2026-04-29 11:30:42] Conexión con One Piece DB establecida.
+[2026-04-29 11:30:46] Conexión con One Piece DB establecida.
+[2026-04-29 11:30:49] Conexión con One Piece DB establecida.
+[2026-04-29 11:30:51] Conexión con One Piece DB establecida.
+[2026-04-29 11:30:58] Conexión con One Piece DB establecida.
+[2026-04-29 11:32:05] Conexión con One Piece DB establecida.
+[2026-04-29 11:32:05] Conexión con One Piece DB establecida.
+[2026-04-29 11:32:08] Conexión con One Piece DB establecida.
+[2026-04-29 11:32:09] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:03] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:03] Cartas cargadas en memoria: 2135
+[2026-04-29 11:36:04] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:04] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:04] Cartas cargadas en memoria: 2135
+[2026-04-29 11:36:08] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:36:09] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:09] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:16] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:18] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:19] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:23] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:25] Conexión con One Piece DB establecida.
+[2026-04-29 11:36:31] Conexión con One Piece DB establecida.
+[2026-04-29 11:37:47] Conexión con One Piece DB establecida.
+[2026-04-29 11:37:47] Cartas cargadas en memoria: 2135
+[2026-04-29 11:37:48] Conexión con One Piece DB establecida.
+[2026-04-29 11:37:48] Conexión con One Piece DB establecida.
+[2026-04-29 11:37:48] Cartas cargadas en memoria: 2135
+[2026-04-29 11:37:51] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:37:51] Conexión con One Piece DB establecida.
+[2026-04-29 11:37:52] Conexión con One Piece DB establecida.
+[2026-04-29 11:37:56] Conexión con One Piece DB establecida.
+[2026-04-29 11:37:59] Conexión con One Piece DB establecida.
+[2026-04-29 11:37:59] Conexión con One Piece DB establecida.
+[2026-04-29 11:38:04] Conexión con One Piece DB establecida.
+[2026-04-29 11:38:05] Conexión con One Piece DB establecida.
+[2026-04-29 11:38:06] Conexión con One Piece DB establecida.
+[2026-04-29 11:38:15] Conexión con One Piece DB establecida.
+[2026-04-29 11:38:19] Conexión con One Piece DB establecida.
+[2026-04-29 11:38:19] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:06] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:07] Cartas cargadas en memoria: 2135
+[2026-04-29 11:41:07] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:08] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:08] Cartas cargadas en memoria: 2135
+[2026-04-29 11:41:24] LOGIN EXITOSO: Usuario 1
+[2026-04-29 11:41:25] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:26] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:29] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:32] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:32] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:36] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:38] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:39] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:42] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:43] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:45] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:48] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:48] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:50] Conexión con One Piece DB establecida.
+[2026-04-29 11:41:52] Conexión con One Piece DB establecida.
+[2026-04-30 13:46:34] Conexión con One Piece DB establecida.
+[2026-04-30 13:46:35] Cartas cargadas en memoria: 2135
+[2026-04-30 13:46:35] Conexión con One Piece DB establecida.
+[2026-04-30 13:46:35] Conexión con One Piece DB establecida.
+[2026-04-30 13:46:35] Cartas cargadas en memoria: 2135
+[2026-04-30 13:46:40] LOGIN EXITOSO: Usuario 1
+[2026-04-30 13:46:40] Conexión con One Piece DB establecida.
+[2026-04-30 13:46:40] Conexión con One Piece DB establecida.
+[2026-04-30 13:46:42] ERROR CARGANDO VISTA /view/mercado.fxml: 
+/C:/Users/diego/OneDrive/Desktop/TFG/OnePieceCollectr/tfg/target/classes/view/mercado.fxml:34
+
+[2026-04-30 13:56:23] Conexión con One Piece DB establecida.
+[2026-04-30 13:56:23] Cartas cargadas en memoria: 2135
+[2026-04-30 13:56:24] Conexión con One Piece DB establecida.
+[2026-04-30 13:56:24] Conexión con One Piece DB establecida.
+[2026-04-30 13:56:24] Cartas cargadas en memoria: 2135
+[2026-04-30 13:56:28] LOGIN EXITOSO: Usuario 1
+[2026-04-30 13:56:29] Conexión con One Piece DB establecida.
+[2026-04-30 13:56:29] Conexión con One Piece DB establecida.
+[2026-04-30 13:56:34] Conexión con One Piece DB establecida.
+[2026-04-30 13:56:35] Conexión con One Piece DB establecida.
+[2026-05-04 09:54:08] Conexión con One Piece DB establecida.
+[2026-05-04 09:54:08] Cartas cargadas en memoria: 2135
+[2026-05-04 09:54:09] Conexión con One Piece DB establecida.
+[2026-05-04 09:54:09] Conexión con One Piece DB establecida.
+[2026-05-04 09:54:09] Cartas cargadas en memoria: 2135
+[2026-05-04 09:54:13] LOGIN EXITOSO: Usuario 1
+[2026-05-04 09:54:13] Conexión con One Piece DB establecida.
+[2026-05-04 09:54:14] Conexión con One Piece DB establecida.
+[2026-05-04 09:55:46] Conexión con One Piece DB establecida.
+[2026-05-04 09:55:47] Cartas cargadas en memoria: 2135
+[2026-05-04 09:55:48] Conexión con One Piece DB establecida.
+[2026-05-04 09:55:48] Conexión con One Piece DB establecida.
+[2026-05-04 09:55:49] Cartas cargadas en memoria: 2135
+[2026-05-04 09:55:52] LOGIN EXITOSO: Usuario 1
+[2026-05-04 09:55:52] Conexión con One Piece DB establecida.
+[2026-05-04 09:55:53] Conexión con One Piece DB establecida.
+[2026-05-04 09:57:48] Conexión con One Piece DB establecida.
+[2026-05-04 09:57:49] Cartas cargadas en memoria: 2135
+[2026-05-04 09:57:49] Conexión con One Piece DB establecida.
+[2026-05-04 09:57:49] Conexión con One Piece DB establecida.
+[2026-05-04 09:57:50] Cartas cargadas en memoria: 2135
+[2026-05-04 09:57:53] LOGIN EXITOSO: Usuario 1
+[2026-05-04 09:57:54] Conexión con One Piece DB establecida.
+[2026-05-04 09:57:54] Conexión con One Piece DB establecida.
+[2026-05-04 09:57:56] Conexión con One Piece DB establecida.
+[2026-05-04 09:57:57] Conexión con One Piece DB establecida.
+[2026-05-04 10:02:10] Conexión con One Piece DB establecida.
+[2026-05-04 10:02:10] Cartas cargadas en memoria: 2135
+[2026-05-04 10:02:11] Conexión con One Piece DB establecida.
+[2026-05-04 10:02:11] Conexión con One Piece DB establecida.
+[2026-05-04 10:02:11] Cartas cargadas en memoria: 2135
+[2026-05-04 10:02:15] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:02:15] Conexión con One Piece DB establecida.
+[2026-05-04 10:02:16] Conexión con One Piece DB establecida.
+[2026-05-04 10:10:52] Conexión con One Piece DB establecida.
+[2026-05-04 10:10:52] Cartas cargadas en memoria: 2135
+[2026-05-04 10:10:53] Conexión con One Piece DB establecida.
+[2026-05-04 10:10:53] Conexión con One Piece DB establecida.
+[2026-05-04 10:10:53] Cartas cargadas en memoria: 2135
+[2026-05-04 10:10:57] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:10:57] Conexión con One Piece DB establecida.
+[2026-05-04 10:10:58] Conexión con One Piece DB establecida.
+[2026-05-04 10:11:00] Conexión con One Piece DB establecida.
+[2026-05-04 10:11:01] Conexión con One Piece DB establecida.
+[2026-05-04 10:14:06] Conexión con One Piece DB establecida.
+[2026-05-04 10:14:06] Cartas cargadas en memoria: 2135
+[2026-05-04 10:14:06] Conexión con One Piece DB establecida.
+[2026-05-04 10:14:07] Conexión con One Piece DB establecida.
+[2026-05-04 10:14:07] Cartas cargadas en memoria: 2135
+[2026-05-04 10:14:15] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:14:15] Conexión con One Piece DB establecida.
+[2026-05-04 10:14:15] Conexión con One Piece DB establecida.
+[2026-05-04 10:14:17] Conexión con One Piece DB establecida.
+[2026-05-04 10:14:18] Conexión con One Piece DB establecida.
+[2026-05-04 10:16:25] Conexión con One Piece DB establecida.
+[2026-05-04 10:16:25] Cartas cargadas en memoria: 2135
+[2026-05-04 10:16:26] Conexión con One Piece DB establecida.
+[2026-05-04 10:16:26] Conexión con One Piece DB establecida.
+[2026-05-04 10:16:26] Cartas cargadas en memoria: 2135
+[2026-05-04 10:16:31] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:16:31] Conexión con One Piece DB establecida.
+[2026-05-04 10:16:32] Conexión con One Piece DB establecida.
+[2026-05-04 10:16:33] Conexión con One Piece DB establecida.
+[2026-05-04 10:16:34] Conexión con One Piece DB establecida.
+[2026-05-04 10:17:42] Conexión con One Piece DB establecida.
+[2026-05-04 10:17:44] Cartas cargadas en memoria: 2135
+[2026-05-04 10:17:44] Conexión con One Piece DB establecida.
+[2026-05-04 10:17:44] Conexión con One Piece DB establecida.
+[2026-05-04 10:17:44] Cartas cargadas en memoria: 2135
+[2026-05-04 10:17:48] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:17:48] Conexión con One Piece DB establecida.
+[2026-05-04 10:17:48] Conexión con One Piece DB establecida.
+[2026-05-04 10:17:50] Conexión con One Piece DB establecida.
+[2026-05-04 10:17:51] Conexión con One Piece DB establecida.
+[2026-05-04 10:21:10] Conexión con One Piece DB establecida.
+[2026-05-04 10:21:11] Cartas cargadas en memoria: 2135
+[2026-05-04 10:21:11] Conexión con One Piece DB establecida.
+[2026-05-04 10:21:12] Conexión con One Piece DB establecida.
+[2026-05-04 10:21:12] Cartas cargadas en memoria: 2135
+[2026-05-04 10:21:15] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:21:16] Conexión con One Piece DB establecida.
+[2026-05-04 10:21:17] Conexión con One Piece DB establecida.
+[2026-05-04 10:21:20] Conexión con One Piece DB establecida.
+[2026-05-04 10:21:20] Conexión con One Piece DB establecida.
+[2026-05-04 10:22:24] Conexión con One Piece DB establecida.
+[2026-05-04 10:22:26] Conexión con One Piece DB establecida.
+[2026-05-04 10:22:26] Conexión con One Piece DB establecida.
+[2026-05-04 10:26:09] Conexión con One Piece DB establecida.
+[2026-05-04 10:26:09] Cartas cargadas en memoria: 2135
+[2026-05-04 10:26:10] Conexión con One Piece DB establecida.
+[2026-05-04 10:26:10] Conexión con One Piece DB establecida.
+[2026-05-04 10:26:10] Cartas cargadas en memoria: 2135
+[2026-05-04 10:26:14] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:26:14] Conexión con One Piece DB establecida.
+[2026-05-04 10:26:15] Conexión con One Piece DB establecida.
+[2026-05-04 10:26:17] Conexión con One Piece DB establecida.
+[2026-05-04 10:26:17] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:24] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:24] Cartas cargadas en memoria: 2135
+[2026-05-04 10:28:25] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:25] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:25] Cartas cargadas en memoria: 2135
+[2026-05-04 10:28:30] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:28:30] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:31] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:33] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:34] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:37] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:41] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:45] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:51] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:53] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:55] Conexión con One Piece DB establecida.
+[2026-05-04 10:28:56] Conexión con One Piece DB establecida.
+[2026-05-04 10:30:56] Conexión con One Piece DB establecida.
+[2026-05-04 10:30:56] Cartas cargadas en memoria: 2135
+[2026-05-04 10:30:57] Conexión con One Piece DB establecida.
+[2026-05-04 10:30:57] Conexión con One Piece DB establecida.
+[2026-05-04 10:30:57] Cartas cargadas en memoria: 2135
+[2026-05-04 10:31:00] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:31:01] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:02] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:05] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:07] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:08] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:13] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:19] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:20] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:22] Conexión con One Piece DB establecida.
+[2026-05-04 10:31:23] Conexión con One Piece DB establecida.
+[2026-05-04 10:35:58] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:00] Cartas cargadas en memoria: 2135
+[2026-05-04 10:36:00] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:01] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:01] Cartas cargadas en memoria: 2135
+[2026-05-04 10:36:05] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:36:05] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:06] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:08] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:08] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:12] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:13] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:17] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:18] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:19] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:23] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:26] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:27] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:30] Conexión con One Piece DB establecida.
+[2026-05-04 10:36:31] Conexión con One Piece DB establecida.
+[2026-05-04 10:38:28] Conexión con One Piece DB establecida.
+[2026-05-04 10:38:29] Cartas cargadas en memoria: 2135
+[2026-05-04 10:38:29] Conexión con One Piece DB establecida.
+[2026-05-04 10:38:29] Conexión con One Piece DB establecida.
+[2026-05-04 10:38:30] Cartas cargadas en memoria: 2135
+[2026-05-04 10:38:33] LOGIN EXITOSO: Usuario 1
+[2026-05-04 10:38:33] Conexión con One Piece DB establecida.
+[2026-05-04 10:38:34] Conexión con One Piece DB establecida.
+[2026-05-04 10:38:36] Conexión con One Piece DB establecida.
+[2026-05-04 10:38:37] Conexión con One Piece DB establecida.
+[2026-05-04 10:39:42] Conexión con One Piece DB establecida.
+[2026-05-04 10:39:43] Conexión con One Piece DB establecida.
+[2026-05-04 10:39:51] Conexión con One Piece DB establecida.
+[2026-05-04 10:39:52] Conexión con One Piece DB establecida.
+[2026-05-05 10:47:50] Conexión con One Piece DB establecida.
+[2026-05-05 10:47:52] Cartas cargadas en memoria: 2135
+[2026-05-05 10:47:52] Conexión con One Piece DB establecida.
+[2026-05-05 10:47:52] Conexión con One Piece DB establecida.
+[2026-05-05 10:47:52] Cartas cargadas en memoria: 2135
+[2026-05-05 10:47:57] LOGIN EXITOSO: Usuario 1
+[2026-05-05 10:47:57] Conexión con One Piece DB establecida.
+[2026-05-05 10:47:58] Conexión con One Piece DB establecida.
+[2026-05-05 10:48:47] Conexión con One Piece DB establecida.
+[2026-05-05 10:48:48] Conexión con One Piece DB establecida.
+[2026-05-05 10:58:11] Conexión con One Piece DB establecida.
+[2026-05-05 10:58:11] Cartas cargadas en memoria: 2135
+[2026-05-05 11:07:06] Conexión con One Piece DB establecida.
+[2026-05-05 11:07:07] Cartas cargadas en memoria: 2135
+[2026-05-05 11:09:22] Conexión con One Piece DB establecida.
+[2026-05-05 11:09:22] Cartas cargadas en memoria: 2135
+[2026-05-05 11:09:23] Conexión con One Piece DB establecida.
+[2026-05-05 11:09:23] Conexión con One Piece DB establecida.
+[2026-05-05 11:09:23] Cartas cargadas en memoria: 2135
+[2026-05-05 11:09:31] LOGIN EXITOSO: Usuario 1
+[2026-05-05 11:09:31] Conexión con One Piece DB establecida.
+[2026-05-05 11:09:32] Conexión con One Piece DB establecida.
+[2026-05-05 11:23:51] Conexión con One Piece DB establecida.
+[2026-05-05 11:23:51] Cartas cargadas en memoria: 2135
+[2026-05-05 11:23:52] Conexión con One Piece DB establecida.
+[2026-05-05 11:23:52] Conexión con One Piece DB establecida.
+[2026-05-05 11:23:52] Cartas cargadas en memoria: 2135
+[2026-05-05 11:26:55] Conexión con One Piece DB establecida.
+[2026-05-05 11:26:57] Cartas cargadas en memoria: 2135
+[2026-05-05 11:26:57] Conexión con One Piece DB establecida.
+[2026-05-05 11:26:57] Conexión con One Piece DB establecida.
+[2026-05-05 11:26:57] Cartas cargadas en memoria: 2135
+[2026-05-05 11:28:06] Conexión con One Piece DB establecida.
+[2026-05-05 11:28:07] Cartas cargadas en memoria: 2135
+[2026-05-05 11:28:07] Conexión con One Piece DB establecida.
+[2026-05-05 11:28:08] Conexión con One Piece DB establecida.
+[2026-05-05 11:28:08] Cartas cargadas en memoria: 2135
+[2026-05-05 11:30:09] Conexión con One Piece DB establecida.
+[2026-05-05 11:30:09] Cartas cargadas en memoria: 2135
+[2026-05-05 11:30:10] Conexión con One Piece DB establecida.
+[2026-05-05 11:30:10] Conexión con One Piece DB establecida.
+[2026-05-05 11:30:10] Cartas cargadas en memoria: 2135
+[2026-05-05 11:30:37] Conexión con One Piece DB establecida.
+[2026-05-05 11:30:37] Cartas cargadas en memoria: 2135
+[2026-05-05 11:30:38] Conexión con One Piece DB establecida.
+[2026-05-05 11:30:38] Conexión con One Piece DB establecida.
+[2026-05-05 11:30:38] Cartas cargadas en memoria: 2135
+[2026-05-05 11:32:07] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:07] Cartas cargadas en memoria: 2135
+[2026-05-05 11:32:07] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:08] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:08] Cartas cargadas en memoria: 2135
+[2026-05-05 11:32:22] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:22] Cartas cargadas en memoria: 2135
+[2026-05-05 11:32:23] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:23] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:23] Cartas cargadas en memoria: 2135
+[2026-05-05 11:32:54] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:54] Cartas cargadas en memoria: 2135
+[2026-05-05 11:32:55] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:55] Conexión con One Piece DB establecida.
+[2026-05-05 11:32:55] Cartas cargadas en memoria: 2135
+[2026-05-05 11:35:24] Conexión con One Piece DB establecida.
+[2026-05-05 11:35:25] Cartas cargadas en memoria: 2135
+[2026-05-05 11:35:25] Conexión con One Piece DB establecida.
+[2026-05-05 11:35:25] Conexión con One Piece DB establecida.
+[2026-05-05 11:35:25] Cartas cargadas en memoria: 2135
