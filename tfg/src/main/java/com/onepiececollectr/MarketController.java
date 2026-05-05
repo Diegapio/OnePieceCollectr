@@ -33,19 +33,20 @@ public class MarketController {
 
     @FXML
     public void initialize() {
-        moneyLabel.setText("💰 Tu Saldo: 50.00 €");
+        //moneyLabel.setText("💰 Tu Saldo: 50.00 €");
 
-        // Simulación de datos
+        /*  Simulación de datos
         if (!App.todasLasCartas.isEmpty()) {
             Carta muestra = App.todasLasCartas.get(0);
             publicaciones.add(new Mercado(1, muestra, Login.sesionUsuario, 15.50, "Disponible"));
         }
 
-        renderMarket();
+        //renderMarket();
         actualizarListaTexto();
-    }
+    */
+        }
 
-    private void renderMarket() {
+   /*  private void renderMarket() {
         marketGrid.getChildren().clear();
         int column = 0, row = 0;
 
@@ -74,6 +75,7 @@ public class MarketController {
         card.setStyle("-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 8; -fx-padding: 10; -fx-alignment: center;");
         return card;
     }
+        */
 
     @FXML
     private void irASeleccionarDeColeccion() {

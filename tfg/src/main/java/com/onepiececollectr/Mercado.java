@@ -43,10 +43,4 @@ public class Mercado {
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
 
-    /**
-     * Método de utilidad para mostrar el precio bonito en la interfaz.
-     */
-    public String getPrecioFormateado() {
-        return String.format("%.2f €", precio);
-    }
 }

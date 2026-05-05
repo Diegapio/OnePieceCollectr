@@ -10,7 +10,7 @@
     <HBox spacing="20" alignment="CENTER_LEFT">
         <Button text="← Volver" onAction="#volverAlPrincipal" style="-fx-background-color: #7f8c8d; -fx-text-fill: white;"/>
         <Region HBox.hgrow="ALWAYS" />
-        <Label fx:id="moneyLabel" text="Dinero: 50€" style="-fx-font-size: 16; -fx-font-weight: bold;" />
+        <!-- <Label fx:id="moneyLabel" text="Dinero: 50€" style="-fx-font-size: 16; -fx-font-weight: bold;" /> -->
     </HBox>
 
     <Label text="Mercado de Cartas" style="-fx-font-size: 28; -fx-font-weight: bold;" />

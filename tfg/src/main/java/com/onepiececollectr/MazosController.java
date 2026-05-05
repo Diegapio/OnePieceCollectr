@@ -108,6 +108,8 @@ public class MazosController {
                 misMazos.add(newDeck);
                 refreshDeckList();
                 limpiarCamposCreacion();
+
+                login.registrarEnLog("Mazo registrado en log con nombre "+ name + "colores " + colors);
             }
         } catch (SQLException e) { login.mostrarAlerta("Error", "No se pudo crear el mazo"); }
     }
@@ -138,6 +140,7 @@ public class MazosController {
             pstmt.executeUpdate();
             misMazos.remove(mazo);
             refreshDeckList();
+            login.registrarEnLog("Mazo eliminado: " + mazo.getNombre_deck());
         } catch (SQLException e) { login.mostrarAlerta("Error", "No se pudo borrar"); }
     }
 
@@ -255,6 +258,8 @@ private void abrirVentanaDetalle(Carta carta) {
         String sql = "DELETE FROM deck_carta WHERE id_deck = ? AND id_carta = ?";
         try (Connection conn = Login.getConexion(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, deck.getId_deck()); pstmt.setString(2, carta.getId_carta()); pstmt.executeUpdate();
+
+            login.registrarEnLog("Carta eliminada del mazo: " + carta.getNombre() + " del mazo " + deck.getNombre_deck());
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
@@ -287,6 +292,8 @@ private void abrirVentanaDetalle(Carta carta) {
             ps.setInt(1, mazoSeleccionado.getId_deck()); ps.setString(2, cartaActual.getId_carta());
             if (cant > 0) ps.setInt(3, cant);
             ps.executeUpdate();
+
+            login.registrarEnLog("Cantidad de carta " + cartaActual.getNombre() + " en mazo " + mazoSeleccionado.getNombre_deck() + " actualizada a " + cant);
         } catch (SQLException e) { e.printStackTrace(); }
     }
 

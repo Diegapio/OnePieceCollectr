@@ -347,6 +347,8 @@ private void actualizarEstiloCarta(VBox card, Carta c) {
             pstmt.setInt(1, Login.sesionUsuario.getId());
             pstmt.setString(2, idCarta);
             pstmt.executeUpdate(); idsPoseidos.add(idCarta);
+
+            login.registrarEnLog("Carta añadida a colección: " + idCarta);
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
@@ -356,6 +358,8 @@ private void actualizarEstiloCarta(VBox card, Carta c) {
             pstmt.setInt(1, Login.sesionUsuario.getId());
             pstmt.setString(2, idCarta);
             pstmt.executeUpdate(); idsPoseidos.remove(idCarta);
+
+            login.registrarEnLog("Carta eliminada de colección: " + idCarta);
         } catch (SQLException e) { e.printStackTrace(); }
     }
 

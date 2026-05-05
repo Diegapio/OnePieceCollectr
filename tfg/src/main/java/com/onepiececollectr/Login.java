@@ -23,12 +23,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 
 public class Login implements Initializable {
     @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
+    @FXML private ImageView imgFondo;
 
     private static Connection conexion;
     private static final String URL_BASEDATOS = "jdbc:postgresql://aws-1-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
@@ -38,10 +42,34 @@ public class Login implements Initializable {
     private static final String ARCHIVO_LOG = "One_piece.log";
     public static Usuario sesionUsuario; // Variable para mantener el usuario logueado
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        conectar();
+   @FXML
+public void initialize( URL location, ResourceBundle resources) {
+    conectar();
+    try {
+        // Intentamos cargar el recurso
+        var resource = getClass().getResource("/cards/background.png");
+        
+        if (resource == null) {
+            registrarEnLog("ERROR: No se encuentra el archivo en /src/main/resources/cards/background.png");
+            return;
+        }
+
+        Image imagen = new Image(resource.toExternalForm());
+        
+        if (imagen.isError()) {
+            registrarEnLog("ERROR de imagen: " + imagen.getException());
+        } else {
+            imgFondo.setImage(imagen);
+            // Ajuste total al fondo
+            imgFondo.setPreserveRatio(false);
+            imgFondo.fitWidthProperty().bind(((StackPane)imgFondo.getParent()).widthProperty());
+            imgFondo.fitHeightProperty().bind(((StackPane)imgFondo.getParent()).heightProperty());
+            
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
 
     public static Connection getConexion() {
         try {
