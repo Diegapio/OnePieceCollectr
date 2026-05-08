@@ -8,7 +8,7 @@
       fx:controller="com.onepiececollectr.DashboardController">
       
 
-    <Label text="Dashboard"
+    <Label text="Home"
            style="-fx-font-size: 32;" />
 
     <HBox spacing="40" alignment="CENTER">

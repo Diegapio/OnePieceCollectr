@@ -3,18 +3,21 @@ package com.onepiececollectr;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
-import javafx.event.ActionEvent;
+import javafx.scene.layout.VBox;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Principal {
 
-    @FXML
-    private StackPane contentArea;
+    @FXML private StackPane contentArea;
+    @FXML private VBox sidebar;
+    @FXML private Button btnToggle, btnDashboard, btnColeccion, btnMazos, btnMercado, btnEventos;
 
     private static StackPane staticContentArea;
     private final Map<String, Parent> vistaCache = new HashMap<>();
+    private boolean sidebarExpanded = true;
 
     @FXML
     public void initialize() {
@@ -46,13 +49,36 @@ public class Principal {
     }
 
     @FXML
-    public void loadDashboard(ActionEvent event) {
+    private void toggleSidebar() {
+        sidebarExpanded = !sidebarExpanded;
+        if (sidebarExpanded) {
+            sidebar.setPrefWidth(190);
+            btnToggle.setText("☰");
+            btnDashboard.setText("🏠  Home");        btnDashboard.setPrefWidth(170);
+            btnColeccion.setText("📦  Colección");   btnColeccion.setPrefWidth(170);
+            btnMazos.setText("🃏  Mazos");            btnMazos.setPrefWidth(170);
+            btnMercado.setText("🏪  Mercado");        btnMercado.setPrefWidth(170);
+            btnEventos.setText("📅  Eventos");        btnEventos.setPrefWidth(170);
+        } else {
+            sidebar.setPrefWidth(50);
+            btnToggle.setText("→");
+            btnDashboard.setText("🏠"); btnDashboard.setPrefWidth(34);
+            btnColeccion.setText("📦"); btnColeccion.setPrefWidth(34);
+            btnMazos.setText("🃏");     btnMazos.setPrefWidth(34);
+            btnMercado.setText("🏪");   btnMercado.setPrefWidth(34);
+            btnEventos.setText("📅");   btnEventos.setPrefWidth(34);
+        }
+    }
+
+    @FXML
+    private void loadDashboard() {
         loadVista("/view/dashboard.fxml");
     }
 
     @FXML
     private void loadColeccion() {
         MazosController.mazoSeleccionado = null;
+        vistaCache.remove("/view/coleccion.fxml");
         loadVista("/view/coleccion.fxml");
         if (ColeccionController.instancia != null) {
             ColeccionController.instancia.refrescar();
@@ -60,17 +86,18 @@ public class Principal {
     }
 
     @FXML
-    public void loadMazos(ActionEvent event) {
+    private void loadMazos() {
+        vistaCache.remove("/view/mazos.fxml");
         loadVista("/view/mazos.fxml");
     }
 
     @FXML
-    public void loadMercado(ActionEvent event) {
+    private void loadMercado() {
         loadVista("/view/mercado.fxml");
     }
 
     @FXML
-    public void loadEventos(ActionEvent event) {
+    private void loadEventos() {
         loadVista("/view/eventos.fxml");
     }
 }
