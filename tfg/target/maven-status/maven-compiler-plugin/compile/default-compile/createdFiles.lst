@@ -8,6 +8,7 @@ com\onepiececollectr\Set.class
 com\onepiececollectr\ColeccionController.class
 com\onepiececollectr\MazosController.class
 com\onepiececollectr\Event.class
+module-info.class
 com\onepiececollectr\App.class
 com\onepiececollectr\MainController.class
 com\onepiececollectr\Carta.class
