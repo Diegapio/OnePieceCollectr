@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -27,6 +28,7 @@ public class MazosController {
     @FXML private GridPane deckGrid;
     @FXML private VBox deckList;
     @FXML private Label deckInfoLabel;
+    @FXML private Label lblNombreMazo;
     @FXML private TextField deckNameField;
     @FXML private Label lblContador;
 
@@ -60,10 +62,27 @@ public class MazosController {
         }
         if (deckList != null) {
             refreshDeckList();
+            limitarSeleccionColores();
         }
         if (deckGrid != null && mazoSeleccionado != null) {
             cargarCartasDelMazo(mazoSeleccionado);
             renderDeck(mazoSeleccionado);
+        }
+    }
+
+    private void limitarSeleccionColores() {
+        CheckBox[] checks = { redColor, blueColor, greenColor, yellowColor, purpleColor, blackColor };
+        for (CheckBox cb : checks) {
+            if (cb == null) continue;
+            cb.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
+                if (!isSelected) return;
+                long seleccionados = java.util.Arrays.stream(checks)
+                        .filter(c -> c != null && c.isSelected()).count();
+                if (seleccionados > 2) {
+                    cb.setSelected(false);
+                    login.mostrarAlerta("Color", "Solo puedes elegir hasta 2 colores.");
+                }
+            });
         }
     }
 
@@ -230,7 +249,8 @@ public class MazosController {
             if (++col == 4) { col = 0; row++; }
         }
 
-        deckInfoLabel.setText(mazo.getNombre_deck() + " (" + mazo.getCartas().size() + "/" + MAX_CARTAS_MAZO + ")");
+        if (lblNombreMazo != null) lblNombreMazo.setText(mazo.getNombre_deck());
+        deckInfoLabel.setText(mazo.getCartas().size() + "/" + MAX_CARTAS_MAZO + " cartas");
     }
 
     private VBox createMiniCardConMultiplicador(Carta carta, Deck deck, int cantidad) {
@@ -540,5 +560,51 @@ public class MazosController {
     private void irAColeccionParaEditar() {
         try { Principal.mostrarVista(FXMLLoader.load(getClass().getResource("/view/coleccion.fxml"))); }
         catch (Exception e) { e.printStackTrace(); }
+    }
+
+    // ── Renombrar y eliminar mazo desde deckDetail ────────────────────────────
+
+    @FXML
+    private void onClickNombre(MouseEvent e) {
+        if (e.getClickCount() != 2 || mazoSeleccionado == null) return;
+        TextInputDialog dialog = new TextInputDialog(mazoSeleccionado.getNombre_deck());
+        dialog.setTitle("Renombrar mazo");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Nuevo nombre:");
+        dialog.showAndWait().ifPresent(nuevoNombre -> {
+            if (!nuevoNombre.isBlank()) renombrarMazo(mazoSeleccionado, nuevoNombre.trim());
+        });
+    }
+
+    private void renombrarMazo(Deck mazo, String nuevoNombre) {
+        String sql = "UPDATE deck SET nombre = ? WHERE id_deck = ?";
+        try (Connection conn = Login.getConexion();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, nuevoNombre);
+            ps.setInt(2, mazo.getId_deck());
+            ps.executeUpdate();
+            mazo.setNombre_deck(nuevoNombre);
+            if (lblNombreMazo != null) lblNombreMazo.setText(nuevoNombre);
+            Login.registrarEnLog("Mazo renombrado a: " + nuevoNombre);
+        } catch (SQLException ex) {
+            login.mostrarAlerta("Error", "No se pudo renombrar el mazo.");
+        }
+    }
+
+    @FXML
+    private void eliminarMazoActual() {
+        if (mazoSeleccionado == null) return;
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION,
+                "¿Eliminar el mazo \"" + mazoSeleccionado.getNombre_deck() + "\"?",
+                ButtonType.YES, ButtonType.NO);
+        confirm.setHeaderText(null);
+        confirm.showAndWait().ifPresent(bt -> {
+            if (bt == ButtonType.YES) {
+                borrarMazo(mazoSeleccionado);
+                mazoSeleccionado = null;
+                try { Principal.mostrarVista(FXMLLoader.load(getClass().getResource("/view/mazos.fxml"))); }
+                catch (Exception ex) { ex.printStackTrace(); }
+            }
+        });
     }
 }
