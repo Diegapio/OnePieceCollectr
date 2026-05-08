@@ -4,13 +4,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.sql.Statement;
-import com.onepiececollectr.*;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -18,12 +20,9 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        new Thread(() -> {
-            //Cargamos los datos desde un hilo separado para que no se quede congelado
-        cargarDatosGlobales();
-    }).start();
+        new Thread(App::cargarDatosGlobales).start();
 
-       FXMLLoader loader = new FXMLLoader(
+        FXMLLoader loader = new FXMLLoader(
         getClass().getResource("/view/login.fxml")
 );
 
@@ -34,8 +33,12 @@ public class App extends Application {
         stage.show();
     }
 
-    //Cargamos todas las cartas y las ponemos en una lista para no volver a hacer consultas
     public static List<Carta> todasLasCartas = new ArrayList<>();
+    private static final Map<String, Image> imagenCache = new HashMap<>();
+
+    public static Image getImagen(String url) {
+        return imagenCache.computeIfAbsent(url, u -> new Image(u, 105, 145, true, true, true));
+    }
 
     public static void cargarDatosGlobales() {
         todasLasCartas.clear();
@@ -68,8 +71,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-       cargarDatosGlobales();
        launch();
-            
     }
 }
