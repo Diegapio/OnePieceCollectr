@@ -54,7 +54,7 @@
         
     </HBox>
 
-    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
         <GridPane fx:id="cardGrid"
                   hgap="20"
                   vgap="20"

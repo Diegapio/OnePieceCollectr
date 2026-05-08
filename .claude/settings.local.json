@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn exec:java -Dexec.mainClass=com.jp.TestAPI)",
+      "Bash(xargs grep *)",
+      "Bash(git checkout *)"
+    ]
+  }
+}

@@ -44,8 +44,9 @@
                             -fx-border-radius: 10;
                            " />
                 
-                <PasswordField fx:id="passwordField" promptText="Contraseña" 
-                               prefHeight="45" 
+                <PasswordField fx:id="passwordField" promptText="Contraseña"
+                               onAction="#IniciarSesion"
+                               prefHeight="45"
                                style="
                                 -fx-background-color: #fffaf0; 
                                 -fx-background-radius: 10; 

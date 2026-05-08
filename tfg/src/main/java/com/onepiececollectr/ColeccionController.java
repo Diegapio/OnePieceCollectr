@@ -5,43 +5,58 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.application.Platform;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class ColeccionController {
-    Login login = new Login();
+
+    public static ColeccionController instancia;
 
     @FXML private GridPane cardGrid;
+    @FXML private ScrollPane scrollPane;
     @FXML private TextField searchField;
-    @FXML private ComboBox<String> tipoFilter; 
+    @FXML private ComboBox<String> tipoFilter;
     @FXML private CheckBox checkPoseidas;
     @FXML private CheckBox checkNoPoseidas;
     @FXML private ComboBox<String> comboCoste;
     @FXML private ComboBox<String> comboContador;
-    @FXML private ComboBox<String> comboVida; 
+    @FXML private ComboBox<String> comboVida;
+
+    private static final int PAGE_SIZE = 50;
 
     private Set<String> idsPoseidos = new HashSet<>();
-    private List<Carta> cartasCargadas = new ArrayList<>(); 
+    private List<Carta> cartasCargadas = new ArrayList<>();
+    private List<Carta> listaFiltradaActual = new ArrayList<>();
+    private int cartasMostradas = 0;
     private int ticketBusqueda = 0;
+    private boolean cargandoMas = false;
+
+    public void refrescar() {
+        Platform.runLater(() -> filtrarLocalmente(searchField.getText()));
+    }
 
     @FXML
     public void initialize() {
+        instancia = this;
         tipoFilter.getItems().addAll("Todos", "LIDER", "PERSONAJE", "EVENTO", "STAGE");
         searchField.textProperty().addListener((obs, viejo, nuevo) -> filtrarLocalmente(nuevo));
         tipoFilter.valueProperty().addListener((obs, viejo, nuevo) -> filtrarLocalmente(searchField.getText()));
@@ -60,45 +75,39 @@ public class ColeccionController {
             comboVida.setValue("Todos");
         }
 
-        // Listener para los Checkboxes
+        if (comboCoste != null)
+            comboCoste.valueProperty().addListener((obs, v, n) -> filtrarLocalmente(searchField.getText()));
+        if (comboContador != null)
+            comboContador.valueProperty().addListener((obs, v, n) -> filtrarLocalmente(searchField.getText()));
+        if (comboVida != null)
+            comboVida.valueProperty().addListener((obs, v, n) -> filtrarLocalmente(searchField.getText()));
+
         checkPoseidas.selectedProperty().addListener((obs, v, n) -> handleFiltro());
         checkNoPoseidas.selectedProperty().addListener((obs, v, n) -> handleFiltro());
+
+        scrollPane.vvalueProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() > 0.85) cargarMasCartas();
+        });
         
+        // Mostrar cartas inmediatamente (sin info de posesión aún)
+        if (!App.todasLasCartas.isEmpty()) {
+            this.cartasCargadas = new ArrayList<>(App.todasLasCartas);
+            filtrarLocalmente("");
+        }
+
+        // Cargar posesión en background y repintar cuando llegue
         new Thread(() -> {
             try {
+                if (App.todasLasCartas.isEmpty()) {
+                    App.cargarDatosGlobales();
+                    this.cartasCargadas = new ArrayList<>(App.todasLasCartas);
+                }
                 cargarIdsPoseidos();
-                this.cartasCargadas = cargarCartasDesdeBD();
                 Platform.runLater(() -> filtrarLocalmente(""));
             } catch (Exception e) { e.printStackTrace(); }
         }).start();
     }
 
-    private List<Carta> cargarCartasDesdeBD() {
-    List<Carta> lista = new ArrayList<>();
-    String sql = "SELECT * FROM carta";
-    try (Connection conn = Login.getConexion(); 
-         Statement stmt = conn.createStatement(); 
-         ResultSet rs = stmt.executeQuery(sql)) {
-        
-        while (rs.next()) {
-            lista.add(new Carta(
-                rs.getString("id_carta"),
-                rs.getString("nombre"),
-                rs.getString("tipo"),
-                rs.getString("color"),
-                rs.getString("rareza"),
-                rs.getString("imagen_url"),
-                rs.getString("texto"),
-                (Integer) rs.getObject("coste"),
-                (Integer) rs.getObject("poder"),
-                (Integer) rs.getObject("contador"),
-                (String) rs.getString("subtipos"),
-                (String) rs.getString("atributo")
-            ));
-        }
-    } catch (SQLException e) { e.printStackTrace(); }
-    return lista;
-}
 
 @FXML
 private void handleFiltro() {
@@ -114,9 +123,9 @@ private void handleSearch() {
     
     String q = texto.toLowerCase().trim();
     String tipoSel = tipoFilter.getValue();
-    String costeSel = comboCoste.getValue();
-    String contadorSel = comboContador.getValue();
-    String vidaSel = comboVida.getValue();
+    String costeSel = comboCoste != null ? comboCoste.getValue() : null;
+    String contadorSel = comboContador != null ? comboContador.getValue() : null;
+    String vidaSel = comboVida != null ? comboVida.getValue() : null;
 
     // Obtener colores legales si hay un mazo seleccionado
     List<String> coloresLegales = obtenerColoresMazo(MazosController.mazoSeleccionado);
@@ -162,7 +171,8 @@ private void handleSearch() {
 
         filtradas.add(c);
     }
-    pintaCartas(filtradas);
+    listaFiltradaActual = filtradas;
+    mostrarPrimeraPagina();
 }
 
     private List<String> obtenerColoresMazo(Deck mazo) {
@@ -180,27 +190,42 @@ private void handleSearch() {
         return colores;
     }
 
-    private void pintaCartas(List<Carta> lista) {
+    private void mostrarPrimeraPagina() {
         ticketBusqueda++;
         int miTicket = ticketBusqueda;
-        Platform.runLater(() -> { if (cardGrid != null) cardGrid.getChildren().clear(); });
-        new Thread(() -> {
-            int col = 0, row = 0;
-            for (Carta carta : lista) {
-                if (miTicket != ticketBusqueda) return;
-                VBox cajaCarta = createCard(carta);
-                final int c = col, r = row;
-                Platform.runLater(() -> {
-                    if (miTicket == ticketBusqueda && cardGrid != null) cardGrid.add(cajaCarta, c, r);
-                });
-                if (++col == 4) { col = 0; row++; }
+        cargandoMas = false;
+        int fin = Math.min(PAGE_SIZE, listaFiltradaActual.size());
+        cartasMostradas = fin;
+
+        Platform.runLater(() -> {
+            if (miTicket != ticketBusqueda || cardGrid == null) return;
+            cardGrid.getChildren().clear();
+            for (int i = 0; i < fin; i++) {
+                cardGrid.add(createCard(listaFiltradaActual.get(i)), i % 4, i / 4);
             }
-        }).start();
+        });
+    }
+
+    private void cargarMasCartas() {
+        if (cargandoMas || cartasMostradas >= listaFiltradaActual.size()) return;
+        cargandoMas = true;
+        int miTicket = ticketBusqueda;
+        int desde = cartasMostradas;
+        int hasta = Math.min(desde + PAGE_SIZE, listaFiltradaActual.size());
+        cartasMostradas = hasta;
+
+        Platform.runLater(() -> {
+            if (miTicket != ticketBusqueda) { cargandoMas = false; return; }
+            for (int i = desde; i < hasta; i++) {
+                cardGrid.add(createCard(listaFiltradaActual.get(i)), i % 4, i / 4);
+            }
+            cargandoMas = false;
+        });
     }
 private VBox createCard(Carta cardData) {
     ImageView image = new ImageView();
-    try { 
-        image.setImage(new Image(cardData.getImagen_url(), 105, 145, true, true)); 
+    try {
+        image.setImage(App.getImagen(cardData.getImagen_url()));
     } catch (Exception e) {
         System.err.println("Error cargando imagen: " + e.getMessage());
     }
@@ -234,7 +259,7 @@ private VBox createCard(Carta cardData) {
                     card.setStyle("-fx-background-color: #3498db; -fx-border-color: #2980b9; -fx-border-width: 3; -fx-padding: 5; -fx-alignment: center; -fx-background-radius: 5;");
                     card.setOpacity(1.0);
                 } else {
-                    login.mostrarAlerta("Mercado", "Solo puedes seleccionar cartas que ya posees.");
+                    new Login().mostrarAlerta("Mercado", "Solo puedes seleccionar cartas que ya posees.");
                 }
             }
             return; // Importante: Salimos aquí para no abrir el popup del mazo
@@ -348,7 +373,7 @@ private void actualizarEstiloCarta(VBox card, Carta c) {
             pstmt.setString(2, idCarta);
             pstmt.executeUpdate(); idsPoseidos.add(idCarta);
 
-            login.registrarEnLog("Carta añadida a colección: " + idCarta);
+            Login.registrarEnLog("Carta añadida a colección: " + idCarta);
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
@@ -359,7 +384,7 @@ private void actualizarEstiloCarta(VBox card, Carta c) {
             pstmt.setString(2, idCarta);
             pstmt.executeUpdate(); idsPoseidos.remove(idCarta);
 
-            login.registrarEnLog("Carta eliminada de colección: " + idCarta);
+            Login.registrarEnLog("Carta eliminada de colección: " + idCarta);
         } catch (SQLException e) { e.printStackTrace(); }
     }
 
