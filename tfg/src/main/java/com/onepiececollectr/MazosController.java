@@ -234,8 +234,11 @@ public class MazosController {
     }
 
     private VBox createMiniCardConMultiplicador(Carta carta, Deck deck, int cantidad) {
+        // ── Imagen con badge de cantidad ──────────────────────────────────────
         StackPane stack = new StackPane();
-        ImageView img = new ImageView(new Image(carta.getImagen_url(), 80, 110, true, true));
+        ImageView img = new ImageView(new Image(carta.getImagen_url(), 88, 122, true, true));
+        img.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 6, 0, 0, 3);");
+        img.setCursor(javafx.scene.Cursor.HAND);
 
         img.setOnMouseClicked(e -> {
             this.cartaActual    = carta;
@@ -244,19 +247,58 @@ public class MazosController {
             abrirVentanaDetalle(carta);
         });
 
+        // Badge de cantidad (color según límite alcanzado)
+        boolean esLider  = "LIDER".equalsIgnoreCase(carta.getTipo());
+        boolean maxAlcan = (esLider && cantidad >= 1) || (!esLider && cantidad >= 4);
         Label lbl = new Label("x" + cantidad);
-        lbl.setStyle("-fx-background-color: rgba(0,0,0,0.7); -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 2 5;");
+        lbl.setStyle(
+            "-fx-background-color: " + (maxAlcan ? "#c0392b" : "#1a2c42") + ";" +
+            "-fx-text-fill: white;" +
+            "-fx-font-weight: bold;" +
+            "-fx-font-size: 11px;" +
+            "-fx-padding: 2 6;" +
+            "-fx-background-radius: 4;"
+        );
         StackPane.setAlignment(lbl, javafx.geometry.Pos.BOTTOM_RIGHT);
         stack.getChildren().addAll(img, lbl);
 
-        Button del = new Button("X");
+        // ── Nombre ────────────────────────────────────────────────────────────
+        Label nombre = new Label(carta.getNombre());
+        nombre.setMaxWidth(96);
+        nombre.setWrapText(true);
+        nombre.setStyle(
+            "-fx-font-size: 10px;" +
+            "-fx-text-fill: #c8dce8;" +
+            "-fx-alignment: center;" +
+            "-fx-text-alignment: center;"
+        );
+
+        // ── Botón eliminar ────────────────────────────────────────────────────
+        Button del = new Button("✕");
+        del.setStyle(
+            "-fx-background-color: transparent;" +
+            "-fx-text-fill: #e74c3c;" +
+            "-fx-font-size: 11px;" +
+            "-fx-cursor: hand;" +
+            "-fx-padding: 1 6;"
+        );
         del.setOnAction(e -> {
             borrarFilaCarta(deck, carta);
             cargarCartasDelMazo(deck);
             renderDeck(deck);
         });
 
-        return new VBox(5, stack, new Label(carta.getNombre()), del);
+        // ── Contenedor de la carta ────────────────────────────────────────────
+        VBox card = new VBox(4, stack, nombre, del);
+        card.setAlignment(javafx.geometry.Pos.TOP_CENTER);
+        card.setStyle(
+            "-fx-background-color: #1a2c42;" +
+            "-fx-background-radius: 8;" +
+            "-fx-padding: 8 6 6 6;" +
+            "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 4, 0, 0, 2);"
+        );
+        card.setPrefWidth(108);
+        return card;
     }
 
     private void abrirVentanaDetalle(Carta carta) {

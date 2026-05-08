@@ -45,13 +45,11 @@ public class CardDetailController {
 
     @FXML
     private void handleMas() {
-        int limite = maxCopias();
-        if (cantidadEnMazo >= limite) return;
-        if (!puedeAnadir(1)) return;
+        int deltaAjustado = calcularDeltaPermitido(1);
+        if (deltaAjustado <= 0) return;
 
-        cantidadEnMazo++;
+        cantidadEnMazo += deltaAjustado;
         guardarEnBD(cartaActual.getId_carta(), cantidadEnMazo);
-        // Si es un líder, actualiza los colores del mazo según sus colores reales
         if (esLider()) actualizarColoresMazoSegunLider(cartaActual);
         actualizarInterfaz();
     }
@@ -64,15 +62,19 @@ public class CardDetailController {
         actualizarInterfaz();
     }
 
-    /** Pone el máximo permitido de golpe (+4 para normales, +1 para líderes). */
+    /**
+     * Añade hasta el máximo permitido, respetando tanto el límite de copias
+     * de la carta (1 líderes / 4 normales) como el hueco restante en el mazo (50).
+     * Si el mazo tiene 48 cartas y pides +4, solo añade 2.
+     */
     @FXML
     private void handleMas4() {
         int limite = maxCopias();
-        if (cantidadEnMazo >= limite) return;
-        int delta = limite - cantidadEnMazo;
-        if (!puedeAnadir(delta)) return;
+        int delta = limite - cantidadEnMazo;          // cuántas copias le faltan a esta carta
+        int deltaAjustado = calcularDeltaPermitido(delta);
+        if (deltaAjustado <= 0) return;
 
-        cantidadEnMazo = limite;
+        cantidadEnMazo += deltaAjustado;
         guardarEnBD(cartaActual.getId_carta(), cantidadEnMazo);
         if (esLider()) actualizarColoresMazoSegunLider(cartaActual);
         actualizarInterfaz();
@@ -103,40 +105,51 @@ public class CardDetailController {
     }
 
     /**
-     * Comprueba si se pueden añadir 'delta' copias más respetando las reglas del TCG.
-     * Muestra alerta y devuelve false si alguna regla se incumple.
+     * Calcula cuántas copias se pueden añadir realmente, respetando:
+     *   1. Límite de copias de la carta (1 líder / 4 normal)
+     *   2. Hueco disponible en el mazo hasta MAX_CARTAS_MAZO (50)
+     *   3. Regla del líder único
+     * Devuelve 0 si no se puede añadir nada (y muestra alerta si procede).
+     * Devuelve un valor positivo recortado si hay menos hueco del pedido.
      */
-    private boolean puedeAnadir(int delta) {
-        Deck mazo = MazosController.mazoSeleccionado;
-        if (mazo == null) return true;
+    private int calcularDeltaPermitido(int deltaDeseado) {
+        if (deltaDeseado <= 0) return 0;
 
-        // Regla líder: si queremos sumar y es líder, no puede haber otro líder distinto
-        if (esLider() && delta > 0) {
+        Deck mazo = MazosController.mazoSeleccionado;
+
+        // Regla líder único
+        if (esLider() && mazo != null) {
             boolean hayLiderDistinto = mazo.getCartas().stream()
                     .anyMatch(c -> "LIDER".equalsIgnoreCase(c.getTipo())
                             && !c.getId_carta().equals(cartaActual.getId_carta()));
             if (hayLiderDistinto) {
                 login.mostrarAlerta("Regla de Líder", "El mazo ya tiene un líder. Quítalo primero para poner otro.");
-                return false;
+                return 0;
             }
         }
 
-        // Regla tamaño: no superar 50 cartas
-        if (delta > 0) {
-            int totalActual = mazo.getCartas().size();
-            // cuántas copias hay ya de esta carta en la lista (pueden ser 0)
-            long yaEnMazo = mazo.getCartas().stream()
-                    .filter(c -> c.getId_carta().equals(cartaActual.getId_carta()))
-                    .count();
-            // el delta real que se va a añadir (puede ser menor si el mazo está casi lleno)
-            int deltaReal = (int) Math.min(delta, MAX_CARTAS_MAZO - totalActual);
-            if (deltaReal <= 0) {
-                login.mostrarAlerta("Límite de Mazo", "El mazo ya tiene " + MAX_CARTAS_MAZO + " cartas.");
-                return false;
-            }
+        // Límite de copias de la carta
+        int limite = maxCopias();
+        int maxPorCopia = limite - cantidadEnMazo;
+        if (maxPorCopia <= 0) return 0;
+
+        // Hueco disponible en el mazo
+        int hueco = (mazo == null) ? Integer.MAX_VALUE : MAX_CARTAS_MAZO - mazo.getCartas().size();
+        if (hueco <= 0) {
+            login.mostrarAlerta("Límite de Mazo", "El mazo ya tiene " + MAX_CARTAS_MAZO + " cartas.");
+            return 0;
         }
 
-        return true;
+        // Delta real: el mínimo entre lo pedido, el hueco de la carta y el hueco del mazo
+        int deltaReal = Math.min(deltaDeseado, Math.min(maxPorCopia, hueco));
+
+        if (deltaReal < deltaDeseado) {
+            // Informamos sin bloquear: añadimos lo que cabe
+            login.mostrarAlerta("Límite de Mazo",
+                    "Solo quedan " + hueco + " hueco(s). Se añadirán " + deltaReal + " copia(s).");
+        }
+
+        return deltaReal;
     }
 
     // ── Vista ─────────────────────────────────────────────────────────────────
