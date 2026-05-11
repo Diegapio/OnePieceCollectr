@@ -1,0 +1,17 @@
+# Artefactos de compilación Maven
+tfg/target/classes/
+tfg/target/libs/
+tfg/target/installer/
+
+# Log de la aplicación
+One_piece.log
+*.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
