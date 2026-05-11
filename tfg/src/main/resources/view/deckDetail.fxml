@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ScrollPane?>
 
 <VBox spacing="0"
@@ -77,6 +78,19 @@
                style="-fx-font-size: 13px;
                       -fx-text-fill: #7fb3d3;
                       -fx-font-weight: bold;" />
+    </HBox>
+
+    <!-- ── ORDENACIÓN ── -->
+    <HBox alignment="CENTER" spacing="18"
+          style="-fx-padding: 2 0 8 0;">
+        <Label text="Ordenar por:"
+               style="-fx-text-fill: #4a6fa5; -fx-font-size: 11px;" />
+        <CheckBox fx:id="sortCoste"  text="Coste"  onAction="#renderOrdenado"
+                  style="-fx-text-fill: #c8dce8; -fx-font-size: 12px;" />
+        <CheckBox fx:id="sortNombre" text="Nombre" onAction="#renderOrdenado"
+                  style="-fx-text-fill: #c8dce8; -fx-font-size: 12px;" />
+        <CheckBox fx:id="sortColor"  text="Color"  onAction="#renderOrdenado"
+                  style="-fx-text-fill: #c8dce8; -fx-font-size: 12px;" />
     </HBox>
 
     <!-- ── GRID DE CARTAS con scroll ── -->

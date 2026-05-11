@@ -4,60 +4,149 @@
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="20"
+<VBox spacing="10"
       alignment="TOP_CENTER"
-      style="-fx-padding: 20;"
+      style="-fx-padding: 20; -fx-background-color: #0d1b2a;"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.onepiececollectr.ColeccionController">
 
-    <Label text="Colección"
-           style="-fx-font-size: 28; -fx-font-weight: bold;" />
-
-    <!-- Barra de búsqueda principal -->
-    <TextField fx:id="searchField"
-               promptText="Buscar nombre, ID o texto de habilidad..."
-               prefWidth="400"
-               onKeyReleased="#handleSearch"/>
-
-    <!-- SECCIÓN DE FILTROS NUEVOS -->
-    <HBox spacing="15" alignment="CENTER" style="-fx-background-color: #f4f4f4; -fx-padding: 10; -fx-background-radius: 8; -fx-border-color: #ddd; -fx-border-radius: 8;">
-        
-        <!-- Filtro por Tipo (Existente) -->
-        <VBox spacing="5">
-            <Label text="Tipo:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
-            <ComboBox fx:id="tipoFilter" prefWidth="130" promptText="Tipo de Carta" onAction="#handleFiltro" />
-        </VBox>
-
-        <!-- Filtro por Contador (Counter) -->
-        <VBox spacing="5">
-            <Label text="Counter:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
-            <ComboBox fx:id="comboContador" prefWidth="100" promptText="Counter" onAction="#handleFiltro" />
-        </VBox>
-        <VBox spacing="5">
-            <Label text="Coste:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
-            <ComboBox fx:id="comboCoste" prefWidth="100" promptText="Coste" onAction="#handleFiltro" />
-        </VBox>
-
-        <!-- Filtro por Vida -->
-        <VBox spacing="5">
-            <Label text="Poder:" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
-            <ComboBox fx:id="comboVida" prefWidth="90" promptText="Poder" onAction="#handleFiltro" />
-        </VBox>
-
-        <Separator orientation="VERTICAL" />
-
-        <!-- Checkboxes de Posesión -->
-        <VBox spacing="5" alignment="CENTER_LEFT">
-            <CheckBox fx:id="checkPoseidas" text="Poseídas" selected="true" onAction="#handleFiltro" />
-            <CheckBox fx:id="checkNoPoseidas" text="No Poseídas" selected="true" onAction="#handleFiltro" />
-        </VBox>
-        
+    <!-- ── TÍTULO + CONTADOR DE MAZO ── -->
+    <HBox alignment="CENTER_LEFT">
+        <Label text="Colección"
+               style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #e8c96d;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="lblContadorMazo"
+               visible="false" managed="false"
+               style="-fx-background-color: #1a2c42;
+                      -fx-text-fill: #e8c96d;
+                      -fx-font-weight: bold;
+                      -fx-font-size: 13px;
+                      -fx-padding: 6 16;
+                      -fx-background-radius: 20;" />
     </HBox>
 
-    <ScrollPane fx:id="scrollPane" fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background-color: transparent;">
+    <!-- ── BÚSQUEDA + TOGGLE FILTROS ── -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField"
+                   promptText="Buscar nombre, ID o texto de habilidad..."
+                   HBox.hgrow="ALWAYS"
+                   onKeyReleased="#handleSearch"
+                   style="-fx-background-color: #1a2c42;
+                          -fx-text-fill: #c8dce8;
+                          -fx-prompt-text-fill: #4a6fa5;
+                          -fx-border-color: #2e4a6b;
+                          -fx-border-radius: 6;
+                          -fx-background-radius: 6;
+                          -fx-padding: 8 12;" />
+        <Button fx:id="btnToggleFiltros"
+                text="Filtros ▼"
+                onAction="#toggleFiltros"
+                style="-fx-background-color: #1a2c42;
+                       -fx-text-fill: #7fb3d3;
+                       -fx-font-size: 12px;
+                       -fx-font-weight: bold;
+                       -fx-cursor: hand;
+                       -fx-background-radius: 6;
+                       -fx-padding: 8 16;
+                       -fx-border-color: #2e4a6b;
+                       -fx-border-radius: 6;" />
+    </HBox>
+
+    <!-- ── PANEL DE FILTROS (colapsable) ── -->
+    <VBox fx:id="panelFiltros"
+          visible="false" managed="false"
+          spacing="14"
+          style="-fx-background-color: #1a2c42;
+                 -fx-padding: 16;
+                 -fx-background-radius: 10;
+                 -fx-border-color: #2e4a6b;
+                 -fx-border-radius: 10;
+                 -fx-border-width: 1;">
+
+        <!-- Fila 1: Tipo · Set · Color · Rareza -->
+        <HBox spacing="16" alignment="CENTER_LEFT">
+
+            <VBox spacing="4">
+                <Label text="Tipo"
+                       style="-fx-text-fill: #7fb3d3; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="tipoFilter" prefWidth="130" onAction="#handleFiltro"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Colección"
+                       style="-fx-text-fill: #7fb3d3; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="comboSet" prefWidth="110" onAction="#handleFiltro"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Color"
+                       style="-fx-text-fill: #7fb3d3; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="comboColor" prefWidth="110" onAction="#handleFiltro"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Rareza"
+                       style="-fx-text-fill: #7fb3d3; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="comboRareza" prefWidth="100" onAction="#handleFiltro"/>
+            </VBox>
+
+        </HBox>
+
+        <Separator style="-fx-opacity: 0.3;"/>
+
+        <!-- Fila 2: Coste · Counter · Poder · Posesión · Limpiar -->
+        <HBox spacing="16" alignment="CENTER_LEFT">
+
+            <VBox spacing="4">
+                <Label text="Coste"
+                       style="-fx-text-fill: #7fb3d3; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="comboCoste" prefWidth="90" onAction="#handleFiltro"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Counter"
+                       style="-fx-text-fill: #7fb3d3; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="comboContador" prefWidth="90" onAction="#handleFiltro"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Poder"
+                       style="-fx-text-fill: #7fb3d3; -fx-font-size: 11px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="comboVida" prefWidth="100" onAction="#handleFiltro"/>
+            </VBox>
+
+            <Separator orientation="VERTICAL" style="-fx-opacity: 0.3;"/>
+
+            <VBox spacing="6" alignment="CENTER_LEFT">
+                <CheckBox fx:id="checkPoseidas"   text="Poseídas"    selected="true"  onAction="#handleFiltro"
+                          style="-fx-text-fill: #c8dce8; -fx-font-size: 12px;"/>
+                <CheckBox fx:id="checkNoPoseidas" text="No poseídas" selected="true"  onAction="#handleFiltro"
+                          style="-fx-text-fill: #c8dce8; -fx-font-size: 12px;"/>
+            </VBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="✕ Limpiar"
+                    onAction="#limpiarFiltros"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: #e74c3c;
+                           -fx-font-size: 11px;
+                           -fx-font-weight: bold;
+                           -fx-cursor: hand;
+                           -fx-border-color: #e74c3c;
+                           -fx-border-radius: 5;
+                           -fx-background-radius: 5;
+                           -fx-padding: 5 12;" />
+
+        </HBox>
+
+    </VBox>
+
+    <!-- ── GRID DE CARTAS ── -->
+    <ScrollPane fx:id="scrollPane" fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background: #0d1b2a; -fx-background-color: #0d1b2a;">
         <GridPane fx:id="cardGrid"
-                  hgap="20"
-                  vgap="20"
+                  hgap="20" vgap="20"
                   alignment="CENTER">
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>

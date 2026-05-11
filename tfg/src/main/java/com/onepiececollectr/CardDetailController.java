@@ -29,7 +29,6 @@ public class CardDetailController {
     // ── Límites (misma fuente de verdad que MazosController) ─────────────────
     private static final int MAX_COPIAS_LIDER  = 1;
     private static final int MAX_COPIAS_NORMAL = 4;
-    private static final int MAX_CARTAS_MAZO   = 50;
 
     public void cargarDatos(Carta carta) {
         this.cartaActual    = carta;
@@ -134,9 +133,9 @@ public class CardDetailController {
         if (maxPorCopia <= 0) return 0;
 
         // Hueco disponible en el mazo
-        int hueco = (mazo == null) ? Integer.MAX_VALUE : MAX_CARTAS_MAZO - mazo.getCartas().size();
+        int hueco = (mazo == null) ? Integer.MAX_VALUE : MazosController.MAX_CARTAS_MAZO - mazo.getCartas().size();
         if (hueco <= 0) {
-            login.mostrarAlerta("Límite de Mazo", "El mazo ya tiene " + MAX_CARTAS_MAZO + " cartas.");
+            login.mostrarAlerta("Límite de Mazo", "El mazo ya tiene " + MazosController.MAX_CARTAS_MAZO + " cartas.");
             return 0;
         }
 

@@ -4,35 +4,92 @@
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 20; -fx-background-color: #f4f4f4;" 
-      xmlns:fx="http://javafx.com/fxml" fx:controller="com.onepiececollectr.MarketController">
-    
-    <HBox spacing="20" alignment="CENTER_LEFT">
-        <Button text="← Volver" onAction="#volverAlPrincipal" style="-fx-background-color: #7f8c8d; -fx-text-fill: white;"/>
-        <Region HBox.hgrow="ALWAYS" />
-        <!-- <Label fx:id="moneyLabel" text="Dinero: 50€" style="-fx-font-size: 16; -fx-font-weight: bold;" /> -->
+<VBox spacing="16" alignment="TOP_CENTER"
+      style="-fx-background-color: #0d1b2a; -fx-padding: 24;"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.onepiececollectr.MarketController">
+
+    <!-- ── HEADER ── -->
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <Label text="Mercado de Cartas"
+               style="-fx-font-size: 28;
+                      -fx-font-weight: bold;
+                      -fx-text-fill: #e8c96d;" />
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="statusLabel" text=""
+               style="-fx-text-fill: #2ecc71; -fx-font-size: 13px;" />
     </HBox>
 
-    <Label text="Mercado de Cartas" style="-fx-font-size: 28; -fx-font-weight: bold;" />
-    <Label fx:id="statusLabel" text="" style="-fx-text-fill: #27ae60; -fx-font-size: 14;" />
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
 
-    <HBox spacing="20">
-        <!-- Parte Izquierda: El Mercado -->
-        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
-            <GridPane fx:id="marketGrid" hgap="15" vgap="15"/>
+        <!-- ── GRID DE CARTAS ── -->
+        <ScrollPane fitToWidth="true"
+                    HBox.hgrow="ALWAYS"
+                    style="-fx-background: #0d1b2a;
+                           -fx-background-color: #0d1b2a;
+                           -fx-border-color: transparent;">
+            <GridPane fx:id="marketGrid" hgap="15" vgap="15">
+                <padding><Insets top="8" right="8" bottom="8" left="8"/></padding>
+            </GridPane>
         </ScrollPane>
 
-        <!-- Parte Derecha: CardTrader Optimizer -->
-        <VBox spacing="10" prefWidth="250" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #dcdde1; -fx-border-radius: 10;">
-            <Label text="Optimizador CardTrader" style="-fx-font-weight: bold; -fx-font-size: 14;"/>
-            <Button text="➕ Seleccionar de Colección" onAction="#irASeleccionarDeColeccion" maxWidth="Infinity" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-            
-            <Label text="IDs seleccionados:"/>
-            <TextArea fx:id="txtIdsParaCardTrader" prefHeight="200" editable="false" wrapText="true" style="-fx-font-family: 'Courier New';"/>
-            
-            <Button text="🌐 Abrir CardTrader" onAction="#abrirCardTrader" maxWidth="Infinity" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
-            <!-- CORRECCIÓN AQUÍ: Se eliminó variant="danger" -->
-            <Button text="🗑 Limpiar Lista" onAction="#limpiarLista" maxWidth="Infinity" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+        <!-- ── PANEL CARDTRADER ── -->
+        <VBox spacing="12" prefWidth="260"
+              style="-fx-background-color: #1a2c42;
+                     -fx-padding: 18;
+                     -fx-background-radius: 12;
+                     -fx-border-color: #2e4a6b;
+                     -fx-border-radius: 12;
+                     -fx-border-width: 1;">
+
+            <Label text="Optimizador CardTrader"
+                   style="-fx-font-weight: bold;
+                          -fx-font-size: 14px;
+                          -fx-text-fill: #e8c96d;"/>
+
+            <Button text="➕ Seleccionar de Colección"
+                    onAction="#irASeleccionarDeColeccion"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #e8c96d;
+                           -fx-text-fill: #0d1b2a;
+                           -fx-font-weight: bold;
+                           -fx-cursor: hand;
+                           -fx-background-radius: 7;
+                           -fx-padding: 8 12;" />
+
+            <Label text="IDs seleccionados:"
+                   style="-fx-text-fill: #7fb3d3; -fx-font-size: 12px;"/>
+
+            <TextArea fx:id="txtIdsParaCardTrader"
+                      prefHeight="200"
+                      editable="false"
+                      wrapText="true"
+                      style="-fx-font-family: 'Courier New';
+                             -fx-background-color: #0d1b2a;
+                             -fx-text-fill: #c8dce8;
+                             -fx-border-color: #2e4a6b;
+                             -fx-border-radius: 6;
+                             -fx-background-radius: 6;" />
+
+            <Button text="🌐 Abrir CardTrader"
+                    onAction="#abrirCardTrader"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #2e4a6b;
+                           -fx-text-fill: #c8dce8;
+                           -fx-font-weight: bold;
+                           -fx-cursor: hand;
+                           -fx-background-radius: 7;
+                           -fx-padding: 8 12;" />
+
+            <Button text="🗑 Limpiar lista"
+                    onAction="#limpiarLista"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #7b2020;
+                           -fx-text-fill: white;
+                           -fx-cursor: hand;
+                           -fx-background-radius: 7;
+                           -fx-padding: 8 12;" />
         </VBox>
+
     </HBox>
 </VBox>

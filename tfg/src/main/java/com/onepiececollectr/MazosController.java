@@ -31,6 +31,7 @@ public class MazosController {
     @FXML private Label lblNombreMazo;
     @FXML private TextField deckNameField;
     @FXML private Label lblContador;
+    @FXML private CheckBox sortCoste, sortNombre, sortColor;
 
     @FXML private CheckBox redColor, blueColor, greenColor, yellowColor, purpleColor, blackColor;
     @FXML private Button btnMazoIA;
@@ -50,7 +51,9 @@ public class MazosController {
     // ── Límites de copias según reglas de One Piece TCG ──────────────────────
     private static final int MAX_COPIAS_LIDER    = 1;
     private static final int MAX_COPIAS_NORMAL   = 4;
-    private static final int MAX_CARTAS_MAZO     = 50;
+    public  static final int MAX_CARTAS_MAZO     = 51;
+
+    private static final List<String> TIPO_ORDEN = List.of("LIDER", "STAGE", "EVENTO", "PERSONAJE");
 
     public static List<Deck> getMisMazos() { return misMazos; }
 
@@ -233,24 +236,42 @@ public class MazosController {
         deckGrid.getChildren().clear();
 
         // Agrupa por id_carta para mostrar multiplicador visual
-        Map<String, Integer> conteo  = new LinkedHashMap<>();
-        Map<String, Carta>   unicas  = new LinkedHashMap<>();
+        Map<String, Integer> conteo = new LinkedHashMap<>();
+        Map<String, Carta>   unicas = new LinkedHashMap<>();
         for (Carta c : mazo.getCartas()) {
             conteo.put(c.getId_carta(), conteo.getOrDefault(c.getId_carta(), 0) + 1);
             unicas.put(c.getId_carta(), c);
         }
 
+        // Orden base: LIDER → STAGE → EVENTO → PERSONAJE
+        Comparator<Carta> comp = Comparator.comparingInt((Carta c) -> {
+            int idx = TIPO_ORDEN.indexOf(c.getTipo() != null ? c.getTipo().toUpperCase() : "");
+            return idx < 0 ? TIPO_ORDEN.size() : idx;
+        });
+        if (sortCoste  != null && sortCoste.isSelected())
+            comp = comp.thenComparingInt(c -> c.getCoste()    != null ? c.getCoste()    : 0);
+        if (sortNombre != null && sortNombre.isSelected())
+            comp = comp.thenComparing(c  -> c.getNombre()  != null ? c.getNombre()  : "");
+        if (sortColor  != null && sortColor.isSelected())
+            comp = comp.thenComparing(c  -> c.getColor()   != null ? c.getColor()   : "");
+
+        List<Carta> ordenadas = new ArrayList<>(unicas.values());
+        ordenadas.sort(comp);
+
         int col = 0, row = 0;
-        for (String id : conteo.keySet()) {
-            Carta carta    = unicas.get(id);
-            int   cantidad = conteo.get(id);
-            VBox cardVisual = createMiniCardConMultiplicador(carta, mazo, cantidad);
-            deckGrid.add(cardVisual, col, row);
+        for (Carta carta : ordenadas) {
+            int cantidad = conteo.get(carta.getId_carta());
+            deckGrid.add(createMiniCardConMultiplicador(carta, mazo, cantidad), col, row);
             if (++col == 4) { col = 0; row++; }
         }
 
         if (lblNombreMazo != null) lblNombreMazo.setText(mazo.getNombre_deck());
         deckInfoLabel.setText(mazo.getCartas().size() + "/" + MAX_CARTAS_MAZO + " cartas");
+    }
+
+    @FXML
+    private void renderOrdenado() {
+        if (mazoSeleccionado != null) renderDeck(mazoSeleccionado);
     }
 
     private VBox createMiniCardConMultiplicador(Carta carta, Deck deck, int cantidad) {

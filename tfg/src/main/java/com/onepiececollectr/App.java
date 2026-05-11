@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class App extends Application {
 
@@ -28,6 +29,7 @@ public class App extends Application {
 
         Scene scene = new Scene(loader.load(), 900, 600);
 
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("One Piece Collectr");
         stage.setScene(scene);
         stage.show();

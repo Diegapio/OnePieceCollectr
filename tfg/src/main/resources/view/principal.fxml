@@ -2,51 +2,85 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
 <?import java.lang.String?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.onepiececollectr.Principal">
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.onepiececollectr.Principal">
 
     <stylesheets>
         <String fx:value="@sidebar.css"/>
     </stylesheets>
 
-    <left>
-        <VBox fx:id="sidebar" spacing="6" prefWidth="190"
-              style="-fx-background-color: #6b1111; -fx-padding: 10 8 10 8;">
+    <!-- ── Layout principal ── -->
+    <BorderPane>
 
-            <Button fx:id="btnToggle" text="☰"
-                    onAction="#toggleSidebar"
-                    styleClass="sidebar-toggle"
-                    maxWidth="Infinity"/>
+        <left>
+            <VBox fx:id="sidebar" spacing="6" prefWidth="190"
+                  style="-fx-background-color: #c9a84c; -fx-padding: 10 8 10 8;">
 
-            <Separator style="-fx-opacity: 0.35;"/>
+                <Button fx:id="btnToggleInner" text="☰"
+                        onAction="#toggleSidebar"
+                        styleClass="sidebar-toggle"
+                        maxWidth="Infinity"/>
 
-            <Button fx:id="btnDashboard" text="🏠  Home"
-                    prefWidth="170" onAction="#loadDashboard"
-                    styleClass="sidebar-btn"/>
+                <Separator style="-fx-opacity: 0.35;"/>
 
-            <Button fx:id="btnColeccion" text="📦  Colección"
-                    prefWidth="170" onAction="#loadColeccion"
-                    styleClass="sidebar-btn"/>
+                <Button fx:id="btnDashboard" text="🏠  Home"
+                        prefWidth="170" onAction="#loadDashboard"
+                        styleClass="sidebar-btn"/>
 
-            <Button fx:id="btnMazos" text="🃏  Mazos"
-                    prefWidth="170" onAction="#loadMazos"
-                    styleClass="sidebar-btn"/>
+                <Button fx:id="btnColeccion" text="📦  Colección"
+                        prefWidth="170" onAction="#loadColeccion"
+                        styleClass="sidebar-btn"/>
 
-            <Button fx:id="btnMercado" text="🏪  Mercado"
-                    prefWidth="170" onAction="#loadMercado"
-                    styleClass="sidebar-btn"/>
+                <Button fx:id="btnMazos" text="🃏  Mazos"
+                        prefWidth="170" onAction="#loadMazos"
+                        styleClass="sidebar-btn"/>
 
-            <Button fx:id="btnEventos" text="📅  Eventos"
-                    prefWidth="170" onAction="#loadEventos"
-                    styleClass="sidebar-btn"/>
+                <Button fx:id="btnMercado" text="🏪  Mercado"
+                        prefWidth="170" onAction="#loadMercado"
+                        styleClass="sidebar-btn"/>
 
-        </VBox>
-    </left>
+                <Button fx:id="btnEventos" text="📅  Eventos"
+                        prefWidth="170" onAction="#loadEventos"
+                        styleClass="sidebar-btn"/>
 
-    <center>
-        <StackPane fx:id="contentArea"/>
-    </center>
+            </VBox>
+        </left>
 
-</BorderPane>
+        <center>
+            <StackPane fx:id="contentArea"/>
+        </center>
+
+    </BorderPane>
+
+    <!-- ── Botón flotante: solo visible cuando el sidebar está oculto ── -->
+    <Button fx:id="btnToggle" text="☰"
+            onAction="#toggleSidebar"
+            visible="false" managed="false"
+            StackPane.alignment="TOP_LEFT"
+            style="-fx-background-color: #e8c96d;
+                   -fx-text-fill: #0d1b2a;
+                   -fx-font-size: 16px;
+                   -fx-font-weight: bold;
+                   -fx-cursor: hand;
+                   -fx-background-radius: 8;
+                   -fx-padding: 6 10;">
+        <StackPane.margin>
+            <Insets top="8" left="8"/>
+        </StackPane.margin>
+    </Button>
+
+    <!-- ── Controles de ventana (minimizar / maximizar / cerrar) ── -->
+    <HBox fx:id="windowControls" spacing="2"
+          alignment="TOP_RIGHT"
+          maxWidth="Infinity"
+          pickOnBounds="false"
+          style="-fx-padding: 4 6 0 0;">
+        <Button fx:id="btnMinimize" text="−" onAction="#minimizeWindow"/>
+        <Button fx:id="btnMaximize" text="□" onAction="#maximizeWindow"/>
+        <Button fx:id="btnClose"    text="✕" onAction="#closeWindow"/>
+    </HBox>
+
+</StackPane>

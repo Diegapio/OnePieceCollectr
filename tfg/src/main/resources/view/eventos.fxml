@@ -1,54 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 
-<VBox spacing="15"
-      style="-fx-padding: 20;"
+<VBox spacing="14"
+      style="-fx-background-color: #0d1b2a; -fx-padding: 28;"
       xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.onepiececollectr.EventosController">
-      
 
-    <!-- 🏷️ Título -->
+    <!-- ── TÍTULO ── -->
     <Label text="Eventos"
-           style="-fx-font-size: 24; -fx-font-weight: bold;" />
-    <!-- 🔍 Buscador -->
-           <TextField fx:id="searchField" promptText="🔍 Buscar evento..." />
+           style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #e8c96d;" />
 
-    <Button text="⭐ Solo favoritos" onAction="#toggleFavorites"/>
-    <!-- 📝 Formulario -->
-    <TextField fx:id="nameField" promptText="Nombre del evento"/>
-    <DatePicker fx:id="datePicker"/>
-    <TextField fx:id="locationField" promptText="Ubicación"/>
+    <!-- ── BÚSQUEDA ── -->
+    <TextField fx:id="searchField"
+               promptText="Buscar evento..."
+               style="-fx-background-color: #1a2c42;
+                      -fx-text-fill: #c8dce8;
+                      -fx-prompt-text-fill: #4a6fa5;
+                      -fx-border-color: #2e4a6b;
+                      -fx-border-radius: 6;
+                      -fx-background-radius: 6;
+                      -fx-padding: 8 12;" />
 
-    <Button text="Guardar evento" onAction="#saveEvent"/>
-    
+    <Button text="⭐ Solo favoritos"
+            onAction="#toggleFavorites"
+            style="-fx-background-color: #2e4a6b;
+                   -fx-text-fill: #e8c96d;
+                   -fx-font-weight: bold;
+                   -fx-cursor: hand;
+                   -fx-background-radius: 7;
+                   -fx-padding: 7 16;" />
 
-    <!-- 📢 Mensajes -->
-    <Label fx:id="selectedEventLabel"
-           text=""
-           style="-fx-font-size: 14;" />
+    <!-- ── FORMULARIO ── -->
+    <VBox spacing="10"
+          style="-fx-background-color: #1a2c42;
+                 -fx-padding: 16;
+                 -fx-background-radius: 12;
+                 -fx-border-color: #2e4a6b;
+                 -fx-border-radius: 12;
+                 -fx-border-width: 1;">
 
-    <!-- 📦 Contenedor que crece -->
+        <Label text="Nuevo evento"
+               style="-fx-text-fill: #7fb3d3; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+
+        <TextField fx:id="nameField"
+                   promptText="Nombre del evento"
+                   style="-fx-background-color: #0d1b2a;
+                          -fx-text-fill: #c8dce8;
+                          -fx-prompt-text-fill: #4a6fa5;
+                          -fx-border-color: #2e4a6b;
+                          -fx-border-radius: 6;
+                          -fx-background-radius: 6;
+                          -fx-padding: 7 10;" />
+
+        <DatePicker fx:id="datePicker"
+                    style="-fx-background-color: #0d1b2a;" />
+
+        <TextField fx:id="locationField"
+                   promptText="Ubicación"
+                   style="-fx-background-color: #0d1b2a;
+                          -fx-text-fill: #c8dce8;
+                          -fx-prompt-text-fill: #4a6fa5;
+                          -fx-border-color: #2e4a6b;
+                          -fx-border-radius: 6;
+                          -fx-background-radius: 6;
+                          -fx-padding: 7 10;" />
+
+        <Button text="💾 Guardar evento"
+                onAction="#saveEvent"
+                style="-fx-background-color: #e8c96d;
+                       -fx-text-fill: #0d1b2a;
+                       -fx-font-weight: bold;
+                       -fx-cursor: hand;
+                       -fx-background-radius: 7;
+                       -fx-padding: 8 18;" />
+    </VBox>
+
+    <Label fx:id="selectedEventLabel" text=""
+           style="-fx-font-size: 13; -fx-text-fill: #2ecc71;" />
+
+    <!-- ── LISTA DE EVENTOS ── -->
     <VBox VBox.vgrow="ALWAYS">
-
-        <!-- 📜 Scroll dinámico -->
         <ScrollPane fitToWidth="true"
                     hbarPolicy="NEVER"
                     vbarPolicy="AS_NEEDED"
-                    VBox.vgrow="ALWAYS">
-
+                    VBox.vgrow="ALWAYS"
+                    style="-fx-background: #0d1b2a;
+                           -fx-background-color: #0d1b2a;
+                           -fx-border-color: transparent;">
             <content>
                 <VBox fx:id="eventList" spacing="10"/>
             </content>
-
         </ScrollPane>
-
     </VBox>
 
 </VBox>
