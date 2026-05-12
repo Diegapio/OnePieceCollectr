@@ -409,43 +409,64 @@ public class ColeccionController {
         actualizarEstiloCarta(card, cardData);
 
         card.setOnMouseClicked(event -> {
-            // ── Modo selección mercado ────────────────────────────────────
-            if (MarketController.modoSeleccionMercado) {
-                if (MarketController.listaParaOptimizar.contains(cardData)) {
-                    MarketController.listaParaOptimizar.remove(cardData);
-                    actualizarEstiloCarta(card, cardData);
-                } else {
-                    if (event.getButton() == MouseButton.SECONDARY) {
-                        borrarDeMiColeccion(cardData.getId_carta());
-                        actualizarEstiloCarta(card, cardData);
-                    } else {
-                        Deck mazo = MazosController.mazoSeleccionado;
-                        if (mazo != null) {
-                            if (!puedeAnadirAlMazo(cardData, mazo)) return;
-                            abrirSelectorDeCopias(cardData);
-                        } else {
-                            registrarEnColeccion(cardData.getId_carta());
-                            actualizarEstiloCarta(card, cardData);
-                        }
-                    }
-                }
+
+    // ─────────────────────────────────────────────
+    // MODO SELECCIÓN MERCADO
+    // ─────────────────────────────────────────────
+    if (MarketController.modoSeleccionMercado) {
+
+        /*// Solo se pueden seleccionar cartas poseídas
+        if (!idsPoseidos.contains(cardData.getId_carta())) {
+            return;
+        }
+*/
+        // Toggle selección
+        if (MarketController.listaParaOptimizar.contains(cardData)) {
+
+            MarketController.listaParaOptimizar.remove(cardData);
+
+        } else {
+
+            MarketController.listaParaOptimizar.add(cardData);
+        }
+
+        // Actualizar borde visual
+        actualizarEstiloCarta(card, cardData);
+
+        // Actualizar textarea del market
+        MarketController.actualizarListaTexto();
+
+        return;
+    }
+
+    // ─────────────────────────────────────────────
+    // LÓGICA NORMAL
+    // ─────────────────────────────────────────────
+
+    if (event.getButton() == MouseButton.SECONDARY) {
+
+        borrarDeMiColeccion(cardData.getId_carta());
+
+        actualizarEstiloCarta(card, cardData);
+
+    } else {
+
+        if (MazosController.mazoSeleccionado != null) {
+
+            if (!puedeAnadirAlMazo(cardData, MazosController.mazoSeleccionado)) {
                 return;
             }
 
-            // ── Lógica normal ────────────────────────────────────────────
-            if (event.getButton() == MouseButton.SECONDARY) {
-                borrarDeMiColeccion(cardData.getId_carta());
-                actualizarEstiloCarta(card, cardData);
-            } else {
-                if (MazosController.mazoSeleccionado != null) {
-                    if (!puedeAnadirAlMazo(cardData, MazosController.mazoSeleccionado)) return;
-                    abrirSelectorDeCopias(cardData);
-                } else {
-                    registrarEnColeccion(cardData.getId_carta());
-                    actualizarEstiloCarta(card, cardData);
-                }
-            }
-        });
+            abrirSelectorDeCopias(cardData);
+
+        } else {
+
+            registrarEnColeccion(cardData.getId_carta());
+
+            actualizarEstiloCarta(card, cardData);
+        }
+    }
+});
 
         return card;
     }
@@ -514,11 +535,76 @@ public class ColeccionController {
 
         final String BASE = "-fx-padding: 5; -fx-alignment: center; -fx-background-radius: 8; -fx-border-radius: 8;";
 
-        // Seleccionada en modo mercado
-        if (MarketController.modoSeleccionMercado && MarketController.listaParaOptimizar.contains(c)) {
-            card.setStyle(BASE + "-fx-background-color: #1a3a5c; -fx-border-color: #3498db; -fx-border-width: 3;");
-            card.setOpacity(1.0);
-        }
+        if (MarketController.modoSeleccionMercado) {
+
+    boolean seleccionada =
+            MarketController.listaParaOptimizar.contains(c);
+
+    boolean poseida =
+            idsPoseidos.contains(c.getId_carta());
+
+    // ─────────────────────────────
+    // SELECCIONADA Y POSEÍDA
+    // ─────────────────────────────
+    if (seleccionada && poseida) {
+
+        card.setStyle(
+                BASE +
+                "-fx-background-color: #1a3a5c;" +
+                "-fx-border-color: #3498db;" +
+                "-fx-border-width: 3;"
+        );
+
+        card.setOpacity(1.0);
+    }
+
+    // ─────────────────────────────
+    // SELECCIONADA Y NO POSEÍDA
+    // ─────────────────────────────
+    else if (seleccionada) {
+
+        card.setStyle(
+                BASE +
+                "-fx-background-color: #4a2c12;" +
+                "-fx-border-color: #f39c12;" +
+                "-fx-border-width: 3;"
+        );
+
+        card.setOpacity(1.0);
+    }
+
+    // ─────────────────────────────
+    // POSEÍDA
+    // ─────────────────────────────
+    else if (poseida) {
+
+        card.setStyle(
+                BASE +
+                "-fx-background-color: #1a2c42;" +
+                "-fx-border-color: #5dade2;" +
+                "-fx-border-width: 2;"
+        );
+
+        card.setOpacity(1.0);
+    }
+
+    // ─────────────────────────────
+    // NO POSEÍDA
+    // ─────────────────────────────
+    else {
+
+        card.setStyle(
+                BASE +
+                "-fx-background-color: #0d1b2a;" +
+                "-fx-border-color: #2e4a6b;" +
+                "-fx-border-width: 1;"
+        );
+
+        card.setOpacity(0.45);
+    }
+
+    return;
+}
         // Líder bloqueado (hay otro líder distinto en el mazo)
         else if (esLider && hayLiderDistinto) {
             card.setStyle(BASE + "-fx-background-color: #2a1215; -fx-border-color: #c0392b; -fx-border-width: 3;");

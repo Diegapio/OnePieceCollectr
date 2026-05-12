@@ -1,122 +1,214 @@
 package com.onepiececollectr;
 
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.awt.Desktop;
 import java.net.URI;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class MarketController {
 
-    @FXML private GridPane marketGrid;
     @FXML private Label statusLabel;
     @FXML private Label moneyLabel;
     @FXML private TextArea txtIdsParaCardTrader;
 
-    // Variables estáticas para que persistan al cambiar de vista
     public static boolean modoSeleccionMercado = false;
+
     public static List<Carta> listaParaOptimizar = new ArrayList<>();
-    
-    private List<Mercado> publicaciones = new ArrayList<>();
+
+    public static Set<String> idsPoseidos = new HashSet<>();
+
+    public static MarketController instancia;
 
     @FXML
     public void initialize() {
-        //moneyLabel.setText("💰 Tu Saldo: 50.00 €");
 
-        /*  Simulación de datos
-        if (!App.todasLasCartas.isEmpty()) {
-            Carta muestra = App.todasLasCartas.get(0);
-            publicaciones.add(new Mercado(1, muestra, Login.sesionUsuario, 15.50, "Disponible"));
-        }
+        instancia = this;
 
-        //renderMarket();
         actualizarListaTexto();
-    */
-        }
 
-   /*  private void renderMarket() {
-        marketGrid.getChildren().clear();
-        int column = 0, row = 0;
+        new Thread(() -> {
+            cargarIdsPoseidos();
 
-        for (Mercado item : publicaciones) {
-            VBox cardUI = createMarketCard(item);
-            marketGrid.add(cardUI, column, row);
-            if (++column == 4) { column = 0; row++; }
-        }
+            Platform.runLater(() -> statusLabel.setText(
+                    listaParaOptimizar.isEmpty()
+                            ? "Selecciona cartas de tu colección para optimizar."
+                            : listaParaOptimizar.size() + " carta(s) seleccionada(s)."
+            ));
+        }).start();
     }
-
-    private VBox createMarketCard(Mercado item) {
-        Carta c = item.getCarta();
-        ImageView image = new ImageView(new Image(c.getImagen_url(), 100, 120, true, true));
-        
-        Label name = new Label(c.getNombre());
-        name.setStyle("-fx-font-weight: bold;");
-        
-        Label price = new Label("💰 " + item.getPrecioFormateado());
-        price.setStyle("-fx-text-fill: #2ecc71; -fx-font-size: 14;");
-        
-        Button buyButton = new Button("Comprar");
-        buyButton.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-cursor: hand;");
-        buyButton.setOnAction(e -> statusLabel.setText("✅ Solicitud enviada por: " + c.getNombre()));
-
-        VBox card = new VBox(8, image, name, price, buyButton);
-        card.setStyle("-fx-background-color: white; -fx-border-color: #bdc3c7; -fx-border-radius: 8; -fx-padding: 10; -fx-alignment: center;");
-        return card;
-    }
-        */
 
     @FXML
     private void irASeleccionarDeColeccion() {
+
         modoSeleccionMercado = true;
+
+        Login.registrarEnLog("MERCADO: Usuario entró a seleccionar cartas.");
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/coleccion.fxml"));
             Principal.mostrarVista(loader.load());
-        } catch (Exception e) { e.printStackTrace(); }
-    }
 
-    private void actualizarListaTexto() {
-        if (txtIdsParaCardTrader != null) {
-            String ids = listaParaOptimizar.stream()
-                            .map(Carta::getId_carta)
-                            .collect(Collectors.joining("\n"));
-            txtIdsParaCardTrader.setText(ids);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            Login.registrarEnLog(
+                    "ERROR MERCADO: No se pudo cargar coleccion.fxml - "
+                            + e.getMessage()
+            );
         }
     }
 
     @FXML
     private void abrirCardTrader() {
+
+        if (listaParaOptimizar.isEmpty()) {
+            statusLabel.setText("Añade cartas primero.");
+            return;
+        }
+
         try {
-            String url = "https://www.cardtrader.com/wishlists/new";
-            Desktop.getDesktop().browse(new URI(url));
+
+            Desktop.getDesktop().browse(
+                    new URI("https://www.cardtrader.com/wishlists/new")
+            );
+
             statusLabel.setText("¡Copia los IDs y pégalos en CardTrader!");
-        } catch (Exception e) { e.printStackTrace(); }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void limpiarLista() {
+
         listaParaOptimizar.clear();
+
         actualizarListaTexto();
-        statusLabel.setText("Lista de optimización vaciada.");
+
+        statusLabel.setText("Lista vaciada.");
     }
 
     @FXML
-    private void volverAlPrincipal(ActionEvent event) {
-        modoSeleccionMercado = false; 
+    private void volverAlPrincipal() {
+
+        modoSeleccionMercado = false;
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+
+            FXMLLoader loader =
+                    new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
+
             Principal.mostrarVista(loader.load());
-        } catch (Exception e) { e.printStackTrace(); }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void actualizarListaTexto() {
+
+    if (instancia == null) return;
+
+    if (instancia.txtIdsParaCardTrader == null) return;
+
+    StringBuilder sb = new StringBuilder();
+
+    List<Carta> poseidas = listaParaOptimizar.stream()
+            .filter(c -> idsPoseidos.contains(c.getId_carta()))
+            .toList();
+
+    List<Carta> noPoseidas = listaParaOptimizar.stream()
+            .filter(c -> !idsPoseidos.contains(c.getId_carta()))
+            .toList();
+
+    // ─────────────────────────────
+    // POSEÍDAS
+    // ─────────────────────────────
+
+    sb.append("===== IDS POSEÍDOS =====\n\n");
+
+    if (poseidas.isEmpty()) {
+
+        sb.append("Ninguna carta poseída seleccionada.\n");
+
+    } else {
+
+        for (Carta c : poseidas) {
+
+            sb.append(c.getId_carta())
+                    .append(" - ")
+                    .append(c.getNombre())
+                    .append("\n");
+        }
+    }
+
+    // ─────────────────────────────
+    // NO POSEÍDAS
+    // ─────────────────────────────
+
+    sb.append("\n\n===== IDS NO POSEÍDOS =====\n\n");
+
+    if (noPoseidas.isEmpty()) {
+
+        sb.append("Ninguna carta no poseída seleccionada.\n");
+
+    } else {
+
+        for (Carta c : noPoseidas) {
+
+            sb.append(c.getId_carta())
+                    .append(" - ")
+                    .append(c.getNombre())
+                    .append("\n");
+        }
+    }
+
+    instancia.txtIdsParaCardTrader.setText(sb.toString());
+
+    instancia.statusLabel.setText(
+            listaParaOptimizar.size()
+                    + " carta(s) seleccionada(s)."
+    );
+}
+
+    private void cargarIdsPoseidos() {
+
+        idsPoseidos.clear();
+
+        String sql = "SELECT id_carta FROM coleccion WHERE id_usuario = ?";
+
+        try (
+                Connection conn = Login.getConexion();
+                PreparedStatement pstmt = conn.prepareStatement(sql)
+        ) {
+
+            pstmt.setInt(1, Login.sesionUsuario.getId());
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                idsPoseidos.add(rs.getString("id_carta"));
+            }
+
+        } catch (SQLException e) {
+
+            Login.registrarEnLog(
+                    "ERROR MERCADO: " + e.getMessage()
+            );
+        }
     }
 }
