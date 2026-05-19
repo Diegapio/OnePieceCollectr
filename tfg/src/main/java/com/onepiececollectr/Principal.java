@@ -20,6 +20,9 @@ public class Principal {
     @FXML private Button btnDashboard, btnColeccion, btnMazos, btnMercado, btnEventos;
     @FXML private Button btnMinimize, btnMaximize, btnClose;
     @FXML private HBox windowControls;
+    MazosController mazos = new MazosController();
+
+    MarketController mercado = new MarketController();
 
     private static StackPane staticContentArea;
     private final Map<String, Parent> vistaCache = new HashMap<>();
@@ -148,6 +151,8 @@ public class Principal {
         loadVista("/view/coleccion.fxml");
         if (ColeccionController.instancia != null)
             ColeccionController.instancia.refrescar();
+        mercado.modoSeleccionMercado = false;
+        mazos.mazoSeleccionado = null;
     }
 
     @FXML
