@@ -95,8 +95,8 @@
                     hbarPolicy="NEVER"
                     vbarPolicy="AS_NEEDED"
                     VBox.vgrow="ALWAYS"
-                    style="-fx-background: #FFFFFF;
-                           -fx-background-color: #F54927;
+                    style="-fx-background: #0d1b2a;
+                           -fx-background-color: #0d1b2a;
                            -fx-border-color: transparent;">
             <content>
                 <VBox fx:id="eventList" spacing="10"/>
