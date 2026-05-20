@@ -7,6 +7,5 @@ module com.onepiececollectr {
     requires java.desktop;
     requires java.net.http;
     opens com.onepiececollectr to javafx.fxml;
-    
     exports com.onepiececollectr;
 }

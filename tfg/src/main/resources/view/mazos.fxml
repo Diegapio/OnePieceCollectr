@@ -2,61 +2,80 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.control.*?>
 
-<VBox spacing="20"
+<VBox spacing="16"
       alignment="TOP_CENTER"
-      style="-fx-padding: 20;"
+      style="-fx-background-color: #0d1b2a; -fx-padding: 28;"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.onepiececollectr.MazosController">
-      
 
-    <Label text="Mazos"
-           style="-fx-font-size: 28; -fx-font-weight: bold;" />
+    <!-- ── TÍTULO ── -->
+    <Label text="Mis Mazos"
+           style="-fx-font-size: 28;
+                  -fx-font-weight: bold;
+                  -fx-text-fill: #e8c96d;" />
 
-    <!--   nombre del mazo -->
-    <TextField fx:id="deckNameField"
-               promptText="Nombre del mazo"/>
+    <!-- ── FORMULARIO DE CREACIÓN ── -->
+    <VBox spacing="12"
+          style="-fx-background-color: #1a2c42;
+                 -fx-padding: 18;
+                 -fx-background-radius: 12;
+                 -fx-border-color: #2e4a6b;
+                 -fx-border-radius: 12;
+                 -fx-border-width: 1;">
 
-    <Button text="➕ Crear mazo"
-            onAction="#createDeck"
-            style="-fx-font-size: 14; -fx-background-color: #4CAF50; -fx-text-fill: white;" />
+        <Label text="Crear nuevo mazo"
+               style="-fx-text-fill: #7fb3d3;
+                      -fx-font-size: 13px;
+                      -fx-font-weight: bold;" />
 
-    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="deckNameField"
+                   promptText="Nombre del mazo"
+                   style="-fx-background-color: #0d1b2a;
+                          -fx-text-fill: #c8dce8;
+                          -fx-prompt-text-fill: #4a6fa5;
+                          -fx-border-color: #2e4a6b;
+                          -fx-border-radius: 6;
+                          -fx-background-radius: 6;
+                          -fx-padding: 8 12;" />
 
-        <CheckBox fx:id="redColor" text="Rojo"
-                  style="-fx-text-fill: red;"/>
+        <!-- Selección de colores -->
+        <Label text="Color del mazo (máx. 2):"
+               style="-fx-text-fill: #7fb3d3; -fx-font-size: 12px;" />
 
-        <CheckBox fx:id="blueColor" text="Azul"
-                  style="-fx-text-fill: blue;"/>
+        <HBox spacing="14" alignment="CENTER_LEFT">
+            <CheckBox fx:id="redColor"    text="🔴 Rojo"   style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;"/>
+            <CheckBox fx:id="blueColor"   text="🔵 Azul"   style="-fx-text-fill: #5dade2; -fx-font-weight: bold;"/>
+            <CheckBox fx:id="greenColor"  text="🟢 Verde"  style="-fx-text-fill: #2ecc71; -fx-font-weight: bold;"/>
+            <CheckBox fx:id="yellowColor" text="🟡 Amarillo" style="-fx-text-fill: #f1c40f; -fx-font-weight: bold;"/>
+            <CheckBox fx:id="purpleColor" text="🟣 Morado" style="-fx-text-fill: #9b59b6; -fx-font-weight: bold;"/>
+            <CheckBox fx:id="blackColor"  text="⚫ Negro"  style="-fx-text-fill: #95a5a6; -fx-font-weight: bold;"/>
+        </HBox>
 
-        <CheckBox fx:id="greenColor" text="Verde"
-                  style="-fx-text-fill: green;"/>
+        <Button text="➕ Crear mazo"
+                onAction="#createDeck"
+                style="-fx-background-color: #e8c96d;
+                       -fx-text-fill: #0d1b2a;
+                       -fx-font-weight: bold;
+                       -fx-font-size: 13px;
+                       -fx-cursor: hand;
+                       -fx-background-radius: 7;
+                       -fx-padding: 9 20;" />
+    </VBox>
 
-        <CheckBox fx:id="yellowColor" text="Amarillo"
-                  style="-fx-text-fill: goldenrod;"/>
+    <!-- ── LISTA DE MAZOS ── -->
+    <VBox fx:id="deckList" spacing="10" alignment="TOP_CENTER"/>
 
-        <!-- NUEVOS -->
-        <CheckBox fx:id="purpleColor" text="Morado"
-                  style="-fx-text-fill: purple;"/>
-
-        <CheckBox fx:id="blackColor" text="Negro"
-                  style="-fx-text-fill: black;"/>
-
-    </HBox>
-
-    <VBox fx:id="deckList"
-          spacing="10"
-          alignment="CENTER"/>
-
-    <Button text="Exportar Lista (PDF)"
+    <!-- ── EXPORTAR ── -->
+    <Button text="📄 Exportar lista"
             onAction="#exportarMazoPDF"
-            style="-fx-background-color: #2ecc71; -fx-text-fill: white;" />
-
-    <!-- <Button fx:id="btnMazoIA" 
-            text="Consultar a la IA" 
-            onAction="#irAGeneradorIA" 
-            style="-fx-background-color: #f1c40f; -fx-text-fill: black;" />
- -->
+            style="-fx-background-color: #2e4a6b;
+                   -fx-text-fill: #c8dce8;
+                   -fx-font-size: 12px;
+                   -fx-cursor: hand;
+                   -fx-background-radius: 7;
+                   -fx-padding: 7 16;" />
 
 </VBox>

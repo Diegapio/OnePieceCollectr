@@ -17,7 +17,7 @@
 
     <!-- Capa 3: Formulario -->
     <VBox alignment="CENTER">
-        <VBox alignment="CENTER" spacing="25" maxWidth="400" prefWidth="400" 
+        <VBox alignment="CENTER" spacing="25" maxWidth="400" prefWidth="400"
               style="
                 -fx-background-color: #f5f5dc; /* Color Beige/Crema */
                 -fx-background-radius: 20; 
@@ -44,8 +44,9 @@
                             -fx-border-radius: 10;
                            " />
                 
-                <PasswordField fx:id="passwordField" promptText="Contraseña" 
-                               prefHeight="45" 
+                <PasswordField fx:id="passwordField" promptText="Contraseña"
+                               onAction="#IniciarSesion"
+                               prefHeight="45"
                                style="
                                 -fx-background-color: #fffaf0; 
                                 -fx-background-radius: 10; 
@@ -70,4 +71,15 @@
                     style="-fx-background-color: transparent; -fx-text-fill: #5d4037; -fx-underline: true; -fx-cursor: hand;" />
         </VBox>
     </VBox>
+
+    <!-- Capa 4: Controles de ventana (encima de todo para recibir clics) -->
+    <HBox fx:id="winControls" spacing="2"
+          alignment="TOP_RIGHT"
+          maxWidth="Infinity"
+          pickOnBounds="false"
+          style="-fx-padding: 4 6 0 0;">
+        <Button fx:id="btnMin" text="−" onAction="#minimizeWindow"/>
+        <Button fx:id="btnMax" text="□" onAction="#maximizeWindow"/>
+        <Button fx:id="btnCls" text="✕" onAction="#closeWindow"/>
+    </HBox>
 </StackPane>

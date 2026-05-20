@@ -16,6 +16,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,14 +26,17 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 public class Login implements Initializable {
-    @FXML
-    private TextField usernameField;
-    @FXML
-    private PasswordField passwordField;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
     @FXML private ImageView imgFondo;
+    @FXML private Button btnMin, btnMax, btnCls;
+    @FXML private HBox winControls;
+
+    private double dragOffsetX, dragOffsetY;
 
     private static Connection conexion;
     private static final String URL_BASEDATOS = "jdbc:postgresql://aws-1-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
@@ -43,8 +47,37 @@ public class Login implements Initializable {
     public static Usuario sesionUsuario; // Variable para mantener el usuario logueado
 
    @FXML
-public void initialize( URL location, ResourceBundle resources) {
+public void initialize(URL location, ResourceBundle resources) {
     conectar();
+
+    // Estilos y drag de controles de ventana
+    String winBtn =
+        "-fx-background-color: transparent;" +
+        "-fx-text-fill: #7fb3d3;" +
+        "-fx-font-size: 15px;" +
+        "-fx-font-weight: bold;" +
+        "-fx-cursor: hand;" +
+        "-fx-padding: 2 7;" +
+        "-fx-background-radius: 5;";
+    for (Button b : new Button[]{btnMin, btnMax}) {
+        b.setStyle(winBtn);
+        b.setOnMouseEntered(e -> b.setStyle(winBtn + "-fx-background-color: rgba(26,44,66,0.7);"));
+        b.setOnMouseExited(e -> b.setStyle(winBtn));
+    }
+    btnCls.setStyle(winBtn);
+    btnCls.setOnMouseEntered(e -> btnCls.setStyle(winBtn + "-fx-background-color: #c0392b; -fx-text-fill: white;"));
+    btnCls.setOnMouseExited(e -> btnCls.setStyle(winBtn));
+    winControls.setOnMousePressed(e -> {
+        Stage stage = (Stage) winControls.getScene().getWindow();
+        dragOffsetX = e.getScreenX() - stage.getX();
+        dragOffsetY = e.getScreenY() - stage.getY();
+    });
+    winControls.setOnMouseDragged(e -> {
+        Stage stage = (Stage) winControls.getScene().getWindow();
+        stage.setX(e.getScreenX() - dragOffsetX);
+        stage.setY(e.getScreenY() - dragOffsetY);
+    });
+
     try {
         // Intentamos cargar el recurso
         var resource = getClass().getResource("/cards/background.png");
@@ -189,6 +222,19 @@ public void initialize( URL location, ResourceBundle resources) {
         } catch (Exception e) {
             System.err.println("No se pudo escribir en el log.");
         }
+    }
+
+    @FXML private void minimizeWindow() {
+        ((Stage) usernameField.getScene().getWindow()).setIconified(true);
+    }
+
+    @FXML private void maximizeWindow() {
+        Stage stage = (Stage) usernameField.getScene().getWindow();
+        stage.setMaximized(!stage.isMaximized());
+    }
+
+    @FXML private void closeWindow() {
+        ((Stage) usernameField.getScene().getWindow()).close();
     }
 
     public void iraPanrallaPrincipal() {
