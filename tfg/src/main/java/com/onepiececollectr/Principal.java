@@ -121,20 +121,12 @@ public class Principal {
         btnToggle.setManaged(!sidebarExpanded);
     }
 
-    /**
-     * Dashboard: siempre recarga el FXML para que initialize() cree una
-     * instancia fresca, y a continuación llama a refrescar() para traer
-     * datos actualizados de la BD en background.
-     * No se cachea para que los datos sean siempre actuales.
-     */
     @FXML
     private void loadDashboard() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashboard.fxml"));
             Parent view = loader.load();
             staticContentArea.getChildren().setAll(view);
-            // initialize() ya llama a refrescar(), pero lo llamamos explícitamente
-            // por si se navega al dashboard desde otro sitio sin recargar el FXML
             DashboardController ctrl = loader.getController();
             if (ctrl != null) ctrl.refrescar();
         } catch (Exception e) {

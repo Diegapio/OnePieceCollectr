@@ -22,7 +22,6 @@ public class DashboardController {
     @FXML private ProgressBar progressBar;
     @FXML private Label       nextEventLabel;
 
-    // instancia estática para que Principal pueda refrescar sin guardar una referencia manual
     public static DashboardController instancia;
 
     @FXML
@@ -33,29 +32,54 @@ public class DashboardController {
         }
     }
 
-    /**
-     * Carga los datos en un hilo de fondo y actualiza la UI en el hilo JavaFX.
-     * Se puede llamar desde Principal cada vez que el usuario navega al dashboard.
-     */
     public void refrescar() {
         int idUsuario = Login.sesionUsuario.getId();
+        int totalCartasApp = App.todasLasCartas.size();
 
         new Thread(() -> {
-            // ── Cartas poseídas (BD) ───────────────────────────────────────
             int cartasPoseidas = 0;
-            int totalCartasApp = App.todasLasCartas.size();
+            int numMazos = 0;
+            int numEventos = 0;
+            String nombreProximo = null;
+            String fechaProximo = null;
 
-            String sql = "SELECT COUNT(DISTINCT id_carta) FROM coleccion WHERE id_usuario = ?";
             try (Connection conn = Login.getConexion()) {
 
-                // Verificar que la conexión sigue activa
-                if (conn == null || conn.isClosed() || !conn.isValid(2)) {
-                    Login.registrarEnLog("Conexión inválida al cargar dashboard");
-                } else {
-                    try (PreparedStatement ps = conn.prepareStatement(sql)) {
-                        ps.setInt(1, idUsuario);
-                        ResultSet rs = ps.executeQuery();
-                        if (rs.next()) cartasPoseidas = rs.getInt(1);
+                // 1. Cartas poseídas
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "SELECT COUNT(DISTINCT id_carta) FROM coleccion WHERE id_usuario = ?")) {
+                    ps.setInt(1, idUsuario);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()) cartasPoseidas = rs.getInt(1);
+                }
+
+                // 2. Mazos
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "SELECT COUNT(*) FROM deck WHERE id_usuario = ?")) {
+                    ps.setInt(1, idUsuario);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()) numMazos = rs.getInt(1);
+                }
+
+                // 3. Eventos futuros (hoy inclusive)
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "SELECT COUNT(*) FROM eventos WHERE id_usuario = ? " +
+                        "AND TO_DATE(fecha, 'DD/MM/YYYY') >= CURRENT_DATE")) {
+                    ps.setInt(1, idUsuario);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()) numEventos = rs.getInt(1);
+                }
+
+                // 4. Próximo evento
+                try (PreparedStatement ps = conn.prepareStatement(
+                        "SELECT nombre, fecha FROM eventos WHERE id_usuario = ? " +
+                        "AND TO_DATE(fecha, 'DD/MM/YYYY') >= CURRENT_DATE " +
+                        "ORDER BY TO_DATE(fecha, 'DD/MM/YYYY') ASC LIMIT 1")) {
+                    ps.setInt(1, idUsuario);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next()) {
+                        nombreProximo = rs.getString("nombre");
+                        fechaProximo  = rs.getString("fecha");
                     }
                 }
 
@@ -64,31 +88,28 @@ public class DashboardController {
                 Login.registrarEnLog("ERROR DASHBOARD: " + e.getMessage());
             }
 
-            // ── Mazos y eventos (en memoria, rápidos) ──────────────────────
-            int numMazos   = MazosController.getMisMazos().size();
-            int numEventos = EventosController.getListaEventos().size();
+            final int    cp       = cartasPoseidas;
+            final int    mazos    = numMazos;
+            final int    eventos  = numEventos;
+            final double frac     = totalCartasApp > 0 ? (double) cp / totalCartasApp : 0.0;
+            final String pctTxt   = String.format("%.2f%%", frac * 100);
+            final String proxNom  = nombreProximo;
+            final String proxFech = fechaProximo;
 
-            // Variables finales para el lambda
-            final int    cp     = cartasPoseidas;
-            final double frac   = totalCartasApp > 0 ? (double) cp / totalCartasApp : 0.0;
-            final String pctTxt = String.format("%.2f%%", frac * 100);
-            final Event  proximo = numEventos > 0 ? EventosController.getListaEventos().get(0) : null;
-
-            // ── Actualizar UI en el hilo JavaFX ────────────────────────────
             Platform.runLater(() -> {
-                if (cardsCount     != null) cardsCount.setText(String.valueOf(cp));
-                if (decksCount     != null) decksCount.setText(String.valueOf(numMazos));
-                if (eventsCount    != null) eventsCount.setText(String.valueOf(numEventos));
-                if (progressPercent!= null) progressPercent.setText(pctTxt);
-                if (progressBar    != null) progressBar.setProgress(frac);
+                if (cardsCount      != null) cardsCount.setText(String.valueOf(cp));
+                if (decksCount      != null) decksCount.setText(String.valueOf(mazos));
+                if (eventsCount     != null) eventsCount.setText(String.valueOf(eventos));
+                if (progressPercent != null) progressPercent.setText(pctTxt);
+                if (progressBar     != null) progressBar.setProgress(frac);
 
                 if (nextEventLabel != null) {
-                    if (proximo != null) {
-                        nextEventLabel.setText(proximo.getName() + " [" + proximo.getDate() + "]");
-                        nextEventLabel.setStyle("-fx-font-size:16;-fx-text-fill:#2c3e50;-fx-font-weight:bold;");
+                    if (proxNom != null) {
+                        nextEventLabel.setText(proxNom + " [" + proxFech + "]");
+                        nextEventLabel.setStyle("-fx-font-size:16;-fx-text-fill:#c8dce8;-fx-font-weight:bold;");
                     } else {
                         nextEventLabel.setText("Sin eventos programados");
-                        nextEventLabel.setStyle("-fx-font-size:14;-fx-text-fill:#666;");
+                        nextEventLabel.setStyle("-fx-font-size:14;-fx-text-fill:#4a6fa5;");
                     }
                 }
             });
@@ -96,7 +117,6 @@ public class DashboardController {
         }, "dashboard-refresh").start();
     }
 
-    // ── Métodos de hover (FXML, se mantienen vacíos o se eliminan del FXML) ──
     @FXML private void onCardHover() {}
     @FXML private void onCardExit()  {}
 }

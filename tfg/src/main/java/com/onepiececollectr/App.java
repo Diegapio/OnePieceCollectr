@@ -28,6 +28,7 @@ public class App extends Application {
 
         Scene scene = new Scene(loader.load(), 900, 600);
 
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/Icon.png")));
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("One Piece Collectr");
         stage.setScene(scene);

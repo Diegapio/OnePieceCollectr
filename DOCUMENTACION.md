@@ -21,6 +21,7 @@
 9. [Sistema de estilos (CSS)](#9-sistema-de-estilos-css)
 10. [Reglas de negocio del TCG](#10-reglas-de-negocio-del-tcg)
 11. [Flujos principales de usuario](#11-flujos-principales-de-usuario)
+12. [Mini-proyecto: Importador de Cartas](#12-mini-proyecto-importador-de-cartas)
 
 ---
 
@@ -692,3 +693,247 @@ EventosController (eventos.fxml)
       → listaEventos.add(new Event())
       → renderEvents() → createEventCard() → tarjeta con color según urgencia
 ```
+
+---
+
+## 12. Mini-proyecto: Importador de Cartas
+
+### 12.1 Propósito y contexto
+
+La base de datos de la aplicación contiene más de 3.100 cartas del juego One Piece TCG, cada una con 15 campos (ID, nombre, tipo, color, rareza, coste, poder, contador, atributo, vida, subtipos, texto de habilidad, imagen y metadatos del set). Introducir estos datos manualmente sería inviable.
+
+Para resolver este problema se desarrolló un **mini-proyecto Java independiente** (`importadorcartas/`) cuya única responsabilidad es conectarse a una API pública de cartas, deserializar la respuesta JSON y volcarla íntegramente a la base de datos PostgreSQL en Supabase mediante JDBC.
+
+Este proyecto vive en la rama `feature/importador-cartas` del repositorio y no forma parte del artefacto final de la aplicación; es una herramienta de desarrollo de ejecución única (o puntual cuando salen nuevos sets).
+
+---
+
+### 12.2 Estructura del mini-proyecto
+
+```
+importadorcartas/
+└── src/main/java/com/jp/
+    ├── Database.java   — Singleton de conexión JDBC a Supabase
+    ├── Carta.java      — POJO mapeado desde JSON con anotaciones Jackson
+    └── TestAPI.java    — Lógica principal: fetch → deserialización → upsert en BD
+```
+
+---
+
+### 12.3 Tecnologías utilizadas y justificación
+
+#### 12.3.1 `java.net.URL` + `URI.create()` — HTTP sin cliente externo
+
+```java
+URL url = URI.create("https://optcgapi.com/api/allSetCards/").toURL();
+mapper.readValue(new InputStreamReader(url.openStream()), Carta[].class);
+```
+
+**Por qué se usa:** Java 11+ expone `java.net.http.HttpClient` y la clase clásica `java.net.URL` para realizar peticiones HTTP directamente desde la JVM, sin añadir dependencias como OkHttp o Apache HttpClient. Se eligió `URL.openStream()` porque la API devuelve un array JSON en una sola respuesta, sin paginación ni autenticación, por lo que un cliente HTTP complejo sería sobredimensionado.
+
+**Justificación frente a lo visto en clase:** En el currículo de DAM las peticiones de red se abordan de forma básica (sockets). El uso de `URI.create().toURL()` sigue la recomendación oficial de Java moderno (evitar el constructor `new URL(String)` deprecado en Java 20) y demuestra conocimiento de la evolución del API estándar.
+
+---
+
+#### 12.3.2 Jackson ObjectMapper — Deserialización JSON
+
+```java
+// Dependencia Maven:
+// com.fasterxml.jackson.core : jackson-databind : 2.x
+
+ObjectMapper mapper = new ObjectMapper();
+Carta[] cartas = mapper.readValue(new InputStreamReader(url.openStream()), Carta[].class);
+```
+
+```java
+// Carta.java — POJO con anotaciones de mapeo
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Carta {
+    @JsonProperty("card_set_id")   public String cardId;
+    @JsonProperty("card_name")     public String name;
+    @JsonProperty("card_type")     public String type;
+    @JsonProperty("card_color")    public String color;
+    @JsonProperty("card_cost")     public String cost;
+    @JsonProperty("card_power")    public String power;
+    @JsonProperty("counter_amount")public String counter;
+    @JsonProperty("card_image")    public String imageUrl;
+    // ... 15 campos en total
+}
+```
+
+**Por qué se usa:** La API devuelve un array JSON con nombres de campo en `snake_case` que no coinciden con las convenciones Java (`camelCase`). Jackson permite mapear automáticamente cada campo JSON a su atributo Java mediante `@JsonProperty`, eliminando la necesidad de parsear el JSON manualmente con `JSONObject` o `JSONArray`.
+
+La anotación `@JsonIgnoreProperties(ignoreUnknown = true)` hace que el deserializador ignore campos de la API que no estén declarados en el POJO, protegiendo el importador frente a cambios futuros en la API sin romper la ejecución.
+
+**Justificación frente a lo visto en clase:** Jackson es la librería de serialización/deserialización JSON más utilizada en el ecosistema Java empresarial (Spring Boot la incluye por defecto). No se estudia en DAM, pero su uso es imprescindible en proyectos reales. El dominio de `ObjectMapper` y las anotaciones `@JsonProperty` / `@JsonIgnoreProperties` es una competencia profesional demandada.
+
+---
+
+#### 12.3.3 Transacciones JDBC manuales con rollback
+
+```java
+conn.setAutoCommit(false);   // desactiva commit automático por operación
+
+try (PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdate);
+     PreparedStatement stmtInsert = conn.prepareStatement(sqlInsert)) {
+
+    for (Carta c : cartas) {
+        // ... insertar o actualizar cada carta
+    }
+
+    conn.commit();   // confirma todos los cambios de una vez
+
+} catch (Exception e) {
+    conn.rollback(); // si algo falla, la BD queda exactamente como estaba
+    throw e;
+}
+```
+
+**Por qué se usa:** Importar 3.100+ cartas con `autoCommit=true` (el comportamiento por defecto de JDBC) significa un `COMMIT` por cada operación individual, lo que tiene un coste enorme en round-trips a la base de datos remota (Supabase está en AWS eu-west-1). Al desactivar el autocommit y agrupar todo en una sola transacción:
+
+- El rendimiento mejora drásticamente (1 commit vs. 3.100+).
+- La atomicidad garantiza que si la importación falla a mitad (error de red, campo inesperado...) la base de datos **no queda en un estado inconsistente** con la mitad de las cartas importadas.
+
+**Justificación frente a lo visto en clase:** El manejo explícito de transacciones (`setAutoCommit`, `commit`, `rollback`) no se suele ver en los ejercicios básicos de JDBC de DAM, donde se trabaja con operaciones aisladas. En entornos de producción con bases de datos remotas es una práctica fundamental para garantizar integridad y rendimiento.
+
+---
+
+#### 12.3.4 `PreparedStatement` reutilizado y `ON CONFLICT DO NOTHING`
+
+```java
+// SQL de inserción con cláusula upsert de PostgreSQL
+String sqlInsert = """
+    INSERT INTO carta (id_carta, nombre, tipo, color, ...)
+    VALUES (?, ?, ?, ?, ...)
+    ON CONFLICT (id_carta) DO NOTHING
+    """;
+
+// El PreparedStatement se prepara UNA VEZ y se ejecuta 3.100 veces
+try (PreparedStatement stmtInsert = conn.prepareStatement(sqlInsert)) {
+    for (Carta c : cartas) {
+        insertarCarta(stmtInsert, c);  // rellena los ? y ejecuta
+    }
+}
+```
+
+**Por qué se usa — `PreparedStatement` reutilizado:** Preparar un `PreparedStatement` supone que el servidor de base de datos compila y planifica la query una sola vez. Reutilizar el mismo objeto para los 3.100+ registros elimina esa sobrecarga repetida. Además, los `?` parametrizados previenen inyección SQL, fundamental cuando los valores vienen de una API externa.
+
+**Por qué se usa — `ON CONFLICT DO NOTHING`:** Esta cláusula es específica de PostgreSQL (no existe en SQL estándar ni en MySQL con esa sintaxis). Permite ejecutar el importador múltiples veces sin duplicar datos: si una carta ya existe en la BD (por su PK `id_carta`), la inserción se ignora silenciosamente. Esto convierte el importador en una herramienta **idempotente**: ejecutarla 10 veces produce el mismo resultado que ejecutarla una.
+
+**Justificación frente a lo visto en clase:** En DAM se enseña el SQL estándar. `ON CONFLICT` es una extensión de PostgreSQL (también llamada "upsert") que no forma parte del currículo estándar pero es ampliamente usada en proyectos reales con PostgreSQL y Supabase.
+
+---
+
+#### 12.3.5 Text Blocks de Java (Java 15+)
+
+```java
+String sqlInsert = """
+    INSERT INTO carta (id_carta, nombre, tipo, color, rareza, set_nombre, set_id, texto,
+                       coste, poder, contador, atributo, imagen_url, vida, subtipos)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT (id_carta) DO NOTHING
+    """;
+```
+
+**Por qué se usa:** Los Text Blocks (bloques de texto multilínea con `"""`) se introdujeron como feature estable en Java 15. Permiten escribir cadenas SQL largas con sangría visual sin concatenaciones con `+` ni caracteres de escape. El resultado es código más legible y mantenible, especialmente con queries complejas de 15 parámetros.
+
+**Justificación frente a lo visto en clase:** El currículo de DAM suele cubrir Java 8/11. Los Text Blocks son una característica moderna (Java 15+) que mejora significativamente la legibilidad del código SQL embebido en Java.
+
+---
+
+#### 12.3.6 Switch Expressions (Java 14+)
+
+```java
+public static String normalizarTipo(String tipo) {
+    if (tipo == null) return "UNKNOWN";
+    return switch (tipo.toLowerCase()) {
+        case "character" -> "PERSONAJE";
+        case "event"     -> "EVENTO";
+        case "stage"     -> "STAGE";
+        case "leader"    -> "LIDER";
+        default          -> tipo.toUpperCase();
+    };
+}
+
+public static String normalizarColor(String color) {
+    if (color == null) return "UNKNOWN";
+    return switch (color.toLowerCase()) {
+        case "red"    -> "ROJO";
+        case "blue"   -> "AZUL";
+        case "green"  -> "VERDE";
+        case "purple" -> "MORADO";
+        case "black"  -> "NEGRO";
+        case "yellow" -> "AMARILLO";
+        default       -> color.toUpperCase();
+    };
+}
+```
+
+**Por qué se usa:** La API devuelve los tipos y colores en inglés (`"character"`, `"red"`...) mientras que la base de datos de la aplicación los almacena en español mayúscula (`"PERSONAJE"`, `"ROJO"`...) para coherencia con el juego en castellano. Las funciones de normalización traducen estos valores en el momento de la importación.
+
+Los Switch Expressions (flecha `->`) son la sintaxis moderna de Java 14+ que elimina el `break` implícito, devuelve un valor directamente y hace que cada caso sea una expresión en lugar de una sentencia, reduciendo el riesgo de fall-through accidental.
+
+**Justificación frente a lo visto en clase:** El `switch` clásico con `break` se enseña en los primeros módulos. El Switch Expression con `->` es una mejora sintáctica de Java 14 que produce código más conciso y seguro, evitando bugs clásicos del `switch` tradicional.
+
+---
+
+#### 12.3.7 Compatibilidad con PgBouncer (`prepareThreshold=0`)
+
+```java
+// Database.java
+private static final String URL =
+    "jdbc:postgresql://aws-0-eu-west-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
+```
+
+**Por qué se usa:** Supabase utiliza **PgBouncer** como connection pooler en modo `transaction`, lo que significa que la conexión lógica puede cambiar de conexión física entre transacciones. PostgreSQL gestiona los `PreparedStatement` a nivel de conexión física; si PgBouncer cambia de conexión, el statement preparado ya no existe en el nuevo servidor y la ejecución falla con error `prepared statement does not exist`.
+
+El parámetro `prepareThreshold=0` deshabilita el "server-side prepare" del driver JDBC de PostgreSQL: todas las queries se envían como texto plano (`simple query protocol`) en lugar de como statements preparados en el servidor. Esto sacrifica una pequeña optimización de parseo en el servidor pero garantiza la compatibilidad con cualquier connection pooler en modo transacción.
+
+**Justificación frente a lo visto en clase:** La gestión de connection poolers, el protocolo extendido vs. simple de PostgreSQL y los parámetros de conexión JDBC son conceptos de administración de bases de datos en entornos de producción que no forman parte del currículo estándar de DAM. Su uso aquí demuestra capacidad de diagnóstico y resolución de problemas en infraestructura cloud real.
+
+---
+
+### 12.4 Flujo completo de importación
+
+```
+[Ejecución: mvn exec:java]
+        │
+        ▼
+URI.create("https://optcgapi.com/api/allSetCards/").toURL()
+        │  HTTP GET
+        ▼
+API optcgapi.com  ──►  JSON array (~3.100 objetos)
+        │
+        ▼
+ObjectMapper.readValue(InputStreamReader, Carta[].class)
+        │  @JsonProperty mapea snake_case → camelCase
+        ▼
+Carta[]  (array en memoria con todos los campos)
+        │
+        ▼
+Database.conectar()  ──►  JDBC → Supabase PostgreSQL (AWS eu-west-1)
+conn.setAutoCommit(false)
+        │
+        ▼
+Para cada Carta c:
+    ├── actualizarCarta(stmtUpdate, c)
+    │       └── UPDATE ... WHERE imagen_url=? AND id_carta IS NULL
+    │           ¿filas afectadas > 0?
+    │              Sí → carta actualizada (tenía URL pero no ID)
+    │              No → insertarCarta(stmtInsert, c)
+    │                     └── INSERT ... ON CONFLICT (id_carta) DO NOTHING
+    │
+    └── cada 100 cartas → log de progreso en consola
+        │
+        ▼
+conn.commit()   ──►  Un solo round-trip confirma todo
+        │  (si Exception → conn.rollback())
+        ▼
+"Importación completada — actualizadas: X, insertadas: Y"
+```
+
+---
+
+### 12.5 Resultado
+
+Tras ejecutar el importador, la tabla `carta` de Supabase queda poblada con la totalidad del catálogo disponible en la API (más de 3.100 cartas en el momento del desarrollo), incluyendo todos los sets publicados hasta la fecha. La aplicación principal lee esta tabla en el arranque (`App.cargarDatosGlobales()`) y la carga en memoria para su uso en filtros, mazos y colección.

@@ -11,19 +11,21 @@
       fx:controller="com.onepiececollectr.ColeccionController">
 
     <!-- ── TÍTULO + CONTADOR DE MAZO ── -->
-    <HBox alignment="CENTER_LEFT">
+    <StackPane>
         <Label text="Colección"
-               style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #e8c96d;" />
-        <Region HBox.hgrow="ALWAYS" />
-        <Label fx:id="lblContadorMazo"
-               visible="false" managed="false"
-               style="-fx-background-color: #1a2c42;
-                      -fx-text-fill: #e8c96d;
-                      -fx-font-weight: bold;
-                      -fx-font-size: 13px;
-                      -fx-padding: 6 16;
-                      -fx-background-radius: 20;" />
-    </HBox>
+               style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #e8c96d;"
+               maxWidth="Infinity" alignment="CENTER" />
+        <HBox alignment="CENTER_RIGHT">
+            <Label fx:id="lblContadorMazo"
+                   visible="false" managed="false"
+                   style="-fx-background-color: #1a2c42;
+                          -fx-text-fill: #e8c96d;
+                          -fx-font-weight: bold;
+                          -fx-font-size: 13px;
+                          -fx-padding: 6 16;
+                          -fx-background-radius: 20;" />
+        </HBox>
+    </StackPane>
 
     <!-- ── BÚSQUEDA + TOGGLE FILTROS ── -->
     <HBox spacing="10" alignment="CENTER_LEFT">

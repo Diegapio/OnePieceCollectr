@@ -17,12 +17,12 @@ import java.util.List;
 
 public class EventosController {
 
-    @FXML private TextField searchField;
-    @FXML private VBox      eventList;
-    @FXML private TextField nameField;
+    @FXML private TextField  searchField;
+    @FXML private VBox       eventList;
+    @FXML private TextField  nameField;
     @FXML private DatePicker datePicker;
-    @FXML private TextField locationField;
-    @FXML private Label     selectedEventLabel;
+    @FXML private TextField  locationField;
+    @FXML private Label      selectedEventLabel;
 
     private Event   selectedEvent     = null;
     private boolean showOnlyFavorites = false;
@@ -32,8 +32,6 @@ public class EventosController {
     private static List<Event> listaEventos = new ArrayList<>();
     public static List<Event>  getListaEventos()              { return listaEventos; }
     public static void         setListaEventos(List<Event> e) { listaEventos = e; }
-
-    // ── Inicialización ────────────────────────────────────────────────────────
 
     @FXML
     public void initialize() {
@@ -48,18 +46,9 @@ public class EventosController {
         });
 
         searchField.textProperty().addListener((obs, oldVal, newVal) -> renderEvents());
-
-        // ▶ Clave: cargar desde BD en background y pintar al terminar
         cargarEventosDesdeBD(() -> Platform.runLater(this::renderEvents));
     }
 
-    // ── Carga desde BD ────────────────────────────────────────────────────────
-
-    /**
-     * Carga los eventos del usuario desde la BD en un hilo de fondo.
-     * Cuando termina llama al callback (siempre en background; usa Platform.runLater
-     * si necesitas tocar la UI desde él).
-     */
     private void cargarEventosDesdeBD(Runnable onDone) {
         new Thread(() -> {
             String sql = "SELECT * FROM eventos WHERE id_usuario = ? ORDER BY fecha";
@@ -67,14 +56,9 @@ public class EventosController {
                  PreparedStatement ps = conn.prepareStatement(sql)) {
                 ps.setInt(1, Login.sesionUsuario.getId());
                 ResultSet rs = ps.executeQuery();
-
                 List<Event> cargados = new ArrayList<>();
                 while (rs.next()) {
-                    Event ev = new Event(
-                        rs.getString("nombre"),
-                        rs.getString("fecha"),
-                        rs.getString("lugar")
-                    );
+                    Event ev = new Event(rs.getString("nombre"), rs.getString("fecha"), rs.getString("lugar"));
                     ev.setFavorite(rs.getBoolean("favorito"));
                     cargados.add(ev);
                 }
@@ -87,17 +71,52 @@ public class EventosController {
         }, "eventos-load").start();
     }
 
-    // ── Render ────────────────────────────────────────────────────────────────
-
     @FXML
     private void renderEvents() {
         eventList.getChildren().clear();
         String filter = searchField.getText() != null ? searchField.getText().toLowerCase() : "";
+        LocalDate today = LocalDate.now();
+
+        List<Event> futuros = new ArrayList<>();
+        List<Event> pasados = new ArrayList<>();
 
         for (Event event : listaEventos) {
             if (showOnlyFavorites && !event.isFavorite()) continue;
             if (!event.getName().toLowerCase().contains(filter)) continue;
+            try {
+                LocalDate fecha = LocalDate.parse(event.getDate(), FMT);
+                if (fecha.isBefore(today)) pasados.add(event);
+                else futuros.add(event);
+            } catch (Exception e) {
+                futuros.add(event);
+            }
+        }
+
+        for (Event event : futuros) {
             eventList.getChildren().add(createEventCard(event));
+        }
+
+        if (!pasados.isEmpty()) {
+            VBox seccionPasados = new VBox(8);
+
+            Button btnToggle = new Button("▶  Eventos pasados (" + pasados.size() + ")");
+            btnToggle.setStyle("-fx-background-color:#1a2c42;-fx-text-fill:#7fb3d3;" +
+                               "-fx-font-weight:bold;-fx-cursor:hand;-fx-background-radius:8;-fx-padding:8 14;");
+
+            VBox listaPasados = new VBox(8);
+            listaPasados.setVisible(false);
+            listaPasados.setManaged(false);
+            for (Event event : pasados) listaPasados.getChildren().add(createEventCard(event));
+
+            btnToggle.setOnAction(e -> {
+                boolean visible = !listaPasados.isVisible();
+                listaPasados.setVisible(visible);
+                listaPasados.setManaged(visible);
+                btnToggle.setText((visible ? "▼" : "▶") + "  Eventos pasados (" + pasados.size() + ")");
+            });
+
+            seccionPasados.getChildren().addAll(btnToggle, listaPasados);
+            eventList.getChildren().add(seccionPasados);
         }
     }
 
@@ -108,21 +127,25 @@ public class EventosController {
         try {
             LocalDate eventDate = LocalDate.parse(event.getDate(), FMT);
             LocalDate today     = LocalDate.now();
-            if      (eventDate.isBefore(today))               card.setStyle(base + "-fx-background-color:#ffe6e6;-fx-border-color:#e74c3c;");
-            else if (!eventDate.isAfter(today.plusDays(3)))   card.setStyle(base + "-fx-background-color:#fff3cd;-fx-border-color:#f1c40f;");
-            else                                               card.setStyle(base + "-fx-background-color:white;-fx-border-color:#bdc3c7;");
+            if      (eventDate.isBefore(today))             card.setStyle(base + "-fx-background-color:#2d1010;-fx-border-color:#c0392b;");
+            else if (!eventDate.isAfter(today.plusDays(3))) card.setStyle(base + "-fx-background-color:#2d2710;-fx-border-color:#e8c96d;");
+            else                                             card.setStyle(base + "-fx-background-color:#1a2c42;-fx-border-color:#2e4a6b;");
         } catch (Exception e) {
-            card.setStyle(base + "-fx-background-color:white;-fx-border-color:#bdc3c7;");
+            card.setStyle(base + "-fx-background-color:#1a2c42;-fx-border-color:#2e4a6b;");
         }
 
-        Label name    = new Label(event.getName() + (event.isFavorite() ? " ⭐" : ""));
-        name.setStyle("-fx-font-size:16;-fx-font-weight:bold;");
+        Label name = new Label(event.getName() + (event.isFavorite() ? " ⭐" : ""));
+        name.setStyle("-fx-font-size:16;-fx-font-weight:bold;-fx-text-fill:#c8dce8;");
         Label details = new Label("📅 " + event.getDate() + "  |  📍 " + event.getLocation());
+        details.setStyle("-fx-font-size:12;-fx-text-fill:#7fb3d3;");
 
         Button btnEdit   = new Button("Editar");
         Button btnFav    = new Button(event.isFavorite() ? "Quitar ⭐" : "Favorito ⭐");
         Button btnDelete = new Button("Eliminar");
-        btnDelete.setStyle("-fx-background-color:#e74c3c;-fx-text-fill:white;");
+
+        btnEdit.setStyle("-fx-background-color:#4a6fa5;-fx-text-fill:#c8dce8;-fx-background-radius:6;-fx-cursor:hand;");
+        btnFav.setStyle("-fx-background-color:#2e4a6b;-fx-text-fill:#e8c96d;-fx-background-radius:6;-fx-cursor:hand;");
+        btnDelete.setStyle("-fx-background-color:#7b2d2d;-fx-text-fill:#c8dce8;-fx-background-radius:6;-fx-cursor:hand;");
 
         btnEdit.setOnAction(e -> prepararEdicion(event));
 
@@ -158,12 +181,9 @@ public class EventosController {
             }
         });
 
-        HBox actions = new HBox(10, btnEdit, btnFav, btnDelete);
-        card.getChildren().addAll(name, details, actions);
+        card.getChildren().addAll(name, details, new HBox(10, btnEdit, btnFav, btnDelete));
         return card;
     }
-
-    // ── Guardar / Editar ──────────────────────────────────────────────────────
 
     private void prepararEdicion(Event event) {
         selectedEvent = event;
@@ -187,7 +207,6 @@ public class EventosController {
         String formattedDate = date.format(FMT);
 
         if (selectedEvent != null) {
-            // ── Actualizar ────────────────────────────────────────────────
             String sql = "UPDATE eventos SET nombre=?, fecha=?, lugar=? WHERE nombre=? AND id_usuario=?";
             try (Connection conn = Login.getConexion();
                  PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -197,7 +216,6 @@ public class EventosController {
                 ps.setString(4, selectedEvent.getName());
                 ps.setInt(5, Login.sesionUsuario.getId());
                 ps.executeUpdate();
-
                 selectedEvent.setName(name);
                 selectedEvent.setDate(formattedDate);
                 selectedEvent.setLocation(location);
@@ -207,9 +225,7 @@ public class EventosController {
             } catch (SQLException e) {
                 new Login().mostrarAlerta("Error", "No se pudo actualizar el evento.");
             }
-
         } else {
-            // ── Insertar ──────────────────────────────────────────────────
             String sql = "INSERT INTO eventos (id_usuario, nombre, fecha, lugar, favorito) VALUES (?,?,?,?,?)";
             try (Connection conn = Login.getConexion();
                  PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -219,7 +235,6 @@ public class EventosController {
                 ps.setString(4, location);
                 ps.setBoolean(5, false);
                 ps.executeUpdate();
-
                 listaEventos.add(new Event(name, formattedDate, location));
                 selectedEventLabel.setText("✅ Evento guardado");
                 Login.registrarEnLog("Evento creado: " + name);
@@ -232,8 +247,6 @@ public class EventosController {
         limpiarCampos();
         renderEvents();
     }
-
-    // ── Otras acciones ────────────────────────────────────────────────────────
 
     @FXML
     private void toggleFavorites() {

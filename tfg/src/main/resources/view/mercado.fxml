@@ -10,33 +10,34 @@
 
 <VBox spacing="18"
       alignment="TOP_CENTER"
-      style="-fx-padding: 24; -fx-background-color: #f4f6fb;"
+      style="-fx-padding: 24; -fx-background-color: #0d1b2a;"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.onepiececollectr.MarketController">
 
     <!-- Título -->
     <Label text="🛒 Mercado / CardTrader"
-           style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+           style="-fx-font-size: 28; -fx-font-weight: bold; -fx-text-fill: #e8c96d;"
+           maxWidth="Infinity" alignment="CENTER" />
 
     <!-- Status -->
     <Label fx:id="statusLabel"
            text="Selecciona cartas de tu colección para optimizar."
-           style="-fx-font-size: 13; -fx-text-fill: #7f8c8d;" />
+           style="-fx-font-size: 13; -fx-text-fill: #7fb3d3;" />
 
-    <Separator />
+    <Separator style="-fx-background-color: #2e4a6b;" />
 
     <!-- INSTRUCCIONES -->
     <VBox spacing="6"
-          style="-fx-background-color: #eaf4fb; -fx-padding: 14; -fx-background-radius: 10;
-                 -fx-border-color: #aed6f1; -fx-border-radius: 10;">
+          style="-fx-background-color: #1a2c42; -fx-padding: 14; -fx-background-radius: 10;
+                 -fx-border-color: #2e4a6b; -fx-border-radius: 10;">
         <Label text="¿Cómo funciona?"
-               style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #2980b9;" />
+               style="-fx-font-weight: bold; -fx-font-size: 14; -fx-text-fill: #7fb3d3;" />
         <Label text="1. Pulsa «Seleccionar de mi colección» para ver solo tus cartas."
-               style="-fx-font-size: 12; -fx-text-fill: #34495e;" />
+               style="-fx-font-size: 12; -fx-text-fill: #c8dce8;" />
         <Label text="2. Haz clic en las cartas que quieres incluir (se marcan en azul)."
-               style="-fx-font-size: 12; -fx-text-fill: #34495e;" />
+               style="-fx-font-size: 12; -fx-text-fill: #c8dce8;" />
         <Label text="3. Vuelve aquí, copia los IDs y pégalos en CardTrader."
-               style="-fx-font-size: 12; -fx-text-fill: #34495e;" />
+               style="-fx-font-size: 12; -fx-text-fill: #c8dce8;" />
     </VBox>
 
     <!-- BOTONES DE ACCIÓN -->
@@ -44,19 +45,19 @@
 
         <Button text="📦 Seleccionar de mi colección"
                 onAction="#irASeleccionarDeColeccion"
-                style="-fx-background-color: #2980b9; -fx-text-fill: white;
+                style="-fx-background-color: #4a6fa5; -fx-text-fill: #c8dce8;
                        -fx-font-weight: bold; -fx-font-size: 13;
                        -fx-padding: 10 18; -fx-background-radius: 8; -fx-cursor: hand;" />
 
         <Button text="🌐 Abrir CardTrader"
                 onAction="#abrirCardTrader"
-                style="-fx-background-color: #27ae60; -fx-text-fill: white;
+                style="-fx-background-color: #2e4a6b; -fx-text-fill: #c8dce8;
                        -fx-font-weight: bold; -fx-font-size: 13;
                        -fx-padding: 10 18; -fx-background-radius: 8; -fx-cursor: hand;" />
 
         <Button text="🗑 Limpiar lista"
                 onAction="#limpiarLista"
-                style="-fx-background-color: #e74c3c; -fx-text-fill: white;
+                style="-fx-background-color: #7b2d2d; -fx-text-fill: #c8dce8;
                        -fx-font-size: 13;
                        -fx-padding: 10 14; -fx-background-radius: 8; -fx-cursor: hand;" />
 
@@ -64,14 +65,16 @@
 
     <!-- LISTA DE CARTAS SELECCIONADAS -->
     <Label text="Cartas seleccionadas (ID – Nombre):"
-           style="-fx-font-weight: bold; -fx-font-size: 13; -fx-text-fill: #2c3e50;" />
+           style="-fx-font-weight: bold; -fx-font-size: 13; -fx-text-fill: #c8dce8;" />
 
     <TextArea fx:id="txtIdsParaCardTrader"
               promptText="Aquí aparecerán las cartas que selecciones en tu colección…"
               editable="false"
               prefRowCount="10"
               style="-fx-font-family: monospace; -fx-font-size: 12;
+                     -fx-background-color: #1a2c42; -fx-text-fill: #c8dce8;
+                     -fx-prompt-text-fill: #4a6fa5;
                      -fx-background-radius: 8; -fx-border-radius: 8;
-                     -fx-border-color: #bdc3c7;" />
+                     -fx-border-color: #2e4a6b;" />
 
 </VBox>
