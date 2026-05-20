@@ -15,3 +15,6 @@ One_piece.log
 # OS
 .DS_Store
 Thumbs.db
+
+# Exportaciones de mazos
+mazo_*.html
